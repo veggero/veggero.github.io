@@ -1,0 +1,20 @@
+export default
+{
+    "home": [
+        "nerd("
+        "   bio: ("
+        "       name: «Niccolo Venerandi»"
+        "       age: num(19) // todo put 20 here on 7/6/21"
+        "       mail: link(to: 'mailto:niccolo@venerandi.com', text: 'mail.niccolo.venerandi')"
+        "       propic: img(link: 'assets/images/avatar.jpg')"
+        "   )"
+        "   info: ("
+        "       skills: collapsed(name: 'skills')"
+        "       projects: collapsed(name: 'projects')"
+        "       credits: collapsed(name: 'credits')"
+        "   )"
+        "   updates: link(to: 'https://write.as/niccolove', text: 'writeas.niccolove')"
+        "   donations: (link(to: 'https://liberapay.com/niccolove', text: 'liberapay'), link(to: 'https://paypal.me/niccolove', text: 'paypal'), link(to: 'https://patreon.com/niccolove', text: 'patreon'))"
+        "   ) // todo insert some funny punchline here"
+    ]
+}

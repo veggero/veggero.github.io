@@ -1,0 +1,228 @@
+/* The header */
+
+#channel {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 28%;
+    font-size: 1.6vw;
+    line-height: 1.1;
+    border-bottom: 1px solid var(--border);
+    border-radius: 8px 8px 0 0px;
+    background-color: var(--sidebar);
+    transition: box-shadow 0.4s, transform .5s;
+    display: flex;
+    align-items: center;
+}
+
+#subscribe {
+    position: absolute;
+    top: 25%; right: 3%;
+    height: 50%; width: 20%;
+    color: var(--fg);
+    border-radius: 5px;
+    /* double shadow is for animation */
+    box-shadow: 8px  8px 12px 0 rgba(0, 0, 0, 0),
+                -8px -8px 12px 0 var(--bgt),
+                inset  8px  8px 12px 0 rgba(0, 0, 0, .2),
+                inset -8px -8px 12px 0 var(--bg);
+    font-size: 2.1vw;
+    transition: box-shadow 0.4s, background-color 0.4s, color 0.4s;
+} #subscribe:hover {
+    box-shadow: 8px  8px 12px 0 rgba(0, 0, 0, .2),
+                -8px -8px 12px 0 var(--bg),
+                inset  8px  8px 12px 0 rgba(0, 0, 0, 0),
+                inset -8px -8px 12px 0 var(--bgt);
+    background-color: #d10700; color: white;
+}
+
+#ytlogo {
+    transition: box-shadow 2.5s, transform 2.5s;
+    width: 15%;
+    margin-left: 3%;
+    border-radius: 100px;
+} #ytlogo:hover {
+    transform: rotateX(20deg) rotateY(20deg);
+}
+
+#description {
+    margin-left: 3%;
+    width: 50%;
+    text-align: justify;
+}
+
+/* The two hidden cards */
+
+#kde .back {
+    perspective: 1200px;
+}
+
+#kde .hidden {
+    position: absolute; z-index: 2;
+    transition: transform .5s, box-shadow .5s;
+    width: 12%; height: 10%;
+    top: 20%;
+    cursor: pointer;
+}
+
+.hidden#left:hover {transform: translate(-10%, 50%);}
+.hidden#left img {width: 100%}
+.hidden#left {left: -2%; transform: translate(-50%) rotateY(-30deg);}
+.hidden#right:hover {transform: translate(10%, 50%);}
+.hidden#right {right: -2%; transform: translate(50%) rotateY(30deg);}
+.hidden#right img {width: 90%}
+/* Sneaky tricks to avoid css jittering: */
+.hidden#left:hover::after {
+    content: "";
+    position: absolute; z-index: -1;
+    right: -0.5%; left: -25%;
+    bottom: -0.5%; top: -50%;
+}
+.hidden#right:hover::after {
+    content: "";
+    position: absolute; z-index: -1;
+    left: -0.5%; right: -25%;
+    bottom: -0.5%; top: -50%;
+}
+
+/* The youtube videos and donation cards */
+
+.cover {
+    position: absolute;
+    transition: box-shadow .2s;
+    height: 26%; width: 40%;
+    overflow: hidden;
+    background-size: contain;
+    background-size: cover;
+    background-position-x: center;
+    background-position-y: center;
+}
+
+.cover .button {
+    position: absolute;
+    height: 60px; width: 60px;
+    border-radius: 60px;
+    top: calc((100% - 60px)/2);
+    left: calc((100% - 60px)/2);
+    transform: translateX(-300px);
+    opacity: 0;
+    background-color: white;
+    transition: box-shadow 0.4s, transform .4s, opacity .4s;
+} .cover:hover .button, .cover:hover .donationlink {
+    opacity: 1;
+    transform: translateX(0);
+} .cover .button img {
+    height: 50%;
+}
+
+.cover .donationlink {
+    position: absolute; z-index: 3;
+    width: 30%; height: 30%;
+    transform: translateY(400px);
+    opacity: 0;
+    transition: transform .5s, opacity .5s, box-shadow .5s, color .5s, background-color .5s;
+    font-size: 1.7vw;
+}   #patreon {left: 10%; bottom: 10%; color: #7d5700;}
+    #patreon:hover {color: black; background-color: #fff0db;}
+    #liberapay {left: 30%; bottom: 30%; color: #7d7500;
+        transition: transform .5s .3s, opacity .5s .3s, box-shadow .5s, color .5s, background-color .5s;}
+    #liberapay:hover {color: black; background-color: #ffffdb;}
+    #paypal {left: 50%; bottom: 50%; color: #00387d;
+        transition: transform .5s .6s, opacity .5s .6s, box-shadow .5s, color .5s, background-color .5s;}
+    #paypal:hover {color: black; background-color: #dbebff;}
+
+/* Animation for the 45deg gradient */
+@keyframes covergradient {
+    0% {background-position: 0% 51%}
+    50% {background-position: 100% 50%}
+    100% {background-position: 0% 51%}
+}
+
+.cover .gradient {
+    width: 100%; height: 100%;
+    font-size: 2.2vw;
+    color: black;
+}
+
+#cover1 {
+    top: 34%; left: 7%;
+    background-image: url("../images/cover1.jpg");
+} #cover1 .gradient {
+    background: linear-gradient(0deg, #ffffffff, #ffffffbb, #ffffff00),
+                linear-gradient(44deg, #ff8900cc, #008cffcc);
+    animation: covergradient 8s ease infinite;
+    background-size: 400% 400%;
+}
+#cover2 {
+    top: 34%; right: 7%;
+    background-image: url("../images/cover2.jpg");
+} #cover2 .gradient {
+    background: linear-gradient(0deg, #ffffffff, #ffffffbb, #ffffff00),
+                linear-gradient(44deg, #f9ff00cc, #ffcd00cc, #ff3a00cc);
+    animation: covergradient 8s ease infinite;
+    background-size: 400% 400%;
+}
+#cover3 {
+    bottom: 6%; left: 7%;
+    background-image: url("../images/cover3.jpg");
+} #cover3 .gradient {
+    background: linear-gradient(0deg, #ffffffff, #ffffffbb, #ffffff00),
+                linear-gradient(44deg, #1100ffcc, #00aeffcc, #00ffdfcc);
+    animation: covergradient 8s ease infinite;
+    background-size: 400% 400%;
+}
+#cover4 {
+    bottom: 6%; right: 7%;
+    overflow: visible;
+    line-height: .9;
+    font-size: 1.6vw;
+    color: var(--fg);
+}
+
+/* Donate buttons and stuff */
+
+.coverback {
+    background-color: var(--bg);
+    width: 100%; height: 100%;
+    top: 0; left: 0;
+    position: absolute; z-index: 1;
+    border-radius: 4px;
+}
+
+#cover4 #donate {
+    position: relative; z-index: 2;
+    align-items: center;
+    margin: 10px;
+}
+
+.heart {
+    position: absolute; z-index: -100;
+    color: red;
+    margin: 0;
+    font-size: 4vw;
+    line-height: 0.5;
+    transition: transform .3s;
+    text-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+.cover:hover .lh {
+    transform: translate(-80%, 0) rotate(-45deg);
+} .lh {left: 3%}
+.cover:hover .rh {
+    transform: translate(80%, 0) rotate(45deg);
+} .rh {right: 3%;}
+.a1 {top: 4%; transition-delay: .2s; } .a2 {top: 29%; transition-delay: .4s; }
+.a3 {bottom: 27%; transition-delay: .6s; } .a4 {bottom: 4%; transition-delay: .8s;}
+
+/* seemore and close buttons */
+
+#seemore {
+    position: absolute;
+    width: 10%; height: 5%;
+    left: 45%; top: 97%;
+    color: var(--fg);
+    font-size: 1.3vw;
+    transition: color .5s, background-color .5s, box-shadow .5s;
+} #seemore:hover {
+    color: white;
+    background-color: #d10700;
+}

@@ -1,1 +1,306 @@
-Hello world
+<html>
+    <head>
+        <title>user@niccolove:homepage$</title>
+        <link rel="stylesheet" href="assets/styles/home.css">
+        <link rel="stylesheet" href="assets/styles/kde.css">
+        <link rel="stylesheet" href="assets/styles/code.css">
+        <link rel="stylesheet" href="assets/styles/poetry.css">
+        <link rel="stylesheet" href="assets/styles/politics.css">
+        <meta charset="UTF-8">
+    </head>
+    <body onmousemove="parall(event)" id="body">
+        <div id="error" class="vhcenter">
+            <p>
+            <img src="assets/images/rotate.png"><br>
+            Please rotate your device to landscape to access this website!<br>
+            Per favore, ruota il tuo telefono orizzontalmente per usare questo sito!<br>
+            <br>
+            There are some very good reasons to do this:<br>
+            1) Website works best on landscape mode<br>
+            2) I'm too lazy to mantain a portrait version<br>
+            3) It's quite a complex website, as you'll see<br>
+            4) They're telling me this should be "temporary",<br> and that I "have to work on a portrait version asap",<br> but we'll see</p>
+        </div>
+        <div id="background"></div>
+        <script src="assets/logic/colors.js"></script>
+        <p id="author">
+        <img src="assets/images/palette.svg" id="palette" onclick="nextColorscheme()"><br>
+        Made with love<br> by Niccolove</p>
+        <img src="assets/images/nota.svg" id="home">
+        <div id="code" class="home topleft card topic">
+            <div id="otherfront">
+                <div class="card vhcenter close left" onclick="select('code')">close</div>
+                <div class="insideback">
+                    <div id="sidebar"></div>
+                    <pre id="frontcodepre"></pre>
+                </div>
+            </div>
+            <div class="front vhcenter" onclick="select('code')" id="oldfront">
+                <p>code</p>
+            </div>
+            <div class="back">
+                <div class="card vhcenter close right" onclick="select('code')">close</div>
+                <div class="card preview closed" id="fatherbackpreview">
+                    <div class="coverback"></div>
+                    <div class="content">
+                        <p>link.preview: (<span class="str">«</span></p>
+                        <span class="str"><p id="backpreview" style="margin-left: 2em;">...</p></span>
+                        <p><span class="str">»</span>)</p>
+                    </div>
+                    <p src="assets/images/heart.svg" class="lh heart a1">♥</p>
+                    <p src="assets/images/heart.svg" class="lh heart a2">♥</p>
+                    <p src="assets/images/heart.svg" class="lh heart a3">♥</p>
+                    <p src="assets/images/heart.svg" class="lh heart a4">♥</p>
+                    <p src="assets/images/heart.svg" class="rh heart a1">♥</p>
+                    <p src="assets/images/heart.svg" class="rh heart a2">♥</p>
+                    <p src="assets/images/heart.svg" class="rh heart a3">♥</p>
+                    <p src="assets/images/heart.svg" class="rh heart a4">♥</p>
+                </div>
+                <div class="insideback">
+                    <div id="sidebar"></div>
+                    <pre id="backcodepre"></pre>
+                </div>
+            </div>
+        </div>
+        <div id="poetry" class="home topright card topic">
+            <div class="front vhcenter" onclick="select('poetry')">
+                <p>poesia</p>
+            </div>
+            <div class="back">
+                <div id="rightpart" class="vhcenter">
+                    <p>
+                        <b>Fav Poetry Bookz:</b><br>
+                        Le Bambinacce - <i>Raimo e Rossari</i><br>
+                        Filastorte D'Amore - <i>Tesio</i><br>
+                        Versi del Senso Perso - <i>Scialoja</i><br><br>
+                        <b>Fav Poetry Albumz:</b><br>
+                        Habemus Capa - <i>Caparezza</i><br>
+                        Kamikaze - <i>Eminem</i><br>
+                        Educazione Sabauda - <i>Willie</i><br>
+                        L'uomo che viaggiava nel<br>
+                        Vento - <i>Murubutu</i><br>
+                    </p>
+                </div>
+                <div id="leftpart" class="vhcenter">
+                    <p>
+                        ciao<br>
+                        mi chiamo <b>niccolo ve</b>nerandi<br>
+                        mi piace scrivere utilizzando rime, allitterazioni<br>
+                        e ritmi scanditi e costanti<br>
+                        principalmente amore e politica<br>
+                        ho anche partecipato a un po' di poetry slam<br><br><br>
+                    </p>
+                </div>
+                <div class="card vhcenter close right" onclick="select('poetry')">close</div>
+                <div id="card-holder">
+                    <div class="card poetrycard" id="poemcard1" onclick="popPoem(1)"><div class="fadeout"></div><pre id="poem1"></pre></div>
+                    <div class="card poetrycard" id="poemcard2" onclick="popPoem(2)"><div class="fadeout"></div><pre id="poem2"></pre></div>
+                    <div class="card poetrycard" id="poemcard3" onclick="popPoem(3)"><div class="fadeout"></div><pre id="poem3"></pre></div>
+                    <div class="card poetrycard" id="poemcard4" onclick="popPoem(4)"><div class="fadeout"></div><pre id="poem4"></pre></div>
+                </div>
+                <div id="category-holder">
+                    <div class="card categorycard vhcenter" onclick="pickPoem('arianna')"><p>arianna</p></div>
+                    <div class="card categorycard vhcenter" onclick="pickPoem('teresa')"><p>teresa</p></div>
+                    <div class="card categorycard vhcenter" onclick="pickPoem('bella')"><p>bella</p></div>
+                    <div class="card categorycard vhcenter" onclick="pickPoem('coppie')"><p>coppie</p></div>
+                    <div class="card categorycard vhcenter" onclick="pickPoem('prototipa')"><p>pròtotìpa</p></div>
+                    <div class="card categorycard vhcenter" onclick="pickPoem('poliriche')"><p>poliriche<p></div>
+                    <div class="card categorycard vhcenter" onclick="pickPoem('morte')"><p>morte</p></div>
+                    <div class="card categorycard vhcenter" onclick="pickPoem('ad altr*')"><p>ad altr*</p></div>
+                </div>
+                <div class="flex-grid" id="instagrid">
+                    <a href="https://www.instagram.com/p/CN44vW1hKM2/" target="_blank"><img src="assets/images/insta/1.png" id="img1" onmouseover="updateInsta(0,0)"></a>
+                    <a href="https://www.instagram.com/p/CNnDqGsByHH/" target="_blank"><img src="assets/images/insta/2.png" id="img5" onmouseover="updateInsta(1,0)"></a>
+                    <a href="https://www.instagram.com/p/CL7GCl9hsT6/" target="_blank"><img src="assets/images/insta/3.png" id="img9" onmouseover="updateInsta(2,0)"><br></a>
+                    <a href="https://www.instagram.com/p/CKE7fl4hnPD/" target="_blank"><img src="assets/images/insta/4.png" id="img2" onmouseover="updateInsta(0,1)"></a>
+                    <a href="https://www.instagram.com/p/CJnu5BoBGpe/" target="_blank"><img src="assets/images/insta/5.png" id="img6" onmouseover="updateInsta(1,1)"></a>
+                    <a href="https://www.instagram.com/p/CJGnYk9hkP2/" target="_blank"><img src="assets/images/insta/6.png" id="img10" onmouseover="updateInsta(2,1)"><br></a>
+                    <a href="https://www.instagram.com/p/CJEPTjxhNdm/" target="_blank"><img src="assets/images/insta/7.png" id="img3" onmouseover="updateInsta(0,2)"></a>
+                    <a href="https://www.instagram.com/p/B2j9JxYo7BM/" target="_blank"><img src="assets/images/insta/8.png" id="img7" onmouseover="updateInsta(1,2)"></a>
+                    <a href="https://www.instagram.com/p/B4sNXUHoSi7/" target="_blank"><img src="assets/images/insta/9.png" id="img11" onmouseover="updateInsta(2,2)"><br></a>
+                    <a href="https://www.instagram.com/p/CMEtRk9hsiK/" target="_blank"><img src="assets/images/insta/10.png" id="img4" onmouseover="updateInsta(0,3)"></a>
+                    <a href="https://www.instagram.com/p/COK5RW2KV2u/" target="_blank"><img src="assets/images/insta/11.png" id="img8" onmouseover="updateInsta(1,3)"></a>
+                    <a href="https://www.instagram.com/p/CKWbnE8KKqS/" target="_blank"><img src="assets/images/insta/12.png" id="img12" onmouseover="updateInsta(2,3)"></a>
+                </div>
+            </div>
+        </div>
+        <div id="kde" class="home bottomleft card topic">
+            <div class="front vhcenter" onclick="select('kde')">
+                <p>kde</p>
+            </div>
+            <div class="back">
+                <div class="card vhcenter close left" onclick="select('kde')">close</div>
+                <div class="hidden card vhcenter" id="left" onclick="window.open('https://invent.kde.org/niccolove', '_blank');">
+                    <img src="assets/images/gitlab.png">
+                </div>
+                <div class="hidden card vhcenter" id="right" onclick="window.open('https://lichess.org/@/niccolove', '_blank');">
+                    <img src="assets/images/lichess.webp">
+                </div>
+                <div id="channel">
+                    <img src="assets/images/avatar.jpg" class="card" id="ytlogo">
+                    <p id="description">
+                        <b>Niccolo Ve</b><br>
+                        i make videos explaining how KDE Plasma works, showcasing its latest functionalities and reviewing other projects!
+                    </p>
+                    <a href="https://youtube.com/niccolove" target="_blank">
+                        <div class="vhcenter" id="subscribe">
+                            <p>subscribe</p>
+                        </div>
+                    </a>
+                </div>
+                <a href="https://youtu.be/XrNWYt_vciA" target="_blank">
+                    <div id="cover1" class="card cover">
+                        <div class="gradient vhcenter"><p>Plasma Theme Guide!</p></div>
+                        <div class="card vhcenter button"><img src="assets/images/play.png"></div>
+                    </div></a>
+                <a href="https://youtu.be/4exHfb8Qjl0" target="_blank">
+                    <div id="cover2" class="card cover">
+                        <div class="gradient vhcenter"><p>Adaptive Transparency!</p></div>
+                        <div class="card vhcenter button">
+                            <img src="assets/images/play.png">
+                        </div>
+                    </div>
+                </a>
+                <a href="https://youtu.be/DHza5X2Jt2g" target="_blank">
+                    <div id="cover3" class="card cover">
+                        <div class="gradient vhcenter"><p>GNOME 40 Review!</p></div>
+                        <div class="card vhcenter button">
+                            <img src="assets/images/play.png">
+                        </div>
+                    </div>
+                </a>
+                <div id="cover4" class="cover vhcenter card">
+                    <p src="assets/images/heart.svg" class="lh heart a1">♥</p>
+                    <p src="assets/images/heart.svg" class="lh heart a2">♥</p>
+                    <p src="assets/images/heart.svg" class="lh heart a3">♥</p>
+                    <p src="assets/images/heart.svg" class="lh heart a4">♥</p>
+                    <p src="assets/images/heart.svg" class="rh heart a1">♥</p>
+                    <p src="assets/images/heart.svg" class="rh heart a2">♥</p>
+                    <p src="assets/images/heart.svg" class="rh heart a3">♥</p>
+                    <p src="assets/images/heart.svg" class="rh heart a4">♥</p>
+                    <div class="coverback"></div>
+                    <p id="donate">
+                        <b>donate</b><br>
+                        this helps me grow the channel,<br>
+                        put more time in kde dev and<br>
+                        support me in general:<br>
+                        poetry, rap and stuff included!
+                    </p>
+                    <div style="width: 100%; height: 100%; position: absolute; top: 0; left: 0; overflow: hidden">
+                        <a href="https://patreon.com/niccolove" target="_blank">
+                            <div class="card vhcenter donationlink" id="patreon"><p>patreon</p></div>
+                        </a>
+                        <a href="https://liberapay.com/niccolove" target="_blank">
+                            <div class="card vhcenter donationlink" id="liberapay"><p>liberapay</p></div>
+                        </a>
+                        <a href="https://paypal.me/niccolove" target="_blank">
+                            <div class="card vhcenter donationlink" id="paypal"><p>paypal</p></div>
+                        </a>
+                    </div>
+                </div>
+                <a href="https://www.youtube.com/c/NiccoloVe/videos" target="_blank">
+                    <div class="card vhcenter" id="seemore">see more</div>
+                </a>
+            </div>
+        </div>
+        <div id="politics" class="home bottomright card topic">
+            <div class="front vhcenter" onclick="select('politics')">
+                <p>politica</p>
+            </div>
+            <div class="back">
+                <div class="card vhcenter close left" onclick="select('politics')">close</div>
+                <div class="politicalsidebar">
+                    <img src="assets/images/avatar.jpg" id="avatar">
+                    <p id="description">
+                        Ciao! Sono Niccolo Venerandi.<br>
+                        Penso che sia importante la partecipazione attiva alla
+                        politica; non intesa solo a livello nazionale ma
+                        anche - ad esempio - nella mia università.<br>
+                        Mi piacciono metodi di confronto come
+                        il debate, che snocciolano argomenti
+                        complessi e dove si sostengono, per esercizio,
+                        opinioni che magari non ci apparengono.
+
+                    </p>
+                </div>
+                <div class="politicalcontent">
+
+                    <div id="obiezione">
+                        <p>This was a Global Politics homework, I got a 6 (not sure if base 7 or 10, I think + hope it's not the latter). Here's the video + original text: </p>
+
+                        <!-- <video controls=""><source src="backstage/files/global_politics_presentation.mp4" type="video/mp4"></video> -->
+
+                        <p>Italian's 1978 legislation allows voluntary termination of pregnancy within its firsts 90 days; the same law allows doctors to eventually refuse to practice such operation by claiming conscientious objection. Said objectors compose today 70% of the medical staff in Italy, and many hospitals only have objecting staff. How this affects healthcare is disputed by many different actors.</p>
+
+                        <p>Let’s see the relationship between abortion and objection. Conscientious objection is clearly defined as a human right by the Article 10 of EU Charter of Fundamental Rights. On the other hand, Abortion can also be seen as a human right for when it’s not provided in a safe and legal way, other human rights are at stake, such as the rights to life and security as claimed by a report of the UN's Population Fund, rights to healthcare, information and equality as claimed by the Human Rights Watch, and the rights to choice and self-determination, as claimed by the Italian feminist movement.</p>
+
+                        <p>The feminist movement really is a major player here. They fought for the implementation of abortion laws and they now strongly oppose conscientious objection. They have collected through the years many witnesses of medical staff mistreating their patients for seeking abortion, medical staff refusing to prescribe abortion pills and of pharmacies illegally refusing to sell morning-after pills. Has this movement any power? On one hand, they did manage to make the government pass abortion legislation; on the other hand, they failed at changing the situation around objection. We can therefore say that this social movement has some power, but only to a certain extent. NGOs against conscientious objection include the Association Luca Coscioni for the Freedom of Scientific Research, the International Planned Parenthood Federation, and the Italian General Confederation of Labor (CGIL), the oldest Italian union.</p>
+
+                        <p>On the other side we have the Holy See, who strongly opposes abortion calling it homicide and even “hiring a hitman”. Technically, the Holy See is a foreign state with no hard power in Italy, but it still maintains a strong soft power, as 75% of Italians are Catholic, it has ambassadors in may countries who can push for legislation (an example is Slovak Republic legislation about objection), and a very strong presence on the territory through churches and, most importantly, Catholic hospitals. What is the power of Holy See in this case study? On one hand, they did manage to keep the situation around objection constant, but on the other hand they did not manage to avoid abortion legislation, so it’s possible to say that they do have power but only to a certain extent as well.</p>
+
+                        <p>This situation is also addressed by the Italian government in an annual analysis of the situation using the data from the National Institute of Statistics. In this report, the Minister of Health claims that the number of facilities that are able to perform abortion are more than enough to cover the demand and that the additional workload of non-objecting doctor is moderate, except in few regions due to bad local organization. When confronted with the UN Human Right Committee, the Minister also claimed that regulating objection was not a priority in Italy, as abortions are going down while objection has remained still in the last 30 years.</p>
+
+                        <p>Another major player on the regional level is the Council of Europe, a regional intergovernmental organization that aims to uphold human right, democracy and rule of law in Europe. They recognize the possible conflict between abortion and objection, and simply state that “states should organize the healthcare system in a way that objection does not prevent patients from obtaining access to abortion”. The above mentioned organizations CGIL and the International Planned Parenthood Federation both filed a complaint to its European Court of Human Rights in 2014 and 2016. The European Committee on Social Rights found that Italy was violating human rights by discriminating against women who cannot afford to travel to get abortion and the human rights to work and dignity at work for failing to address the additional workload of non-objecting doctors. Also, when Lazio (an Italian region) introduced a legislation forcing objectors to refuse to be hired as women’s counselling services, Catholic NGOs also filed a complaint to the Council of Europe. This complaint was rejected.</p>
+
+                        <p>It’s interesting to see the relations of power and legitimacy. Although the Council of Europe found Italy to be guilty of violating human rights, neither the government claims nor their actions changed when addressing the situation. This is especially important since this happened while the Democratic Party, a left-wing pro-Europe party, was at the government. This is a challenge to the power de-facto of the Council of Europe and a confirmation of Italy’s sovereignty over its territory when compared to this intergovernmental organization. Italy therefore appears to be a strong actor in this case study, while the Council of Europe appears to be a weak one.</p>
+
+                        <p>Finally, we can see the power of NGOs. On one hand, they did manage to file a complaint against Italy and make the Council of Europe find Italy guilty of violating human rights. On the other hand, they failed at actually changing the situation, as the verdict did not bring any new policy by the Italian government.</p>
+
+                        <p>Italy is not the only country where this contrast between abortion and conscientious objection is in place. Gender Equality Ombudsperson in Croatia found that 70% of physicians and other medial personnel do object, and there are cases of pharmacies illegally refusing to sell morning-after pills and doctors that object in the public sector, but perform abortion in the private. In other countries, objection is not as widespread: in Ghana, Global Doctor for Choice found the conscientious objection among health service providers to be 38%; in Uruguay, the percentage varies from 60-70% in the north to less than 30% in the south. In other countries, objection is creating more problems: in Spain, doctors that formally declare themselves to be objectors are estimated by media outlets to be just 1%, but some health care facilities claim that all their doctor are conscientious objectors in order to refer pregnant women to other clinics. In South Africa regulations do not seem to be effective nor enforced; managers, professional staff and administrators often do not have a clear understanding of the limits of conscientious objection. In Portugal, doctor who refuse to practice abortion must submit a written statement to their hospital director and refer patients to non-objecting providers; unfortunately, this regulation is not always enforced. These are just few examples; conscientious objection can be found in many other countries worldwide. In Europe, only 5 states don't allow objection.</p>
+
+                        <p>We can easily see that the implementation of conscientious objection to abortion raised many problems in various countries that implemented it. The cause of this can be found in the fundamental inconsistency between the two rights, as also stated by a document of the NGO European Center for Justice and Law. Easy access to healthcare can be considered one of the socioeconomic indicator of development to a country. From this point of view, the objection - abortion dichotomy actively hurts the social development of a country. More generally, we can suppose that any clash between two different human rights can easily make law implementation difficult and controversial, with different actors having many different points of view and slowing down social development. This shows the fundamental interconnection between human rights and development.</p>
+
+                        <p>Finally, we can see that many of the actors that tried to influence this topic did all have an effect, but only to a certain extent. The highly controversial situation has settled to an equilibrium point and it seems like the various actors are not able to move it further. Furthermore, no actors are willing to compromise or collaborate with any other, strongly opposing the theoretical foundation of Liberalism. The outcome of this equilibrium is that the only actor that could actually change the legislation, the Italian government, does not look in the position of changing the legislation in neither direction, even avoiding what has been ruled as human rights violations by the Council of Europe. This stalled conflict leaves open the difficulties for women to gain access to safe abortion, especially in some regions and without traveling, and contraceptives such as the morning-after pill, thus limiting the social development of Italy.</p>
+                    </div>
+
+                    <div id="naturapolitica">
+                        <p>Cos'è la politica?</p>
+                        <p>Si dice spesso "non quella di Palazzo Chigi" né quella dei partiti. Mi è sempre sembrata strana questa definizione che esclude i partiti  e i politici stessi, definiti a giorni alterni pagliacci o criminali. Se poi si aggiunge che è "lasciare il  mondo migliore di come l'hai trovato" si rischia di confonderla con il servizio verso la propria comunità; si finisce a definire tale ciò che politica non è, come pulire le spiagge o fare la differenziata.</p>
+                        <p>Però teniamolo, il concetto di comunità. Noi tutti ne apparteniamo a varie: il Clan, l'uni o il liceo, gruppi di amici, l'Europa, e così via. Le comunità sono insiemi di  persone - più o meno conscie d'appartenerci - che fanno cose; spesso cose che vanno a impattare anche gli altri membri. Urge quindi prendere decisioni collettive.</p>
+                        <p>Nel Clan e tra amici si decide - ad esempio - di quando e dove vedersi discutendo o al massimo ad alzata di mano; al liceo si eleggono dei rappresentanti che decidono il logo per le felpe e come produrle; a livello nazionale si hanno vari tipi di rappresentanza e di questioni su cui deliberare.</p>
+                        <p>Politica è fare parte del processo decisionale delle comunità in cui si appartiene. Per farlo, serve essere in primo luogo informati sul funzionamento del processo decisionale di queste: come si eleggono e chi sono i rappresentanti d'istituto e universitari, che responsabilità e poteri hanno; come discutere rispettosamente tra amici; cosa sono Camera, Senato, governo, ministri e così via.</p>
+                        <p>È molto utile poi sapere chi sono gli attuali attori principali in ogni comunità. Nel caso dell'Italia sono FdI, Lega, Draghi, eccetera. Nel caso dell'Unige sono ideegiovani, sinistraunige, eccetera. Che ruoli hanno, che valori hanno, per cosa lottano?</p>
+                        <p>È essenziale sapere quali sono gli argomenti decisionali e gli scontri valoriali ricorrenti nel tempo. Scontri come quelli tra privacy e sicurezza, tra libertà e salute, sono facilmente declinabili nella maggior parte delle discussioni in qualsiasi comunità.</p>
+                        <p>Infine - e solo infine! - bisonga sapere, ad ogni decisione, su cosa si sta decidendo. Bisogna sapere quali sono i fatti e i problemi che ci portano a dover prendere una decisione, quali sono le varie posizioni e quali le possibili conseguenze.
+                        <p>Occhio però a dire che informarsi è politica. Sapere che da qualche parte è caduta una funivia è informarsi, ma non è politica. Non ci rende persone più istruite o migliori, nè richiede di prendere una decisione a livello di comunità. Non vuol dire che non dobbiamo seguire queste notizie, ma non sono politica.</p>
+                        <p>Né necessariamente lo è fornire un servizio alla propria comunità (come, di nuovo, pulire una spiaggia o fare la differenziata) a meno che questa azione non abbia un processo dietro di informazione riguardo a un problema, agli attori che stanno lavorando per risolvere questo problema, a una decisione che deve essere presa per arginarlo, e che quindi il nostro gesto di servizio assuma anche una simbolicità per chi prende le decisioni, diventando politica.</p>
+                        <p><i>Estratto dal mio Saluto scout.</i></p>
+                    </div>
+
+                    <div id="informarsi">
+                        <p><b>Morning</b> è un podcast condotto da Francesco Costa de Il Post. Viene pubblicata una puntata ogni mattina alle otto che riassume e spiega le principali notizie sui giornali. Si trova sull'app dedicata del Post così come su Google/Apple Podcast fino a metà ottobre, quando sarà dedicata esclusivamente agli abbonati del Post.</p>
+                        <p>Tutti gli universitari unige possono accedere aggratis a <b>Pressreader</b>, un servizio che mette a disposizione i contenuti di tutti i principali giornali in tutte le lingue. Fa anche una raccolta di articoli interessanti da leggersi ogni mattina.</p>
+                        <p>Consiglio di dare un'occhiata anche ai vari podcast dei principali giornali: <b>Corriere Daily</b>, <b>Start</b>, eccetera. Apple Podcast, Spotify, Youtube, …</p>
+                        <p>Sono solitamente composti da piccoli approfondimenti su temi trattati dai loro giornalisti. Non della stessa qualità degli altri podcast citati qui, ma sono comunque interessanti.</p>
+                        <p><b>Breaking Italy</b> è un canale Youtube che pubblica video giornalieri approfondendo le notizie provenienti da tutto il mondo, con un focus per il pensiero critico. È gestito da Alessandro "Shy" Masala e collaboratori/collaboratrici.</p>
+                        <p>Lo seguo da vari anni ed è sempre molto bravo nello spiegare la complessità dietro ogni questione. Molto spesso porta anche temi che altrimenti si vedono poco sui giornali o su altri siti di notizie.</p>
+                        <p><b>Contro la democrazia</b> è un libro molto interessante che argomenta la possibilità di creare una forma di governo che sia basata non sull'"uno vale uno", ma sulla competenza degli elettori.</p>
+                        <p>Inserisco anche </b>Will Ita</b> e <b>Factanza</b>, due pagine Instagram. Parafraso un messaggio di Fede:</p>
+                        <p>Will Ita è una pagina instagram gestita da ragazzi molto competenti. Postano ogni giorno le notizie sulle storie e nei post statistiche, video e foto su vari aspetti quotidiani. Ognuno di loro ha una pagina personale con vari approfondimenti. Via allo Stalking! Factanza è una pagina instagram che offre la possibilità di capire meglio la politica e anche qualcosa sulla psicologia grazie a grafiche super fighe e concetti super semplificati e piacevoli alla lettura.</p>
+                    </div>
+
+                </div>
+                <div class="flyoutcontainer">
+                    <div class="flyout vhcenter" onclick="politic('naturapolitica')"><p>natura politica</p></div>
+                    <div class="flyout vhcenter" onclick="politic('informarsi')"><p>informarsi</p></div>
+                    <div class="flyout vhcenter" onclick="politic('obiezione')"><p>obiezione coscienza</p></div>
+                    <div class="card blogpost">
+                        <div class="fadeout"></div>
+                        <b><p>Organi di Rappresentanza Universitaria</p></b>
+                        <p>Senato Accademico, Consiglio di Dipartimento, Consiglio di Amministrazione... Una breve spiegazione di cosa sono, cosa servono, chi c'è dentro.</p>
+                    </div>
+                    <a href="https://unige.nicco.love/consiglio-di-corso-di-studio-13-settembre" target="_blank"><div class="card blogpost">
+                        <div class="fadeout"></div>
+                        <b><p>Consiglio di Corso di Studio, che aria tira</p></b>
+                        <p>Sono leggermente in ritardo, perdonatemi, ma ecco un riassunto degli argomenti importanti di cui si è discusso ultimamente:<br><b>Indicazioni Comitato Covid-19</b><br>C'è un comitato che delibera su quali indicazioni sia necessario dare ai dipartimenti riguardo all'emergenza coronavirus.</p>
+                    </div></a>
+                    <a target="_blank" href="https://unige.nicco.love"><div class="card bloglink vhcenter"><p>Altri Post!</p></div></a>
+                </div>
+            </div>
+        </div>
+        <script src="assets/logic/code.js"></script>
+        <script src="assets/logic/politics.js"></script>
+        <script src="assets/logic/poetry.js"></script>
+        <script src="assets/logic/home.js"></script>
+    </body>
+</html>

@@ -1,317 +1,326 @@
-<!DOCTYPE html>
-<html lang="">
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta charset="utf-8">
-    <style>
-      body {
-        margin: 0;
-      }
-      * {
-        scroll-behavior: smooth;
-      }
-      #container {
-        position: fixed ;
-        bottom: 0px; left: 0px;
-        right: 0px; top: 0px;
+                   <meta charset="utf-8" emacsmode="-*- markdown -*">
+                            **Niccolò Vé**
 
-        padding: 0px 0px 0px 0px;
-        margin: 0px 0px 0px 0px;
 
-        overflow: auto;
-        overscroll-behavior: contain;
-        scroll-snap-type: y mandatory;
-      }
-      .section {
-        width: 100vw;
-        height: 100vh;
-        scroll-snap-align: start;
-        overflow: hidden;
-        position: relative;
-      }
-      #home {
-        background: #56ab2f;
-        background: -webkit-linear-gradient(30deg, #a8e063, #56ab2f);
-        background: linear-gradient(30deg, #a8e063, #56ab2f);
-      }
-      #linuxdaily {
-        background: #00cffc;
-        background: -webkit-linear-gradient(70deg, #00a3db, #00cffc);
-        background: linear-gradient(70deg, #00a3db, #00cffc);
-      }
-      #slinux {
-        background: #f7ff00;
-        background: -webkit-linear-gradient(110deg, #db36a4, #f7ff00);
-        background: linear-gradient(110deg, #db36a4, #f7ff00);
-      }
-      #kde {background: #00c6ff;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #0072ff, #00c6ff);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #0072ff, #00c6ff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+<div class="card">
+I study [Mathematics](#otherskills/mathematics) in Genoa and Stockholm. I spend time translating definitions and proofs into colorful drawings that give better mathematical intuition. I do promotion and development for the open source organization [KDE](#linuxandcoding/kdedevelopment). I have a [Youtube channel](#linuxandcoding/niccoloveslinux) regarding Linux desktops and their designs. I have a [daily podcast](#linuxandcoding/linux,daily.) about the latest Linux news. I write Italian [poetry](#poetryandart/poetry). I upload [daily videos](#poetryandart/niccolovespoetry) on rap and metric on Tiktok and Instagram. I study [chess](#otherskills/chess) daily and play in tournaments. I'm a **boy scouts** leader in the CNGEI organization. I'm a students' representative at University and plan to join the Democratic Party in Italy. I love art. I have ambitious goals and an obsession with time management.
 
-      }
-      #poetry {background: #f5ebeb;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to top, #a7d1db, #f5ebeb);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to top, #a7d1db, #f5ebeb); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+If you're particularly interested in me, see the [contacts](#contacts+curriculum/contacts) or my draft [curriculum]("#contacts+curriculum/draftcurriculum(initalian)") (currently, in Italian).
+
+~~~~~~~~~~~~~~~~~~~~~~ JSON
+niccolove: nerd(
+    bio: (
+        name: "Niccolo Venerandi"
+        nick: "niccolove" & "veggero"
+        age: 21 // todo: put 22 here on 7/6/23
+        pronouns: ("he", "him")
+    )
+    interests: ("linux", "poetry",
+                "math", "chess")
+)
+~~~~~~~~~~~~~~~~~~~~~~
+</div>
+
+Linux and Coding
+===============================================================================
+
+KDE Development
+-------------------------------------------------------------------------------
+
+<div class="card">
+I have joined KDE development roughly in 2018/2019. I was elected the goalkeeper of the **Consistency** goal during the Akademy of 2019. For the following three years I have worked towards making the style of Plasma and KDE apps as consistent as possible, with yearly talks at following Akademys regarding the ongoing process.
+
+In this timeframe I've also implemented some nice user-facing features in Plasma: the **floating panels**, the **margin areas**, **adaptive transparency**, and I've also done a serious work on Plasma **shadows**. I've also produced a **panel refactoring** and I'm now focusing on maintaining the panel and its applets with some bugfixing effort.
+
+I've contributed to the Promo group as well by helping writing announcements, preparing April Fools, organizing promotional videos and so on.
+</div>
+
+Nicco Loves Linux
+-------------------------------------------------------------------------------
+
+<div class="card">
+In the beginning of 2021 I have started a youtube channel regarding my involvement in KDE, which soon grew to be a more general channel about Linux. It has now  more than **10.000 subscribers**.
+
+![My most popular video](https://www.youtube.com/watch?v=ENBu9_xTrWU)
+
+!!!
+    My videos can be seen on Youtube, but also on the open source platform Peertube (without advertisement) and Odyssee, for the more privacy-aware audience.
+
+    [Click here for the Youtube channel.](https://youtub.com/c/niccolove)
+
+    [Click here for the Peertube channel.](https://tube.kockatoo.org/c/niccolo_ve/videos)
+
+    [Click here for the Peertube channel.](https://odysee.com/@niccolove:1)
+
+!!! WARNING
+    Hey, I do these videos on my free time! If you'd like to support me, I've got:
+
+    - [A patreon link](https://patreon.com/niccolove)
+
+    - [A paypal link](https://paypal.me/niccolove)
+
+    - [A liberapay link](https://liberapay.com/niccolove/)
+
+    People who donate get access to some patrons-only content ;)
+</div>
+
+Linux, Daily.
+-------------------------------------------------------------------------------
+
+![Linux, Daily. logo](linux_daily_logo.png width=35%)
+
+<div class="card">
+In September, 2022 I started a daily podcast about the latest developments in the Linux world. Although focused on Linux desktops mostly, it also covers most of the news about the Linux environment in general. It currently releases five episodes every week (one every weekday) and is completely free.
+
+!!!
+    You can listen to it on Spotify, Google Podcasts, Apple Podcasts, but also using any open source RSS podcast reader.
+
+    - [On Spotify](https://open.spotify.com/show/7wirPTEusTbNTmtQe0Iteu)
+
+    - [On Apple Podcasts](https://podcasts.apple.com/us/podcast/linux-daily/id1642713517)
+
+    - [On Google Podcasts](https://podcasts.google.com/feed/aHR0cHM6Ly9hbmNob3IuZm0vcy82MWJmNDE4NC9wb2RjYXN0L3Jzcw)
+
+    - [RSS Link](https://anchor.fm/s/61bf4184/podcast/rss)
+
+!!! WARNING
+    Hey, I do these episodes on my free time! If you'd like to support me, I've got:
+
+    - [A patreon link](https://patreon.com/niccolove)
+
+    - [A paypal link](https://paypal.me/niccolove)
+
+    - [A liberapay link](https://liberapay.com/niccolove/)
+
+    In the future, one of the podcast episodes will become patrons-only.
+</div>
+
+Poetry and Art
+===============================================================================
+
+Poetry
+-------------------------------------------------------------------------------
+
+<div class="card">
+I write poetry almost daily. It is in Italian. Its main focus is love, and all the circumstances where it ends up hurting all the people involved instead of being a positive driving force. I also focus on rhymes and wordplay with sounds.
+
+In 2019 I wrote a collection called **"Tutto l'Amore Brutto"** (which roughly translates to "All Ugly Love") which features many very short poems about a variety of fictional situations. This was rather early in my writing and only rarely do I read poems from this collection.
+
+In 2020 I wrote a collection called **"Non Sono Che Suoni"** (which roughly translates to "Nothing But Sounds") which talks about a wet dream of a young boy. He dreams of approaching the girl he likes, then has flashbacks about the first time he met her, then gets lost into a variety of memories of her, eventually falling asleep with her. These poems are much longer, yet much less understandable. Although I think my rhyme-play peaked here, I basically never use these poems, for they're too obscure. I have commissioned one artist, Revelies, to draw five illustration for this collection.
+
+Since 2021 I'm working on a more serious collection called (for now) **"Metrica e Ritmi di Ragazze che Crescono"** (which roughly translates to "Metric and Rhytms of Girls Growing Up"), containing fictional stories regarding girls facing the troubles in the grown-ups world which is changing around them. I plan to actually print and sell this, and also to contact different artists to make this not a poetry book, but rather a mix of a poetry and illustrations book.
+</div>
+
+Nicco Loves Poetry
+-------------------------------------------------------------------------------
+
+<div class="card">
+With the goal of growing an audience around poetry/rhymes/rap, I publish daily videos talking about rap and metric. My main medium here is Tiktok, which seem to react well to videos with informations about rap songs (at the time of writing, I have over **2000** followers there). I also sometimes try to upload on Instagram or my secondary Youtube channel as well, with less success.
+
+![An example video from the secondary channel](https://www.youtube.com/watch?v=UMAV_lLM7TE)
+
+!!!
+    If you are interested, here are the links to the videos:
+
+    - [On Tiktok](https://tiktok.com/@niccolovespoetry)
+
+    - [On Instagram](instagram.com/veggero)
+
+!!! WARNING
+    Hey, I do these videos on my free time! If you'd like to support me, I've got:
+
+    - [A patreon link](https://patreon.com/niccolove)
+
+    - [A paypal link](https://paypal.me/niccolove)
+
+    - [A liberapay link](https://liberapay.com/niccolove/)
+</div>
+
+Drawings
+-------------------------------------------------------------------------------
+
+<div class="card">
+Sadly, I'm currently a terrible artist. This said,
+
+- I am training my drawing skills for roughly half an hour daily with the goal of improving. I'm following DrawABox tutorials and doing the various excercises. I have no particular hurry.
+
+- I have contacted some artists to commission them art for my poetry collections. The inherent limit here is my budget, as a student with no paycheck, but I do what I can :)
+
+- I'm a big fan of AI-generated art, and I'd like to explore that more in the future. I'm really sad to see many artists argue against it, and I think (IMVHO) that many of them have a flawed idea on how these tools work.
+</div>
+
+Other skills
+===============================================================================
+
+Mathematics
+-------------------------------------------------------------------------------
+
+<div class="card">
+I'm currently at my third year of bachelor's. I like to try to re-elaborate textbook concepts to make them more visually intuitive, at the cost of formality. For fun, here's a couple of examples from simple Calculus:
+
+******************************************************** A succession of numbers $(a_n)_{n \in \mathbb{N}}$ converges to $L$ if, for each $\varepsilon$, there exist an element of the succession ($a_6$ in the example) after which all succession elements are distant to $L$ by less than $\varepsilon$.
+*   ▲                                                  *
+*   ┊                  ₅                               *
+*   ┊                  o  .--------------------   ^ L+ε *
+*   ┊              ₄      | ₆                     |     *
+*   ┊              o      | o   ₇                 |     *
+* L ┊ . . . . .₃. . . . . | . . o . ₈. .₉. .o. .  |     *
+*   ┊          o          |         o   o         |     *
+*   *┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄+┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄  |     *
+*   ┊      ₂              '---------------------  v L-ε *
+*   ┊      o                                           *
+*   ┊                                                  *
+*   ┊                                                  *
+*   ┊  ¹                                               *
+*   ┊  o                                               *
+*   ▼                                                  *
+********************************************************
+
+---
+
+********************************************************  All convergent sequences are bounded. If we pick any $\varepsilon$, we have by definition an element $a_n$ from which all following elements are within $(L+\varepsilon, L-\varepsilon)$; thus, they are bounded between these two varuel. All the elements *before* that element, instead, are a finite amount (from $a_1$ to $a_n$), which means that we can pick the largest and smallest values between those, and all of them will surely be bounded by these two values.
+*   ▲ ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░        *
+*   ┊------------------o---+░░░░░░░░░░░░░░░░░░░        *
+*   ┊                  ⁵   +-------------------  ^ L+ε *
+*   ┊              ₄        ₆                    |     *
+*   ┊              o        o   ₇                |     *
+* L ┊ . . . . .₃. . . . . . . . o . ₈. .₉. .o. . |     *
+*   ┊          o                    o   o        |     *
+*   *┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄ |     *
+*   ┊      ₂               .-------------------- v L-ε *
+*   ┊      o               |░░░░░░░░░░░░░░░░░░░░       *
+*   ┊                      |░░░░░░░░░░░░░░░░░░░░       *
+*   ┊                      |░░░░░░░░░░░░░░░░░░░░       *
+*   ┊  ¹                   |░░░░░░░░░░░░░░░░░░░░       *
+*   ┊--o-------------------'░░░░░░░░░░░░░░░░░░░░       *
+*   ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░       *
+********************************************************
+
+Sadly, I wasn't able to use colors for these graphs; Usually, I love playing with those ;)
+</div>
+
+Chess
+-------------------------------------------------------------------------------
+
+<div class="card">
+I currently train chess daily! I do puzzles on Lichess, I play games there, and I study the book *100 Endgames You Must Know*. I only play on Lichess. At the time of writing, the ratings I have are, roughly:
+
+ Rapid  | Blitz | Bullet
+--------|-------|------
+ 1900   | 1700  | 1600
+ [Lichess ratings]
+
+I will start my first rated tournament in October, if everything goes well. I will update this section with my performances and results on rated tournaments.
+
+Heads-up for anybody who'll play with me: I absolutely love playing the **Polish opening** with white and the **Scandinavian** (modern variation) with black, but please don't play the mainlines of these two openings, for they're so boring!
+
+!!!
+    You can find me in Lichess under the nickname `niccolove`!
+</div>
+
+Contacts + Curriculum
+===============================================================================
+
+
+Contacts
+-------------------------------------------------------------------------------
+
+<div class="card">
+~~~~~~~~~~~~~~~~~~~~~~~~~~ Javascript
+niccolove.contacts: (
+    email: join('niccolo', symbols.at, 'venerandi', symbols.dot, 'com')
+    // Hopefully, this will confuse the spam bots!
+    usernames: (
+        twitter: "@veggero"
+        telegram: "veggero" // NOT niccolove. That's NOT me!
+    )
+)
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+</div>
+
+Draft curriculum (in Italian)
+-------------------------------------------------------------------------------
+<iframe src="protoCV.pdf" height="300" width="500"></iframe>
+
+<!-- File ends here, now HTML -->
+
+<style>
+body {
+    background-color: rgb(245, 245, 245);
 }
-      #spoetry {background: #56ab2f;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to bottom, #a8e063, #56ab2f);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to bottom, #a8e063, #56ab2f); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
+css-doodle {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
 }
-      #math {background: #ED4264;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to top, #FFEDBC, #ED4264);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to top, #FFEDBC, #ED4264); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+.card {
+    background-color: white;
+    border-radius: 15px;
+    padding: 20px;
+    border: 1px solid #ddd;
 }
-
-    #chess {background: #B3FFAB;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #12FFF7, #B3FFAB);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #12FFF7, #B3FFAB); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+.md h2, .md .nonumberh2 {
+    font-size: 23;
+    color: black;
+    border-bottom: 3px solid black;
 }
+.md h1, .md .nonumberh1 {
+    font-size: 18;
+    color: #444;
+    border-bottom: 3px solid #444;
+}
+</style>
+<style>
+img {
+    border-radius: 30px;
+}
+</style>
+<pre>
+<!--<css-doodle>
+  @grid: 1 / 100vw 100vh;
+  background-size: 83px 135px;
+  background-color: #ffffff;
+  background-image: @doodle(
+    @grid: 2 / 100%;
+    background: @pn(#fafafa, #f9f9f9, #f7f7f7);
+    transform-origin:
+      @pn(100% 100%, 0 100%, 100% 0, 0 0);
+    transform:
+      rotateX(45deg)
+      skewY(@pn(34deg, -34deg, -34deg));
+  );
+</css-doodle>-->
 
-      #propic {
-        border-radius: 100%;
-        margin-top: 7vh;
-        min-width: 15em;
-        width: 18vw;
-        max-width: 20em;
-        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-      }
-      #dailylogo {
-        border-radius: 20px;
-        margin-top: 7vh;
-        min-width: 15em;
-        width: 16vw;
-        max-width: 20em;
-        position: relative;
-        z-index: 2;
-        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-      }
-      h1, p {
-        font-family: Lora;
-        max-width: 19em;
-      }
 
-      #home .titlone {
-        color: #1a3d08;
-        text-shadow: 0px 3px 0px #2c6e0a,
-                 0px 12px 10px rgba(0,0,0,0.15),
-                 0px 20px 3px rgba(0,0,0,0.05),
-                 0px 30px 30px rgba(0,0,0,0.1);
-      }
+<!--
+<css-doodle>
+    :doodle {
+        @grid: 50x50;
+        @size: 100vmax;
+        grid-gap: 1px;
+    }
+    background-color: rgb(245, 245, 245);
+    border-radius: 100px;
+  transform: scale(@rand(.1,.9)) translateX(@rand(0px, 3px));
 
-      #linuxdaily .titlone, #kde .titlone {
-        color: #003b47;
-        text-shadow: 0px 3px 0px #00677d,
-                 0px 12px 10px rgba(0,0,0,0.15),
-                 0px 20px 3px rgba(0,0,0,0.05),
-                 0px 30px 30px rgba(0,0,0,0.1);
-      }
+</css-doodle>
+-->
 
-      #slinux .titlone {
-        color: #4f2200;
-        text-shadow: 0px 3px 0px #823800,
-                 0px 12px 10px rgba(0,0,0,0.15),
-                 0px 20px 3px rgba(0,0,0,0.05),
-                 0px 30px 30px rgba(0,0,0,0.1);
-      }
 
-      #poetry .titlone {
-        color: rgb(0, 0, 0);
-        text-shadow: 0px 3px 0px rgb(100, 100, 100),
-                 0px 12px 10px rgba(0,0,0,0.15),
-                 0px 20px 3px rgba(0,0,0,0.05),
-                 0px 30px 30px rgba(0,0,0,0.1);
-      }
-      #spoetry .titlone {
-        color: #1b4d00;
-        text-shadow: 0px 3px 0px #2b7a00,
-                 0px 12px 10px rgba(0,0,0,0.15),
-                 0px 20px 3px rgba(0,0,0,0.05),
-                 0px 30px 30px rgba(0,0,0,0.1);
-      }
-      #poetry .titlone {
-        color: #292528;
-        text-shadow: 0px 3px 0px #595158,
-                 0px 12px 10px rgba(0,0,0,0.15),
-                 0px 20px 3px rgba(0,0,0,0.05),
-                 0px 30px 30px rgba(0,0,0,0.1);
-      }
-      #math .titlone {
-        color: #381519;
-        text-shadow: 0px 3px 0px #5e222a,
-                 0px 12px 10px rgba(0,0,0,0.15),
-                 0px 20px 3px rgba(0,0,0,0.05),
-                 0px 30px 30px rgba(0,0,0,0.1);
-      }
-      #chess .titlone {
-        color: #15382e;
-        text-shadow: 0px 3px 0px #245e4d,
-                 0px 12px 10px rgba(0,0,0,0.15),
-                 0px 20px 3px rgba(0,0,0,0.05),
-                 0px 30px 30px rgba(0,0,0,0.1);
-      }
 
-      .titlone {
-        font-size: 4em;
-        margin-top: .7em;
-        margin-bottom: .7em;
-        position: relative;
-        z-index: 2;
-      }
-      .sottotitlone {
-        position: relative;
-        z-index: 2;
-        font-size: 1.7em;
-        color: rgba(0, 0, 0, .6);
-        text-align: justify;
-      }
-      .backimg {
-        position: absolute;
-        right: 0; bottom: 0;
-        height: 42vw;
-        min-height: 30em;
-        filter: blur(5px);
-        opacity: 0.7;
-      }
-      .background {
-        position: absolute;
-        top: 0; right: 0; left: 0; bottom: 0;
-        background-color: rgba(255, 255, 255, .2);
-      }
-      .spacer {
-        height: 10vh;
-      }
-      .dialog {
-        width: 36em;
-        max-width: 90%;
-        padding: 1px;
-        border-radius: 20px;
-        box-shadow: rgba(0, 0, 0, 0.1) 0px 3px 8px;
-        position: relative;
-        z-index: 10;
-      }
-      .dialog p {
-        margin-left: 10px;
-        margin-right: 10px;
-      }
-      .buttoncon {
-        position: relative;
-        z-index: 10;
-        max-width: 36em;
-      }
-      .button {
-        border-radius: 20px;
-        box-shadow: rgba(0, 0, 0, 0.1) 0px 3px 8px;
-        padding: 1px;
-        margin-left: 1%;
-        margin-right: 1%;
-        margin-top: 20px;
-        width: 45%;
-        float: left;
-        text-decoration: underline;
-        cursor: pointer;
-        transition: filter .2s;
-        font-size: 1.2em;
-      }
-      .button:hover {
-        filter: invert(100%);
-      }
-      .button p {
-        margin-top: 15px;
-        margin-bottom: 15px;
-      }
-      .button + .button {
-        float: right;
-      }
-    </style>
-    <title></title>
-  </head>
-  <body>
-    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Lora" />
-    <div id="container">
-      <div class="section" id="home">
-        <center>
-          <img src="assets/propic.jpg" id="propic">
-          <h1 class="titlone">Niccolò Vé</h1>
-          <div class="dialog" style="background-color: #89cc50;"><p class="sottotitlone">Hi! I'm Niccolove. I study Maths.<br> I have many goals, skills and projects. Scroll down or click one:</p></div>
-          <div class="buttoncon">
-            <div class="button" style="background-color: #89cc50;" onclick="window.open('#linuxdaily', '_self')"><p>Linux Podcast</p></div>
-            <div class="button" style="background-color: #89cc50;" onclick="window.open('#slinux', '_self')"><p>Linux Channel</p></div><br>
-            <div class="button" style="background-color: #89cc50;" onclick="window.open('#kde', '_self')"><p>KDE Development</p></div>
-            <div class="button" style="background-color: #89cc50;" onclick="window.open('#poetry', '_self')"><p>Poetry</p></div><br>
-            <div class="button" style="background-color: #89cc50;" onclick="window.open('#spoetry', '_self')"><p>Poetry Channel</p></div>
-            <div class="button" style="background-color: #89cc50;" onclick="window.open('#math', '_self')"><p>More</p></div>
-          </div>
-        </center>
-      </div>
-      <div class="section" id="linuxdaily">
-        <center>
-          <img src="assets/linux_daily_logo.png" id="dailylogo">
-          <h1 class="titlone">Linux, Daily.</h1>
-          <div class="dialog" style="background-color: #00b8eb;"><p class="sottotitlone">A podcast released every day from Moday  to Friday that talks about the very latest developments in the Linux world.</p></div>
-          <div class="buttoncon">
-            <div class="button" style="background-color: #00b8eb;" onclick="window.open('https://open.spotify.com/show/7wirPTEusTbNTmtQe0Iteu')"><p>Spotify</p></div>
-            <div class="button" style="background-color: #00b8eb;" onclick="window.open('https://podcasts.apple.com/us/podcast/linux-daily/id1642713517')"><p>Apple Podcasts</p></div><br>
-            <div class="button" style="background-color: #00b8eb;" onclick="window.open('https://podcasts.google.com/feed/aHR0cHM6Ly9hbmNob3IuZm0vcy82MWJmNDE4NC9wb2RjYXN0L3Jzcw')"><p>Google Podcasts</p></div>
-            <div class="button" style="background-color: #00b8eb;" onclick="window.open('https://pca.st/n43h2czn')"><p>Pocket Casts</p></div><br>
-            <div class="button" style="background-color: #00b8eb;" onclick="window.open('https://anchor.fm/s/61bf4184/podcast/rss')"><p>RSS Link</p></div>
-          </div>
-        </center>
-        <img src="assets/mic.png" class="backimg">
-      </div>
-      <div class="section" id="slinux">
-        <img src="assets/stanza.png" class="backimg">
-        <center>
-          <div class="spacer"></div>
-          <h1 class="titlone">Nicco ♥ Linux!</h1>
-          <div class="dialog" style="background-color: #e99854;"><p class="sottotitlone">Every weekday, I release video content that investigates a new aspect of the Linux world with special focus on KDE Plasma, GNOME  and desktops. <br><br> Videos are available mostly on youtube, but also on open source video platforms:</p></div>
-          <div class="buttoncon">
-            <div class="button" style="background-color: #e99854;" onclick="window.open('https://youtube.com/c/niccolove')"><p>Youtube</p></div>
-            <div class="button" style="background-color: #e99854;" onclick="window.open('https://tube.kockatoo.org/c/niccolo_ve/videos')"><p>Peertube</p></div><br>
-            <div class="button" style="background-color: #e99854;" onclick="window.open('https://odysee.com/@niccolove:1')"><p>Odysee</p></div>
-          </div>
-        </center>
-      </div>
-      <div class="section" id="kde">
-        <center>
-          <img src="assets/kde.png" id="dailylogo">
-          <h1 class="titlone">KDE Development.</h1>
-          <div class="dialog" style="background-color: #009cff;"><p class="sottotitlone">I actively contribute to KDE, mostly Plasma; I have implemented Margin Areas, the Floating  Panel, Adaptive Opacity. I've been the Consistency goalkeeper. I also contribute to the Promotion group.</p></div>
-        </center>
-        <img src="assets/kdeb.png" class="backimg">
-      </div>
-      <div class="section" id="poetry">
-        <center>
-          <div class="spacer"></div>
-          <h1 class="titlone">Poetry.</h1>
-          <div class="dialog" style="background-color: #d0dee3;"><p class="sottotitlone">I write Italian poetry with particular focus towards rythm and playing with sounds and rhymes.<br>My main theme of inspiration are all of the situations where love ends up damaging all parties involved.<br><br>You can find the poetry collections here:</p></div>
-        </center>
-        <img src="assets/poets.png" class="backimg">
-      </div>
-      <div class="section" id="spoetry">
-        <center>
-          <img src="assets/propicpoetry.jpg" id="dailylogo">
-          <h1 class="titlone">Nicco ♥ Poetry!</h1>
-          <div class="dialog" style="background-color: #81c74a;"><p class="sottotitlone">Every weekday, I release video content that talks about poetry and rap in general. I try not only to read my own poetry, but also talk about other poets, highlight significant wordplay in rap songs, explain the meaning behind lyrics, and so on.<br><br>These videos are published on Instagram, TikTok and Youtube:</p></div>
-        <img src="assets/insta.png" class="backimg">
-        </center>
-      </div>
-      <div class="section" id="math">
-        <center>
-          <div class="spacer"></div>
-          <h1 class="titlone">Maths.</h1>
-          <div class="dialog" style="background-color: #f58f8c;"><p class="sottotitlone">I'm currently a Maths student at University of Genoa and Stockholm<br><br>I'm currently putting my effort towards putting together a collection of graphical and visualization tools to better understand the meaning of mathematical results.</p></div>
-        <img src="assets/math.png" class="backimg" style="height: 30vw;">
-        </center>
-      </div>
-      <div class="section" id="chess">
-        <center>
-          <div class="spacer"></div>
-          <h1 class="titlone">Chess.</h1>
-          <div class="dialog" style="background-color: #48ffdd;"><p class="sottotitlone">Doing my best to become a better chess player.<br>Currently rated ~1900 rapid, ~1700 blitz, ~1600 bullet on lichess. I love to play in OTB tournaments too; I always use 1. b4.</p></div>
-        <img src="assets/chess.png" class="backimg">
-        </center>
-      </div>
-    </div>
-  </body>
-</html>
+<style>
+    css-doodle {
+        position: fixed;
+        z-index: -100;
+  bottom: 0;
+  top: -30px;
+  left: 0;
+  right: 0;
+  height: 200%;
+  overflow: hidden;
+    }
+</style>
+</pre>
+<!-- Markdeep: --><script>markdeepOptions={tocStyle:'long'}</script><style class="fallback">body{visibility:hidden;white-space:pre;font-family:monospace}</style><script src="markdeep.min.js" charset="utf-8"></script><script src="https://morgan3d.github.io/markdeep/latest/markdeep.min.js?" charset="utf-8"></script><script>window.alreadyProcessedMarkdeep||(document.body.style.visibility="visible")</script><script src="https://unpkg.com/css-doodle@0.29.2/css-doodle.min.js"></script>

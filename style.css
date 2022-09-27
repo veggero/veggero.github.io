@@ -1,0 +1,36 @@
+body {background-color: rgb(245, 245, 245);}
+html {font-size: 20px;}
+.card {
+    background-color: white;
+    border-radius: 15px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    overflow: scroll;
+}
+.md h2, .md .nonumberh2 {
+    font-size: 23;
+    color: black;
+    border-bottom: 3px solid black;
+}
+.md h1, .md .nonumberh1 {
+    font-size: 18;
+    color: #444;
+    border-bottom: 3px solid #444;
+}
+@media only screen and (min-width: 1230px) {
+    .md .longTOC {
+        display: block;
+        white-space: nowrap;
+        width: 240px;
+        overflow-y:show;
+        font-size: 18px;
+        position: fixed;
+        left: 20px;
+        top: 0px;
+        bottom:0px;
+        margin: 0px;
+        padding: 0px;
+        padding-left: 10px;
+        z-index: -1;
+    }
+}

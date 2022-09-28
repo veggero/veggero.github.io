@@ -34,3 +34,9 @@ html {font-size: 20px;}
         z-index: -1;
     }
 }
+
+.md pre.tilde
+{
+    resize: vertical;
+    width: auto;
+}

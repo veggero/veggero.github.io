@@ -68,7 +68,7 @@ Per fare un altro esempio, questi sono i numeri *interi positivi*:
 
 **Esercizi**
 
-- Disegnare i numeri interi nonnulli; disegnare i numeri non positivi pari.
+- Disegnare i numeri *interi non nulli*; disegnare i numeri *non positivi pari*.
 
 - Come potremmo disegnare tutti i numeri da 1 a 2 compresi? E se il 2 non fosse compreso?
 
@@ -190,7 +190,7 @@ Invece, rappresentiamo il secondo numero sull'asse verticale e lo chiamiamo <spa
 
 - Disegnare sulla retta dei numeri le soluzione dell'equazione "ho un numero. Il resto di questo numero diviso due è zero".
 
-- Come potremmo fare a disegare grafici di equazioni a tre incognite?
+- Come potremmo fare a disegnare grafici di equazioni a tre incognite?
 
 
 ## Grafici di equazioni
@@ -259,9 +259,11 @@ Sostituendo la seconda incognita con 3, rimane soltanto la prima incognita che p
 
 In più, visto che il grafico di un'equazione sono tutte le soluzioni dell'equazione, i punti in cui il grafico tocca la linea viola saranno i punti che 1. hanno la <span style="color:green">componente verticale</span> che abbiamo deciso (cioè 3) e 2. sono soluzioni dell'equazione originaria; unendo queste due cose, sappiamo anche che saranno soluzioni dell'equazione dopo la sostituzione.
 
+Quindi: la linea <span style="color:purple">viola</span>, che dipende da quale sostituzione decidiamo di fare, diventa la nuova linea dei numeri.
+
 (Un altro modo di vederla è: visto che ci interessano solo i punti con la seconda incognita uguale a 3, ovvero con <span style="color:green">componente verticale</span> uguale a tre, cancelliamo tutti gli altri. Quelli che ci rimangono sono i punti sulla linea viola. Anche le soluzioni della nuova equazione, per non essere state cancellate, devono essere sulla linea viola.)
 
-Se avessimo voluto fare una sostituzione della prima incognita invece della seconda, avremmo deciso per una <span style="color:red">componente orizzontale</span> e avremmo invece lasciato la <span style="color:green">componente verticale</span> variare liberamente; ovvero, avremmo ottenuto una linea verticale invece di una orizzontale.
+Se avessimo voluto fare una sostituzione della prima incognita invece della seconda, avremmo deciso per una <span style="color:red">componente orizzontale</span> e avremmo invece lasciato la <span style="color:green">componente verticale</span> variare liberamente; ovvero, avremmo ottenuto una linea dei numeri *verticale* invece di una orizzontale.
 </div>
 
 **Esercizi**
@@ -276,20 +278,81 @@ Prendiamo, per esempio, l'equazione *"il primo numero moltiplicato per se stesso
 
 - Come sopra, però la sostituzione deve risultare in una sola soluzione.
 
-## Equazioni surgettive
+## Surgettività
 
 <div class="card">
 
-Se l'equazione tocca la linea viola in un punto, avremo una soluzione; se non la tocca in nessun punto, non ne avremmo nessuna; se la tocca in più punti, avremo più soluzioni. Il che ci porta a una definizione fondamentale:
+Abbiamo visto che, dopo la sostituzione, se l'equazione tocca la nuova linea dei numeri in un punto, avremo una soluzione; se non la tocca in nessun punto, non ne avremmo nessuna; se la tocca in più punti, avremo più soluzioni. Vogliamo creare delle categorie di equazioni in base a questo
 
-> Un'equazione si dice **surgettiva** rispetto a un'incognita se, sostituendo quell'incognita con un *qualsiasi* numero, avremo una sola soluzione.
+> Una equazione è **surgettiva rispetto a un'incognita** se, sostituendo quell'incognita con *un qualsiasi numero*, ho almeno una soluzione.
 >
 
-Ovvero:
+Ovvero,
 
->Nel grafico di un'equazione **surgettiva**, se disegnamo una linea, questa toccherà il grafico in un solo punto.
+> Nel grafico di un'equazione surgettiva ogni linea incontrerà il grafico almeno in un punto.
 >
 
+Attenzione che, visto che la prima incognita corrisponde all'asse orizzontale e la seconda all'asse verticale, se stiamo parlando di surgettività *rispetto alla prima incognita* parliamo delle linee verticali, mentre se parliamo di surgettività *rispetto alla seconda incognita* parliamo delle linee orizzontali.
+
+Questo perché sostituendo la prima incognita dedidiamo quale componente orizzontale vogliamo e rimane variabile solo la componente verticale, il che ci da una linea verticale (e opposto).
+
+Quindi in quando parlo di "linea" nella definizione di surgettivà (e nelle prossime definizioni) non parliamo di qualsiasi linea, ma di linea verticale nel caso si parli della prima incognita e linea orizzontale nel caso si parli della seconda incognita.
+
+Attenzione anche al fatto che la definizione dica *"sostituendo quell'incognita con un qualsiasi numero"*: non basta controllare che sostituendo con un numero ci sia una sola soluzione, o che disegnando una sola linea questa incontri il grafico una sola volta. Bisogna provare a sostituire con tutti i numeri, e disegnare ogni possibile linea.
+
+Faccio subito un paio di esempi. L'identità è surgettiva rispetto a entrambe le incognite. Questo perché, se sostituisci un'incognita con un numero (ad esempio, sostituendo la prima incognita con *tre*) possiamo scegliere lo stesso numero anche per l'altra incognita e otteremo una soluzione (ad esempio, *tre è tre* è una soluzione). Graficamente:
+
+![Ho disegnato una linea orizzontale per controllare la surgettività rispetto alla <span style="color:red">seconda incognita</span> e un paio verticali per la surgettività rispetto alla <span style="color:green">prima incognita</span>; in tutti i questi casi, le linee incontrano il grafico dell'identità almeno in un punto. È facile vedere come questo succede a priori di dove tracciamo le linee verticali od orizzontali.](graph6.svg width=250px)
+
+Prendiamo poi come esempio l'equazione che ha questo grafico (lo trovate negli esercizi della scorsa sezione):
+
+![](graph5.svg width=250px)
+
+Se tracciamo una linea verticale, incontreremo sempre almeno un punto. Quindi, l'equazione è surgettiva rispetto alla prima incognita. Se invece tracciamo una linea orizzontale possiamo ottenere due punti, oppure nessuno. Visto che esiste quest'ultima possibilità, l'equazione non è surgettiva rispetto alla seconda incognita.
 </div>
+
+**Esercizi**
+
+- Disegnare il grafico di un'equazione surgettiva rispetto alla prima incognita ma non rispetto alla prima.
+
+- Disegnare il grafico di un'equazione non surgettiva rispetto a nessuna delle due incognite.
+
+- Far vedere che l'equazione negli esercizi della scorsa sezione è effettivamente surgettiva rispetto alla prima incognita senza utilizzare il grafico.
+
+## Iniettività e Bigettività
+
+<div class="card">
+Diamo ora una definizione simile a quella di bigettività.
+
+> Una equazione è **iniettiva rispetto a un'incognita** se, sostituendo quell'incognita con *un qualsiasi numero*, ho al massimo una soluzione.
+>
+
+Cioè, abbiamo cambiato "ho almeno una soluzione" con "ho al massimo una soluzione". Graficamente,
+
+> Nel grafico di un'equazione surgettiva ogni linea incontrerà il grafico al massimo in un punto.
+>
+
+Sempre (questo è importante) ricordando che non stiamo parlando di una qualsiasi linea, ma di linee verticali o orizzontali a seconda di se ci stiamo riferendo alla prima o seconda incognita rispettivamente.
+
+Vediamo che l'identità - oltre ad essere bigettiva - è anche iniettiva. Questo perché dopo una qualsiasi sostituzione (ad esempio, *la prima incognita con 3*) avremo che l'unica soluzione è quella che vede l'altra l'incognita con lo stesso numero (*3 è 3*). Ogni altra soluzione sarebbe sbagliata (*3 è 4*; *3 è -2,5*; eccetera). Graficamente:
+
+![Tracciando le linee esattamente come prima, vediamo che incrociano il grafico in non più di un punto](graph6.svg width=250px)
+
+Prendendo in esempio l'equazione che ha questo grafico, come nella scorsa sezione:
+
+![](graph5.svg width=250px)
+
+Vediamo che tracciando una qualsiasi linea verticale, questa incontrerà il grafico sempre in un solo punto; quindi, abbiamo l'iniettività rispetto alla prima incognita. Se invece prendiamo linee orizzontali, queste potrebbero incontrare il grafico in nessun punto, oppure in due. Visto che esiste quest'ultimo caso, la funzione non è iniettiva rispetto alla seconda incognita.
+
+In tutti questi esempi, le funzioni erano o contemporaneamente iniettive e surgettive o nessuna delle due. Spesso possiamo avere anche equazioni surgettive ma non iniettive o opposto. Quando, però, un'equazione è iniettiva e surgettiva rispetto a un'incognita, diciamo che è **bigettiva rispetto a quell'incognita**. Ad esempio, l'identità è bigettiva rispetto a entrambe le incognite.
+</div>
+
+**Esercizi**
+
+- Disegnare il grafico di un'equazione che non sia né iniettiva né surgettiva rispetto a entrambe le incognite.
+
+- Disegnare il grafico di un'equazione bigettiva rispetto alla prima incognita e iniettiva rispetto alla seconda.
+
+- Disegnare il grafico di un'equazione bigettiva rispetto alla seconda incognita e surgettiva rispetto alla prima.
 
 <!-- Markdeep: --> <meta charset="utf-8" emacsmode="-*- markdown -*"> <meta name="viewport" content="width=device-width, initial-scale=1"><script>markdeepOptions={tocStyle:'long', autoLinkImages:false}</script><link rel="stylesheet" href="style.css"><style class="fallback">body{visibility:hidden;white-space:pre;font-family:monospace}</style><script src="markdeep.min.js" charset="utf-8"></script><script src="https://morgan3d.github.io/markdeep/latest/markdeep.min.js?" charset="utf-8"></script><script>window.alreadyProcessedMarkdeep||(document.body.style.visibility="visible")</script>

@@ -1,4 +1,20 @@
-body {background-color: rgb(245, 245, 245);}
+body {
+    background-color: rgb(245, 245, 245);
+    font-family: manrope !important;
+}
+.md a:link, .md a:visited {
+    font-family: manrope !important;
+}
+.md img {
+    border-radius: 8px;
+}
+@font-face {
+    font-family: manrope;
+    src: url(manrope.ttf);
+}
+.image {
+    margin-left: 0 !important;
+}
 html {font-size: 20px;}
 .card {
     background-color: white;

@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="180"
+   height="180"
+   viewBox="0 0 180 180"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.2.1 (9c6d41e410, 2022-07-14)"
+   sodipodi:docname="graph9.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="px"
+     showgrid="false"
+     showguides="false"
+     inkscape:zoom="4.7948901"
+     inkscape:cx="96.144018"
+     inkscape:cy="100.10657"
+     inkscape:window-width="1920"
+     inkscape:window-height="1007"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1">
+    <inkscape:grid
+       type="xygrid"
+       id="grid1412" />
+    <sodipodi:guide
+       position="90,250"
+       orientation="-1,0"
+       id="guide1527"
+       inkscape:locked="false"
+       inkscape:label=""
+       inkscape:color="rgb(0,134,229)" />
+    <sodipodi:guide
+       position="-5,90"
+       orientation="0,-1"
+       id="guide2255"
+       inkscape:locked="false" />
+  </sodipodi:namedview>
+  <defs
+     id="defs2">
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient12085">
+      <stop
+         style="stop-color:#800080;stop-opacity:1"
+         offset="0"
+         id="stop12081" />
+      <stop
+         style="stop-color:#008000;stop-opacity:1"
+         offset="1"
+         id="stop12083" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient12085"
+       id="linearGradient12087"
+       x1="75.457787"
+       y1="39.811329"
+       x2="83.636314"
+       y2="96.21666"
+       gradientUnits="userSpaceOnUse" />
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       style="opacity:1;fill:#1f3500;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:bevel"
+       d="M 107.91632,5 V 171.32131 175"
+       id="path2257"
+       sodipodi:nodetypes="ccc" />
+    <path
+       style="opacity:1;fill:#1f3500;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:bevel"
+       d="M 106.91632,90 H 175"
+       id="path2259"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="opacity:1;fill:#000000;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-dashoffset:0"
+       d="m 107.91632,0 -5,5 h 10 z"
+       id="path3549" />
+    <path
+       style="fill:#000000;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-dashoffset:0"
+       d="m 107.91632,180 -5,-5 h 10 z"
+       id="path3549-6" />
+    <path
+       style="fill:#000000;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-dashoffset:0"
+       d="m 0,90 5,5 V 85 Z"
+       id="path3549-7" />
+    <path
+       style="fill:#000000;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-dashoffset:0"
+       d="m 180,90 -5,-5 v 10 z"
+       id="path3549-5" />
+    <path
+       style="fill:none;stroke:#4d4d4d;stroke-width:2;stroke-linejoin:bevel;stroke-dasharray:none"
+       d="m 103.6373,90 c 54.36,0 70.38,-85 70.38,-85"
+       id="path1285" />
+    <path
+       style="fill:#008000;stroke:url(#linearGradient12087);stroke-width:0.5;stroke-linecap:round;stroke-dasharray:none;stroke-dashoffset:0"
+       d="m 72.692428,38.60725 0.04135,59.033664"
+       id="path12056"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#4d4d4d;stroke-width:2;stroke-linejoin:bevel;stroke-dasharray:none"
+       d="M 103.6373,90 C 49.277301,90 33.2573,5 33.2573,5"
+       id="path1413" />
+    <path
+       style="fill:#ff00ff;stroke:#ff00ff;stroke-width:1.3;stroke-dasharray:none;stroke-dashoffset:0"
+       d="m 38.657896,170.11246 -0.54,-158.686286"
+       id="path2689"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:#1f3500;stroke:#338000;stroke-width:2;stroke-dasharray:4, 2;stroke-dashoffset:0"
+       d="M 106.91632,90 38.551234,90.05183"
+       id="path11641"
+       sodipodi:nodetypes="cc" />
+    <circle
+       style="fill:#800080;stroke-width:2;stroke-linecap:round;stroke-dasharray:6, 6;stroke-dashoffset:3;stroke:none"
+       id="path3262"
+       cx="38.167114"
+       cy="22.749012"
+       r="3.140094" />
+    <path
+       style="opacity:1;fill:#1f3500;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:bevel"
+       d="M 38.549219,89.948172 5,90"
+       id="path11739"
+       sodipodi:nodetypes="cc" />
+    <text
+       xml:space="preserve"
+       style="font-size:9.93269px;line-height:1;font-family:Ubuntu;-inkscape-font-specification:Ubuntu;text-align:center;text-anchor:middle;fill:#800080;stroke:#ffffff;stroke-width:0.1;stroke-linecap:round;stroke-dasharray:none;stroke-dashoffset:0"
+       x="72.313324"
+       y="25.619629"
+       id="text11795"><tspan
+         sodipodi:role="line"
+         id="tspan11793"
+         x="72.313324"
+         y="25.619629"
+         style="stroke:#ffffff;stroke-width:0.1;stroke-dasharray:none">La soluzione</tspan><tspan
+         sodipodi:role="line"
+         x="72.313324"
+         y="35.552319"
+         style="font-style:italic;stroke:#ffffff;stroke-width:0.1;stroke-dasharray:none"
+         id="tspan11903">dipende</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:9.93269px;line-height:1;font-family:Ubuntu;-inkscape-font-specification:Ubuntu;text-align:center;text-anchor:middle;fill:#008000;stroke:none;stroke-width:0.1;stroke-linecap:round;stroke-dasharray:none;stroke-dashoffset:0"
+       x="72.313324"
+       y="106.57426"
+       id="text11959"><tspan
+         sodipodi:role="line"
+         x="72.313324"
+         y="106.57426"
+         style="font-style:normal;fill:#008000;stroke:none;stroke-width:0.1;stroke-dasharray:none"
+         id="tspan11957">Dal numero</tspan><tspan
+         sodipodi:role="line"
+         x="72.313324"
+         y="116.50695"
+         style="font-style:normal;fill:#008000;stroke:none;stroke-width:0.1;stroke-dasharray:none"
+         id="tspan11963">con cui</tspan><tspan
+         sodipodi:role="line"
+         x="72.313324"
+         y="126.43963"
+         style="font-style:normal;fill:#008000;stroke:none;stroke-width:0.1;stroke-dasharray:none"
+         id="tspan11965">sostituiamo</tspan></text>
+  </g>
+</svg>

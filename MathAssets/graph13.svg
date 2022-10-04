@@ -8,7 +8,7 @@
    version="1.1"
    id="svg5"
    inkscape:version="1.2.1 (9c6d41e410, 2022-07-14)"
-   sodipodi:docname="graph5.svg"
+   sodipodi:docname="graph13.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -25,9 +25,9 @@
      inkscape:document-units="px"
      showgrid="false"
      showguides="true"
-     inkscape:zoom="4.0982634"
-     inkscape:cx="146.28147"
-     inkscape:cy="90.526148"
+     inkscape:zoom="6.8568507"
+     inkscape:cx="89.180883"
+     inkscape:cy="56.294065"
      inkscape:window-width="1920"
      inkscape:window-height="1007"
      inkscape:window-x="0"
@@ -82,13 +82,66 @@
        style="fill:#000000;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-dashoffset:0"
        d="m 180,90 -5,-5 v 10 z"
        id="path3549-5" />
+    <g
+       id="g2454">
+      <path
+         style="fill:none;stroke:#4d4d4d;stroke-width:2;stroke-linejoin:bevel;stroke-dasharray:none"
+         d="M 90,90 C 144.36,90 160.38,5 160.38,5"
+         id="path1285" />
+      <path
+         style="fill:none;stroke:#4d4d4d;stroke-width:2;stroke-linejoin:bevel;stroke-dasharray:none"
+         d="M 90,90 C 35.64,90 19.619999,5 19.619999,5"
+         id="path1413" />
+    </g>
     <path
-       style="fill:none;stroke:#4d4d4d;stroke-width:2;stroke-linejoin:bevel;stroke-dasharray:none"
-       d="M 90,90 C 144.36,90 160.38,5 160.38,5"
-       id="path1285" />
+       style="fill:#008000;stroke-width:2;stroke-linejoin:bevel;stroke:#ff6600;stroke-dasharray:2,2;stroke-dashoffset:0"
+       d="M 143.75432,50.688366 H 90"
+       id="path8685" />
+    <circle
+       style="fill:#008000;stroke-width:2;stroke-linejoin:bevel;stroke:none"
+       id="circle8739"
+       cx="90"
+       cy="50.688366"
+       r="2.5421216" />
     <path
-       style="fill:none;stroke:#4d4d4d;stroke-width:2;stroke-linejoin:bevel;stroke-dasharray:none"
-       d="M 90,90 C 35.64,90 19.619999,5 19.619999,5"
-       id="path1413" />
+       style="fill:#008000;stroke:#ff6600;stroke-width:2;stroke-linejoin:bevel;stroke-dasharray:2, 2;stroke-dashoffset:0"
+       d="m 128.54726,72.303551 -38.54726,0"
+       id="path14696"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:#008000;stroke:#ff6600;stroke-width:2;stroke-linejoin:bevel;stroke-dasharray:2, 2;stroke-dashoffset:0"
+       d="m 90,38.88084 -59.612506,0"
+       id="path14698"
+       sodipodi:nodetypes="cc" />
+    <circle
+       style="fill:#008000;stroke:none;stroke-width:2;stroke-linejoin:bevel"
+       id="circle14729"
+       cx="90"
+       cy="72.303551"
+       r="2.5421216" />
+    <circle
+       style="fill:#008000;stroke:none;stroke-width:2;stroke-linejoin:bevel"
+       id="circle14731"
+       cx="90"
+       cy="38.88084"
+       r="2.5421216" />
+    <circle
+       style="fill:#000000;stroke:none;stroke-width:2;stroke-linejoin:bevel"
+       id="circle1228"
+       cx="30.387493"
+       cy="38.88084"
+       r="2.5421216" />
+    <circle
+       style="fill:#000000;stroke:none;stroke-width:2;stroke-linejoin:bevel"
+       id="circle1230"
+       cx="144.14233"
+       cy="50.688366"
+       r="2.5421216" />
+    <circle
+       style="fill:#000000;stroke:none;stroke-width:2;stroke-linejoin:bevel"
+       id="circle1232"
+       cx="128.54726"
+       cy="72.303551"
+       r="2.5421216" />
   </g>
 </svg>

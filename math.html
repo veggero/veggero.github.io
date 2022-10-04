@@ -83,7 +83,7 @@ Per fare un altro esempio, questi sono i numeri *interi positivi*:
 <div class="card"> <!-- 331 parole  -->
 Nella matematica è fondamentale esprimere relazioni fra numeri, chiamate equazioni. Alcuni esempi di equazioni possono essere:
 
-> Due è il doppio di quattro.
+> Il doppio di due è quattro.
 > Sette è la metà di quattordici.
 > Due è uno più uno.
 
@@ -181,7 +181,7 @@ In pratica, stiamo mettendo due rette dei numeri a croce. Queste due rette dei n
 
 ![](MathAssets/graph0.svg width=250px)
 
-Per convenzione, rappresentiamo il primo dei due numeri sull'asse orizzontale e lo chiamiamo <span style="color:red">**componente orizzontale**</span> (che corrisponde, graficamente, a quanto il punto è a destra rispetto al centro).
+Per convenzione, rappresentiamo il primo dei due numeri sull'asse orizzontale e lo chiamiamo <span style="color:darkred">**componente orizzontale**</span> (che corrisponde, graficamente, a quanto il punto è a destra rispetto al centro).
 
 Invece, rappresentiamo il secondo numero sull'asse verticale e lo chiamiamo <span style="color:green">**componente verticale**</span> (che corrisponde, graficamente, a quanto il punto è in alto rispetto al centro).
 </div>
@@ -202,7 +202,7 @@ A questo punto, siamo pronti per *disegnare* le equazioni a due incognite. Per f
 
 Iniziamo dall'*identità*. Perché l'identità sia vera, serve che le due incognite siano uguali tra loro; ovvero, che la *componente orizzontale* sia uguale alla *componente verticale*. I punti che corrispondono a questa descrizione sono quelli della linea inclinata a 45° (ovvero, esattamente a metà tra orizzontale e verticale) che passa per il centro:
 
-![Tutti questi punti hanno <span style="color: green">componente verticale</span> uguale alla <span style="color: red">componente orizzontale</span>; quindi, i due numeri che quel punto rappresenta sono uguali; ed essendo uguali sono soluzioni dell'identità.](MathAssets/graph1.svg width=250px)
+![Tutti questi punti hanno <span style="color: green">componente verticale</span> uguale alla <span style="color: darkred">componente orizzontale</span>; quindi, i due numeri che quel punto rappresenta sono uguali; ed essendo uguali sono soluzioni dell'identità.](MathAssets/graph1.svg width=250px)
 
 Vediamo un altro esempio di grafico di equazione.
 
@@ -216,7 +216,7 @@ Visto che rappresentiamo il primo numero con la componente orizzontale e il seco
 
 Ovvero, andando a disegnare questi punti:
 
-![Tutti questi punti hanno <span style="color: red">componente orizzontale</span> doppia rispetto alla <span style="color: green">componente verticale</span>.](MathAssets/graph2.svg width=250px)
+![Tutti questi punti hanno <span style="color: darkred">componente orizzontale</span> doppia rispetto alla <span style="color: green">componente verticale</span>.](MathAssets/graph2.svg width=250px)
 
 In pratica, è la linea che - su un quaderno quadrettato - ha l'inclinazione di "due quadretti verso destra, uno verso l'alto". Un ultimo esempio:
 
@@ -225,7 +225,7 @@ In pratica, è la linea che - su un quaderno quadrettato - ha l'inclinazione di 
 
 Ovvero, riformulando come abbiamo fatto prima, vogliamo disegnare tutti i punti tali che *hanno componente orizzontale uguale a quella verticale, più uno*.
 
-![Tutti questi punti hanno <span style="color: red">componente orizzontale</span> uguale alla <span style="color: green">componente verticale</span> <span style="color: blue">più uno</span>.](MathAssets/graph3.svg width=250px)
+![Tutti questi punti hanno <span style="color: darkred">componente orizzontale</span> uguale alla <span style="color: green">componente verticale</span> <span style="color: blue">più uno</span>.](MathAssets/graph3.svg width=250px)
 
 In pratica, la linea che possiamo disegnare con l'inclinazione di "un quadretto verso destra, uno verso l'alto"; però, iniziando un quadretto più a destra rispetto il punto centrale.
 </div>
@@ -263,7 +263,7 @@ Tutti i punti segnati <span style="color:gray">in grigio</span> sono soluzioni d
 
 Infatti, se un punto è nella linea <span style="color:purple">viola</span> significa che ci interessa ancora dopo la sostituzione; se è nel grafico significa che è una soluzione; quindi se è in entrambi significa che è una soluzione che ci interessa ancora dopo la sostituzione.
 
-Se invece avessimo sostituito la prima incognita invece della seconda, avremmo determinato la <span style="color:red">componente orizzontale</span> e avremmo ottenuto una <span style="color:purple">nuova linea dei numeri verticale</style>:
+Se invece avessimo sostituito la prima incognita invece della seconda, avremmo determinato la <span style="color:darkred">componente orizzontale</span> e avremmo ottenuto una <span style="color:purple">nuova linea dei numeri verticale</style>:
 
 ![](MathAssets/graph4B.svg width=250px)
 
@@ -283,126 +283,210 @@ Prendiamo, per esempio, l'equazione *"il primo numero moltiplicato per se stesso
 
 - Come sopra, però la sostituzione deve risultare in una sola soluzione.
 
-## Surgettività
+## Dominio
 
 !!! WARNING
     **Attenzione**: da qui in poi, gli appunti sono una bozza. Non sono ancora stati propriamente riletti, controllati, e potrebbero mancare alcuni grafici.
 
 <div class="card">
+Abbiamo dato per scontato di poter sostituire qualsiasi numero nelle equazioni. Possiamo anche decidere di permettere solo alcuni numeri (per esempio, "soltanto i positivi", o "quelli più piccoli di tre").
 
-Visto che, dopo una sostituzione, troviamo le soluzioni dove la linea dei numeri tocca il grafico dell'equazione, il numero di soluzioni dipenderà da *quante volte* la linea dei numeri tocca il grafico. Se si toccano una volta ci sarà una soluzione; se non si toccano, non ci saranno soluzioni; eccetera. Vogliamo creare delle categorie di equazioni in base a quante soluzioni abbiamo dopo una qualsiasi sostituzione:
-
-> Una equazione è **surgettiva rispetto a un'incognita** se, sostituendo quell'incognita con *un qualsiasi numero*, ho almeno una soluzione.
+> Il **dominio di un'incognita** sono i numeri con cui possiamo sostituire quell'incognita.
 >
 
-Ovvero,
+Il dominio non è una cosa che dobbiamo calcolare ma un insieme di numeri che scegliamo arbitrariamente.
 
-> Nel grafico di un'equazione surgettiva ogni linea* incontrerà il grafico almeno in un punto.
->
+Ricordandoci che la prima e la seconda incognita corrispondono alla componente orizzontale e verticale rispettivamente, possiamo disegnare sul grafico soltanto i punti nel loro dominio. Ad esempio, supponiamo di scegliere i numeri *maggiori di 1* come dominio rispetto alla <span style="color:darkred">prima incognita</span> e i numeri *tra 1 e 3* rispetto alla <span style="color:green">seconda</span>:
 
-(*) Un'annotazione da fare su linea: visto che la sostituzione di una delle due incognite ci da una linea orizzontale o verticale (a seconda di quale incognita sostituiamo) non sto parlando di qualsiasi linea. Parlo di linee verticali se è surgettiva rispetto alla prima incognita, e di orizzontali se  è surgettiva rispetto alla seconda (per le ragioni che ho spiegato nel paragrafo sulla sostituzione).
+![](MathAssets/graph10.svg width=250px)
 
-Attenzione anche al fatto che la definizione dica *"sostituendo quell'incognita con un qualsiasi numero"*: non basta controllare che sostituendo con un numero ci sia almeno una soluzione, o che disegnando una sola linea questa incontri il grafico almeno una volta. Bisogna provare a sostituire con tutti i numeri, e disegnare ogni possibile linea.
+Ho segnato in <span style="color:purple">viola chiaro</span> tutti i numeri che hanno componente orizzontale e verticale nei rispettivi domini. Le soluzioni dell'equazione potranno essere solo lì, perché negli altri punti non possiamo fare sostituzioni. Per esempio, ecco l'identità limitata in questo dominio:
 
-Faccio subito un paio di esempi. L'identità è surgettiva rispetto a entrambe le incognite. Questo perché, se sostituisci un'incognita con un numero (ad esempio, sostituendo la prima incognita con *tre*) possiamo scegliere lo stesso numero anche per l'altra incognita e otteremo una soluzione (ad esempio, *tre è tre* è una soluzione). Graficamente:
+![](MathAssets/graph11.svg width=250px)
 
-![Ho disegnato una linea orizzontale per controllare la surgettività rispetto alla <span style="color:red">seconda incognita</span> e un paio verticali per la surgettività rispetto alla <span style="color:green">prima incognita</span>; in tutti i questi casi, le linee incontrano il grafico dell'identità almeno in un punto. È facile vedere come questo succede a priori di dove tracciamo le linee verticali od orizzontali.](MathAssets/graph6.svg width=250px)
+!!!
+    A volte, per semplicità, utilizziamo solo **dominio** per riferirci al *dominio della prima incognita* e **codominio** per il *dominio della seconda incognita*.
+</div>
 
-Prendiamo poi come esempio l'equazione che ha questo grafico (lo trovate negli esercizi della scorsa sezione):
+## Immagine
+
+<div class="card">
+Prendiamo, per esempio, un grafico di un'equazione.
 
 ![](MathAssets/graph5.svg width=250px)
 
-Se tracciamo una linea verticale, incontreremo sempre almeno un punto. Quindi, l'equazione è surgettiva rispetto alla prima incognita. Se invece tracciamo una linea orizzontale possiamo ottenere due punti, oppure nessuno. Visto che esiste quest'ultima possibilità, l'equazione non è surgettiva rispetto alla seconda incognita.
+Scegliamo qualche soluzione nel grafico. Possiamo <span style="color:darkorange">spostare</span> questi punti sull'asse verticale; in questo modo, otteniamo la loro componente verticale.
+
+![](MathAssets/graph13.svg width=250px)
+
+Possiamo provare a <span style="color:darkorange">spostare</span> *tutte* le soluzioni del grafico nell'asse verticale, in modo da ottenere *tutte* le possibili componenti verticali:
+
+![](MathAssets/graph14.svg width=250px)
+
+Otteniamo le componenti verticali di tutte le soluzioni, ovvero *le possibili soluzioni sostituendo la prima incognita con qualsiasi numero*. Per esempio, visto che tutte le componenti verticali in questo caso sono positive, allora sostituendo la prima incognita con qualsiasi numero otterremo sempre una soluzione positiva:
+
+![Sostituisco la <span style="color:darkred">prima incognita</span> con 3, ottendo la nuova <span style="color:purple">linea dei numeri</span> e troviamo <span style="color:olive">la soluzione</span> che possiamo <span style="color:darkorange">spostare</span> sull'asse verticale e vediamo che è nell'insieme di <span style="color:green">tutte le possibili soluzioni</span>.](MathAssets/graph12.svg width=250px)
+
+Quindi,
+
+> Chiamiamo **immagine di un'incognita** l'insieme delle soluzioni che possiamo ottenere sostituendo quell'incognita.
+>
+
+Abbiamo visto che graficamente questo corrisponde a spostare tutte le soluzioni sull'asse verticale (se stiamo parlando dell'immagine della prima incognita) o orizzontale (se stiamo parlando dell'immagine della seconda incognita).
+
+!!!
+    A volte, per semplicità, utilizziamo solo **immagine** per riferirci *all'immagine della prima incognita* e **controimmagine** per riferirci *all'immagine della seconda incognita*.
+
+L'immagine dipende dal dominio che scegliamo, perché se scegliamo un dominio più piccolo abbiamo meno possibili soluzioni. In ogni caso, l'immagine di un'incognita è sempre all'interno del dominio dell'altra:
+
+![<span style="color:darkorange">L'immagine</span> è dentro <span style="color:green">il codominio</span> e <span style="color:blue">la controimmagine</span> è dentro <span style="color:darkred">il dominio</span>.](MathAssets/graph15.svg width=250px)
+
+</div>
+
+## Surgettività
+
+<div class="card">
+Visto che le soluzioni dopo una sostituzione sono i punti in cui la nuova linea dei numeri tocca l'equazione, avremo una soluzione per ogni punto in cui si toccano. Ad esempio,
+
+![Ho disegnato <span style="color:darkred">tre linee</span> corrispondenti a tre sostituzioni. La prima non incontra il grafico dell'equazione, quindi non abbiamo soluzioni dopo la sostituzione. La seconda lo incontra una volta, quindi abbiamo una soluzione. La terza due volte, quindi ne abbiamo due.](MathAssets/graph7.svg width=250px)
+
+Fra tutte le equazioni, sono particolarmente interessanti quelle che hanno sempre almeno una soluzione, a priori di come si vada a sostituire. Le chiamiamo *suriettive*:
+
+> Una equazione è **suriettiva rispetto a un'incognita** se, sostituendo quell'incognita con *un qualsiasi numero*, ho almeno una soluzione.
+>
+
+Ovvero, ricordandoci che la sostituzione rispetto alla prima incognita corrisponde a una linea verticale e quella rispetto alla seconda a una orizzontale,
+
+> Nel grafico di un'equazione suriettiva rispetto alla prima/seconda incognita ogni linea verticale/orizzontale (rispettivamente) incontrerà il grafico almeno in un punto.
+>
+
+L'identità è suriettiva rispetto a entrambe le incognite:
+
+![Ho disegnato una linea orizzontale per controllare la suriettività rispetto alla <span style="color:darkred">seconda incognita</span> e un paio verticali per la suriettività rispetto alla <span style="color:green">prima incognita</span>; in tutti questi casi, le linee incontrano il grafico almeno in un punto. Questo è chiaramente vero per tutte le linee verticale e orizzontali.](MathAssets/graph6.svg width=250px)
+
+Infatti, se faccio - per esempio - la sostituzione di una delle due incognite con tre, avrò sicuramente almeno una soluzione: *tre è tre*. Se la faccio con cinque, avrò *cinque è cinque*. Non importa con quale numero sostituisco, avrò sempre almeno questa soluzione.
+
+Prendiamo poi come esempio l'equazione che ha questo grafico (lo trovate negli esercizi della scorsa sezione):
+
+![Tutte le <span style="color:green">linee verticali</span> icontrano almeno un punto, quindi l'equazione è suriettiva rispetto alla prima incognita. C'è almeno una <span style="color:darkred">linea orizzontale</span> senza soluzioni, quindi non è suriettiva rispetto alla seconda incognita.](MathAssets/graph8.svg width=250px)
+
+!!!
+    Nelle equazioni suriettive ogni linea incontrerà sempre il grafico in un punto; quindi, spostando ogni punto del grafico sull'asse, avremo che tutto il dominio verrà coperto:
+
+    ![](MathAssets/graph16.svg width=250px)
+
+    Riformulando: se l'equazione è suriettiva rispetto a un'incognita, tutto il dominio di quell'incognità sara coperto dall'immagine dell'altra incognita.
+
+    Per questo motivo in inglese *biettivo* è spesso tradotto in *onto*, che in italiano può essere tradotto come *copre*.
 </div>
 
 **Esercizi**
 
-- Disegnare il grafico di un'equazione surgettiva rispetto alla seconda incognita ma non rispetto alla prima.
+- Disegnare il grafico di un'equazione suriettiva rispetto alla seconda incognita ma non rispetto alla prima.
 
-- Disegnare il grafico di un'equazione non surgettiva rispetto a entrambe le due incognite.
+- Disegnare il grafico di un'equazione non suriettiva rispetto a entrambe le due incognite.
 
-- Far vedere che l'equazione negli esercizi della scorsa sezione è effettivamente surgettiva rispetto alla prima incognita senza utilizzare il grafico.
+- Far vedere che l'equazione negli esercizi della scorsa sezione è effettivamente suriettiva rispetto alla prima incognita senza utilizzare il grafico.
 
 ## Iniettività e Funzioni
 
 <div class="card">
-Diamo ora una definizione simile a quella di surgettività.
+Un altro tipo di equazioni che ci interessano sono quelle in cui, dopo una sostituzione, non abbiamo mai due soluzioni o più; ovvero, o abbiamo una soluzione (e in quel caso è unica) o non ne abbiamo nessuna. Le chiamiamo iniettive:
 
 > Una equazione è **iniettiva rispetto a un'incognita** se, sostituendo quell'incognita con *un qualsiasi numero*, ho al massimo una soluzione.
 >
 
 Cioè, abbiamo cambiato "ho almeno una soluzione" con "ho al massimo una soluzione". Graficamente,
 
-> Nel grafico di un'equazione iniettiva ogni linea incontrerà il grafico al massimo in un punto.
+> Nel grafico di un'equazione iniettiva rispetto alla prima/seconda incognita ogni linea verticale/orizzontale (rispettivamente) incontrerà il grafico al massimo in un punto.
 >
 
-Sempre (questo è importante) ricordando che non stiamo parlando di una qualsiasi linea, ma di linee verticali o orizzontali a seconda di se ci stiamo riferendo alla prima o seconda incognita rispettivamente.
+Vediamo che l'identità - oltre ad essere suriettiva - è anche iniettiva:
 
-Vediamo che l'identità - oltre ad essere surgettiva - è anche iniettiva. Questo perché dopo una qualsiasi sostituzione (ad esempio, *la prima incognita con 3*) avremo che l'unica soluzione è quella che vede l'altra l'incognita con lo stesso numero (*3 è 3*). Ogni altra soluzione sarebbe sbagliata (*3 è 4*; *3 è -2,5*; eccetera). Graficamente:
+![Tracciando le linee esattamente come prima, vediamo che non incrociano mai il grafico in più di un punto.](MathAssets/graph6.svg width=250px)
 
-![Tracciando le linee esattamente come prima, vediamo che incrociano il grafico in non più di un punto](MathAssets/graph6.svg width=250px)
+Infatti, se - per esempio - sostituisco una delle incognite con tre, l'unica soluzione sarà *tre è tre*. Tutte le altre  combinazioni (*cinque è tre*, *meno due è tre*) non saranno soluzioni.
 
 Prendendo in esempio l'equazione che ha questo grafico, come nella scorsa sezione:
 
-![](MathAssets/graph5.svg width=250px)
+![Qualsiasi <span style="color:green">linea verticale</span> incontrerà il grafico al massimo in un punto, quindi l'equazione è iniettiva rispetto alla prima incognita. Una linea <span style="color:darkred">linea orizzontale</span> incontra il grafico in due punti, quindi l'equazione non è iniettiva rispetto alla seconda incognita.](MathAssets/graph8.svg width=250px)
 
-Vediamo che tracciando una qualsiasi linea verticale, questa incontrerà il grafico sempre in un solo punto; quindi, abbiamo l'iniettività rispetto alla prima incognita. Se invece prendiamo linee orizzontali, queste potrebbero incontrare il grafico in nessun punto, oppure in due. Visto che esiste quest'ultimo caso, la funzione non è iniettiva rispetto alla seconda incognita.
+!!!
+    Visto che nelle funzioni iniettive sostituendo l'incognita abbiamo al massimo una soluzione, non è mai possibile che ci siano due soluzioni con la stessa componente verticale/orizzontale.
 
-In tutti questi esempi, le funzioni erano o contemporaneamente iniettive e surgettive o nessuna delle due. Spesso possiamo avere anche equazioni surgettive ma non iniettive o opposto.
+    Per questo motivo in inglese *iniettiva* è spesso tradotto in *one-to-one*, ovvero *uno-a-uno*, perché scegliendo un valore della seconda incognita ce ne sarà solo uno corrispondente nella primo incognita, o opposto.
 
-> Quando, però, un'equazione è iniettiva e surgettiva rispetto a un'incognita, diciamo che è **funzione rispetto a quell'incognita**.
+In tutti questi esempi, le equazioni erano o contemporaneamente iniettive e suriettive o nessuna delle due. Spesso possiamo avere anche equazioni suriettive ma non iniettive od opposto.
+
+> Quando, però, un'equazione è iniettiva e suriettiva rispetto a un'incognita, diciamo che è **funzione rispetto a quell'incognita**.
 >
 
-Ad esempio, l'identità è funzione rispetto a entrambe le incognite.
+Ad esempio abbiamo visto che l'identità è funzione rispetto a entrambe le incognite. Ultima definizione importante:
+
+> Quando un'equazione è funzione rispetto ad entrambe le incognite, viene chiamata *funzione biettiva*.
+>
 </div>
 
 **Esercizi**
 
-- Disegnare il grafico di un'equazione che non sia né iniettiva né surgettiva rispetto a entrambe le incognite.
+- Disegnare il grafico di un'equazione che non sia né iniettiva né suriettiva rispetto a entrambe le incognite.
 
 - Disegnare il grafico di un'equazione funzione rispetto alla prima incognita e iniettiva rispetto alla seconda.
 
-- Disegnare il grafico di un'equazione funzione rispetto alla seconda incognita e surgettiva rispetto alla prima.
+- Disegnare il grafico di un'equazione funzione rispetto alla seconda incognita e suriettiva rispetto alla prima.
 
-## Bigettività
+## In funzione di
 
 <div class="card">
-Nella conclusione della scorsa sezione abbiamo visto una definizione fondamentale: quella di *funzione*. Voglio sottolinearne ancora l'aspetto grafico; nel parlare di funzioni *rispetto alla prima incognita*,
+Per concludere, chiariamo qualche termine. D'ora in poi, per semplicità, dirò *funzione* per intendere *funzione rispetto alla prima incognita*.
 
-> Se si traccia una linea verticale nel grafico di una funzione, questa linea incontrerà il grafico in un solo punto.
+Perché "funzione"? La loro definizione ci dice che, nel momento in cui scegliamo un numero con cui sostituire la prima incognita, avremo *una e una sola soluzione*. Ovvero, la soluzione è *in funzione* del numero con cui sostituiamo, perché dipende solo da quello.
+
+![](MathAssets/graph9.svg width=250px)
+
+Quindi, nel momento in cui decidiamo il numero con cui sostituire, otteniamo la soluzione corrispondente. C'è un modo più veloce di dire "la soluzione corrispondente alla sostituzione dell'incognita con il numero...", ed è:
+
+> **La funzione di un numero** è la soluzione che otteniamo sostituendo l'incognita corrispondente con quel numero.
 >
 
-Se si considerano le funzioni rispetto alla seconda incognita, si parla invece di linee orizzontali. Abbiamo visto sopra che *l'identità è una funzione rispetto a entrambe le incognite*, e l'equazione con cui abbiamo concluso la scorsa sezione è una funzione rispetto alla prima incognita.
+Alcune funzioni hanno un nome, per esempio *l'identità*. Abbiamo anche la funzione chiamata *doppio* definita come "il primo numero per due è il secondo". In questi casi, possiamo dire:
 
-D'ora in poi, dirò semplicemente che un'equazione è **una funzione** se è una funzione *rispetto all prima incognita*. In più,
-
-> Una funzione rispetto a un'incognita è detta **iniettiva** se è anche iniettiva rispetto all'altra incognita, è detta **surgettiva** se è anche surgettiva rispetto all'altra incognita, ed è detta **bigettiva** se è anche funzione rispetto all'altra incognita.
+> *L'identità di tre* è tre. *Il doppio di cinque* è dieci
 >
 
-Il miglior esempio di funzione bigettiva è l'identità. La bigettività è attualmente una proprietà molto forte: se un'equazione è una funzione bigettiva, significa che è sia iniettiva che surgettiva rispetto a entrambe le incognite, ovvero
+Perché, in quest'ultimo caso, se sostituisco la prima incognita con cinque ottengo "cinque per due è il secondo numero", e l'unica soluzione è dieci. In generale,
 
-> Nel grafico di una funzione bigettiva, disegnando una qualsiasi linea verticale od orizzontale, questa incontrerà il grafico in un solo punto.
+> *Il doppio di un numero* è il numero per due
 >
 
-L'essere una funzione (non necessariamente bigettiva) ha anche un altro importante significato. Visto che sostituendo l'incognita con un *qualsiasi* numero mi darà sempre una sola soluzione, diciamo che la soluzione *dipende esclusivamente dal numero con cui scegliamo di sostituire*. Ovvero, possiamo definire
+Questo modo di esprimere le funzioni è così comodo che solitamente si definiscono così. Per esempio, se io dico
 
-> **L'input** di una funzione rispetto a un'incognita è il numero con cui sostituiamo quell'incognita. **L'output** è, invece, la soluzione che otteniamo con quell'input.
+> *La funzione di un numero* è tre volte quel numero più due
 >
 
-e dire che
+La funzione di cui parlo è l'equazione "il primo numero per tre più due è il secondo numero".
 
-> Una funzione prende *un input* (ovvero, un numero con cui sostituire l'incognita) e restituisce un *output* (ovvero, l'unica soluzione corrispondente a quel numero).
->
+Infine, cerchiamo di capire ancora meglio cosa significano "funzione surgettiva" e "funzione iniettiva". Utilizzerò un grafico diverso dal solito: disegno due linee dei numeri una sotto l'altra e indico con delle freccie l'effetto della funzione. Ad esempio, se *la funzione di tre è cinque*, disegnerò una freccia che va da tre a cinque. Per esempio, l'identità è:
 
-Il vantaggio delle funzioni è proprio che abbiamo la certezza che *per ogni input abbiamo un output*; se provassimo ad applicare lo stesso concetto alle funzioni in generale, potremmo avere zero, molteplici o infiniti output a partire dallo stesso input.
+![](MathAssets/graph18.svg width=250px)
 
-Facciamo un esempio con l'identità: è una funzione. Se scegliamo come input il numero 3, l'unica soluzione sarà "3 è 3"; quindi anche l'output è 3, perché abbiamo sostituito l'altra incognita con 3 per avere quella soluzione. In generale, l'output dell'identità è sempre il suo input.
+In questo tipo di grafico, la controimmagine sono tutti i punti da cui partono le frecce, e l'immagine sono tutti i punti in cui arrivano. In più, il numero di soluzioni sostituendo la prima/seconda incognita è il numero di frecce che parte/arriva in un punto.
 
-D'ora in poi, quando una funzione ha un nome (ad esempio, *"la funzione"*), diremo che
+Le **funzioni suriettive** sono equazioni suriettive rispetto a entrambe le incognite.  Abbiamo che l'immagine e controimmagine coprono tutto il dominio; ovvero, parte una freccia da ogni punto e arriva una freccia in ogni punto.
 
-> l'output **è** la funzione **dell'** input (ad esempio, "3 *è* l'identità *di* 3").
->
+![Questa funzione è suriettiva perché da ogni punto parte o arriva una freccia.](MathAssets/graph19.svg width=250px)
+
+Le **funzioni iniettive** sono equazioni iniettive rispetto a entrambe le incognite. Abbiamo che il numero di soluzioni dopo una qualsiasi sostituzione sarà sempre al massimo uno, quindi da ogni punto parte o arriva al massimo una freccia.
+
+![Questa funzione è iniettiva perché non ci sono due freccie che partono o arrivano nello stesso punto.](MathAssets/graph20.svg width=250px)
+
+Unendo le due cose, le **funzioni biettive** sono funzioni che collegano ogni numero nel dominio con un numero (e uno soltanto) nel codominio, coprendo tutto il codominio.
+
+![](MathAssets/graph18.svg width=250px)
+
 </div>
+
+**Esercizi**
 
 Prendiamo l'equazione *"il primo numero moltiplicato per se stesso è il secondo numero""* e chiamiamola "il quadrato".
 
@@ -410,13 +494,13 @@ Prendiamo l'equazione *"il primo numero moltiplicato per se stesso è il secondo
 
 - Calcola il *quadrato di venti*.
 
-- Cosa otteniamo se in una funzione (rispetto alla prima incognita) iniettiva scambiamo tra loro le due incognite? E se la funzione fosse bigettiva?
+- Cosa otteniamo se in una funzione (rispetto alla prima incognita) iniettiva scambiamo tra loro le due incognite? E se la funzione fosse biettiva?
 
 <!--
 Da fare:
 - Spiegazione di come posso definire un'equazione direttamente utilizzando la nuova formulazione, e.g. chiamando doppio "il primo numero è il secondo per due" e dicendo il doppio di un numero è il numero per due.
 - Spiegazione di come le funzioni in questo modo possono essere viste come qualcosa che partono da un punto e arrivano a un altro
-- Spiegazione del significato di iniettiva / surgettiva / bigettiva in questo caso
+- Spiegazione del significato di iniettiva / suriettiva / biettiva in questo caso
 - Definizione di radice rispetto alle due incognite, ovvero la soluzione ponendo quell'incognita uguale a zero
 - Definizione di equazione lineare, di inclinazione, di altezza, come trovarne le radici
 -->

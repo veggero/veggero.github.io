@@ -1,8 +1,8 @@
 **Appunti di Matematica**
 
-# Le basi
+## Le basi
 
-## I numeri
+### I numeri
 
 <div class="card">
 
@@ -141,6 +141,8 @@ Se sostituiamo i due numeri con - per esempio - tre e cinque otteniamo "tre è c
 
 ## Grafici di equazioni
 
+### Tipi di grafici
+
 <div class="card"> <!-- 376 parole  -->
 Molto spesso è più facile capire *quando* un'equazione è vera grazie ai grafici. In generale, nella matematica è sempre utile fermarsi e fare qualche disegno per assicurarsi di avere chiara in mente un'idea di cosa si sta parlando. Tutto sta a capire quale sia la maniera più corretta o utile di fare grafici e disegni. Addirittura, a volte esistono vari modi di rappresentare lo stesso concetto. In questi appunti io proporrò sempre solo alcuni di questi possibili metodi: quelli che, secondo me, ci aiutano di più.
 
@@ -215,7 +217,7 @@ Invece, rappresentiamo il secondo numero sull'asse verticale e lo chiamiamo <spa
 - Come potremmo fare a disegnare grafici di equazioni a tre incognite?
 
 
-## Grafici di equazioni
+### Esempi di grafici
 
 <div class="card"> <!-- 340 parole  -->
 A questo punto, siamo pronti per *disegnare* le equazioni a due incognite. Iniziamo dal primo tipo di grafico. Visto che tutte le equazioni di cui parleremo hanno infinite soluzioni, in teoria dovremmo disegnare infinite linee; visto che ciò è impossibile, ne disegneremo solo qualcuna di esempio, solitamente quelle corrispondenti ai numeri interi.
@@ -275,7 +277,51 @@ In pratica, è la linea che - su un quaderno quadrettato - ha l'inclinazione di 
 
 - Non sempre il grafico di un'equazione è una linea, o una curva. Per esempio, andando a tentativi, prova a disegnare alcune soluzioni di *"Ho due numeri. Il resto del primo numero diviso due è uguale al resto del secondo numero diviso due"*. Vedrai che formano una strana griglia.
 
-## Sostituzione
+### Immagine nei grafici
+
+<div class="card">
+Supponiamo di avere un'equazione del tipo
+
+> Il voto in pagella è la media tra 7, 5, 6 e il voto della prossima verifica.
+>
+
+In questo caso, "voto in pagella" e "voto della prossima verifica" sono le incognite. I voti possono essere solo da 0 a 10, che quindi scegliamo come *dominio* di entrambe le incognite (ovvero, decidiamo che le incognite possono avere solo quei valori).
+
+Però, se il voto nella prossima verifica fosse 10, il voto in pagella sarebbe al massimo 7; e se anche l'ultimo voto fosse 0 il voto in pagella sarebbe 4½. Quindi, nonostante il dominio del voto in pagella sia da 0 a 10, gli unici valori che possono essere soluzioni sono tra 4½ e 10.
+
+> L'insieme dei valori che un'incognita può assumere nelle soluzioni è chiamato **immagine**.
+>
+
+Quindi, l'*immagine* del "voto in pagella" sono i numeri tra 4½ e 10. Invece esiste un voto in pagella a priori del voto nella prossima verifica; quindi l'immagine di "voto della prossima verifica" è da 0 a dieci, come il dominio.
+
+Vediamo ora il primo tipo di grafico dell'equazione sopra:
+
+![](MathAssets/graph21.svg width=250px)
+
+Visto che l'immagine sono tutti i possibili valori di un'incognita che possono essere soluzioni, e le soluzioni in questo grafico sono segnate dalle linee, avremo che l'immagine di un'incognita saranno tutti i numeri che toccano una linea. Infatti, vediamo che nella prima linea dei numeri (che corrisponde all'incognita "voto alla prossima verifica") tutti i numeri da 0 a 10 hanno la propria soluzione, mentre nella seconda linea (che corrisponde all'incognita "voto in pagella") solo i numeri da 4½ a 7 hanno una soluzione.
+
+Vediamo la stessa equazione nel secondo tipo di grafico:
+
+![](MathAssets/graph22.svg width=250px)
+
+Sull'asse verticale abbiamo "Voto in pagella"; vediamo che l'asse va da 0 a 10 (che è tutto il dominio); però, abbiamo che tutti i punti grigi che abbiamo disegnato hanno componente verticale tra 4½ e 7, che infatti è l'immagine.
+Ho segnato sull'asse verticale tutte le possibili componenti verticali (quindi, l'immagine) in <span style="color:darkred">rosso</span>.
+
+Sull'asse orizzontale abbiamo "voto alla prossima verifica". Vediamo che a ogni componente orizzontale che scegliamo ci sarà sempre un punto corrispondente; quindi l'immagine è tutto il dominio.
+
+</div>
+
+**Esercizi.**
+
+- Quale dominio dovremmo scegliere per le incognite dell'equazione "Ho tirato un dado. *La mia età è il numero sul dado per sette*"?
+
+- Sempre nella stessa equazione, quali sono le immagini delle due incognite?
+
+- L'immagine delle incognite cambia a seconda di quale dominio scegliamo?
+
+## Studio delle soluzioni
+
+### Sostituzione
 
 <div class="card"><!-- 377 parole -->
 Quando abbiamo un'equazione a due incognite possiamo sostituire una delle due incognite con un numero; in questo modo, otteniamo un'equazione a una incognita.
@@ -328,7 +374,7 @@ Prendiamo, per esempio, l'equazione *"il primo numero moltiplicato per se stesso
 
 - Come sopra, però la sostituzione deve risultare in una sola soluzione.
 
-## Dominio
+<!--## Dominio
 
 <div class="card">
 Abbiamo dato per scontato di poter sostituire qualsiasi numero nelle equazioni. Possiamo anche decidere di permettere solo alcuni numeri (per esempio, "soltanto i positivi", o "quelli più piccoli di tre").
@@ -374,7 +420,7 @@ Le soluzioni che ci interessano in questo caso sono le linee che partono e finis
     A volte, per semplicità, utilizziamo solo **dominio** per riferirci al *dominio della prima incognita* e **codominio** per il *dominio della seconda incognita*.
 </div>
 
-## Immagine
+### Immagine
 
 !!! WARNING
     **Attenzione**: da qui in poi, gli appunti sono una bozza. Non sono ancora stati propriamente riletti, controllati, e potrebbero mancare alcuni grafici.
@@ -424,9 +470,9 @@ L'immagine dipende dal dominio che scegliamo, perché se scegliamo un dominio pi
 
 ![<span style="color:darkorange">L'immagine</span> è dentro <span style="color:green">il codominio</span> e <span style="color:blue">la controimmagine</span> è dentro <span style="color:darkred">il dominio</span>.](MathAssets/graph15.svg width=250px)
 
-</div>
+</div>-->
 
-## Surgettività
+### Surgettività
 
 <div class="card">
 Visto che le soluzioni dopo una sostituzione sono i punti in cui la nuova linea dei numeri tocca l'equazione, avremo una soluzione per ogni punto in cui si toccano. Ad esempio,
@@ -492,7 +538,7 @@ Prendiamo poi come esempio l'equazione che ha questo grafico (lo trovate negli e
 
 - Far vedere che l'equazione negli esercizi della scorsa sezione è effettivamente suriettiva rispetto alla prima incognita senza utilizzare il grafico.
 
-## Iniettività e Funzioni
+### Iniettività e Funzioni
 
 <div class="card">
 Un altro tipo di equazioni che ci interessano sono quelle in cui, dopo una sostituzione, non abbiamo mai due soluzioni o più; ovvero, o abbiamo una soluzione (e in quel caso è unica) o non ne abbiamo nessuna. Le chiamiamo iniettive:
@@ -570,17 +616,15 @@ Questo modo di esprimere le funzioni è così comodo che solitamente si definisc
 
 La funzione di cui parlo è l'equazione "il primo numero per tre più due è il secondo numero".
 
-Infine, cerchiamo di capire ancora meglio cosa significano "funzione surgettiva" e "funzione iniettiva". Utilizzerò un grafico diverso dal solito: disegno due linee dei numeri una sotto l'altra e indico con delle freccie l'effetto della funzione. Ad esempio, se *la funzione di tre è cinque*, disegnerò una freccia che va da tre a cinque. Per esempio, l'identità è:
+Infine, cerchiamo di capire ancora meglio cosa significano "funzione surgettiva" e "funzione iniettiva". Per questo, utilizziamo il secondo tipo di grafico.
 
 ![](MathAssets/graph18.svg width=250px)
 
-In questo tipo di grafico, la controimmagine sono tutti i punti da cui partono le frecce, e l'immagine sono tutti i punti in cui arrivano. In più, il numero di soluzioni sostituendo la prima/seconda incognita è il numero di frecce che parte/arriva in un punto.
-
-Le **funzioni suriettive** sono equazioni suriettive rispetto a entrambe le incognite.  Abbiamo che l'immagine e controimmagine coprono tutto il dominio; ovvero, parte una freccia da ogni punto e arriva una freccia in ogni punto.
+Le **funzioni suriettive** sono equazioni suriettive rispetto a entrambe le incognite. In questo tipo di grafico, se un'incognita è suriettiva significa che ogni punto sulla sua asse ha una linea corrispondente. Quindi, una funzione suriettiva fa in modo che in entrambe le incognite tutti i punti abbiano almeno una soluzione corrispondente.
 
 ![Questa funzione è suriettiva perché da ogni punto parte o arriva una freccia.](MathAssets/graph19.svg width=250px)
 
-Le **funzioni iniettive** sono equazioni iniettive rispetto a entrambe le incognite. Abbiamo che il numero di soluzioni dopo una qualsiasi sostituzione sarà sempre al massimo uno, quindi da ogni punto parte o arriva al massimo una freccia.
+Le **funzioni iniettive** sono equazioni iniettive rispetto a entrambe le incognite. Abbiamo che il numero di soluzioni dopo una qualsiasi sostituzione sarà sempre al massimo uno, e il numero di soluzioni in questo grafico corrisponde a quante frecce toccano un punto, quindi da ogni punto parte o arriva al massimo una freccia.
 
 ![Questa funzione è iniettiva perché non ci sono due freccie che partono o arrivano nello stesso punto.](MathAssets/graph20.svg width=250px)
 

@@ -402,7 +402,6 @@ Se un numero è una soluzione, deve necessariamente essere nel dominio, altrimen
 Non sempre, invece, tutti i numeri del dominio sono nell'immagine (ovvero, non tutti i numeri con cui possiamo sostituire un'incognita potrebbero essere soluzioni). L'abbiamo visto con l'esempio dei voti: avevamo un dominio da 0 a 10, ma un'immagine da 4½ a 7.
 
 > Quando, invece, l'immagine del dominio è uguale al dominio, che l'incognita è **coperta** (perché l'immagine dell'incognita "copre" il dominio).
->
 
 *Nel grafico con le due assi dei numeri parallele* il dominio sono le linee dei numeri e l'immagine tutti i punti che toccano una linea. Per esempio, in
 
@@ -443,33 +442,20 @@ Prendendo invece, per esempio, questo grafico:
 
 - Far vedere che la prima incognita dell'equazione negli esercizi della scorsa sezione è effettivamente coperta senza utilizzare il grafico.
 
-### Incognite uno-a-uno
+### Iniettività e Funzioni
 
 <div class="card">
-Prendiamo l'equazione *"Ho due numeri. Il primo per zero è il secondo"*. Possiamo facilmente notare che qualsiasi numero moltiplicato per zero è zero, quindi in tutte le soluzioni la seconda incognita sarà zero; la prima incognita, invece, potrebbe essere qualsiasi (perché moltiplicata per zero farà sempre zero).
+Un altro tipo di equazioni che ci interessano sono quelle in cui, dopo una sostituzione, non abbiamo mai due soluzioni o più; ovvero, o abbiamo una soluzione (e in quel caso è unica) o non ne abbiamo nessuna. Le chiamiamo iniettive:
 
-Quindi, il suo grafico avrà questo aspetto:
-
-![](MathAssets/graph23.svg width=250px)
-
-Vediamo che se sostituiamo la prima incognita con qualsiasi numero avremo sempre e comunque una soluzione: zero. Invece, se sostituiamo la seconda incognita con zero avremo che qualsiasi numero sarà soluzione per la prima incognita.
-
-Il che ci porta a questa definizione:
-
-> Un'incognita è **uno a uno** se, sostituendola con un numero, abbiamo *al massimo* una soluzione.
+> Una equazione è **iniettiva rispetto a un'incognita** se, sostituendo quell'incognita con *un qualsiasi numero*, ho al massimo una soluzione.
 >
 
-Che corrisponde, in questo tipo di grafico, a
+Cioè, abbiamo cambiato "ho almeno una soluzione" con "ho al massimo una soluzione". Graficamente,
 
-> Un'incognita è **uno a uno** se c'è sempre al massimo una linea che ne tocca i numeri sull'asse.
+> Nel grafico di un'equazione iniettiva rispetto alla prima/seconda incognita ogni linea verticale/orizzontale (rispettivamente) incontrerà il grafico al massimo in un punto.
 >
 
-Visto che nel grafico cartesiano il numero di soluzioni dopo una sostituzione è il numero di volte in cui il grafico tocca la nuova linea dei numeri, abbiamo anche che
-
-> La prima o seconda incognita è **uno a uno** se il suo grafico cartesiano tocca qualsiasi linea verticale od orizzontale (rispettivamente) in al massimo un punto.
->
-
-Vediamo che entrambe le incognite dell'identità - oltra a essere coperte - sono anche uno a uno:
+Vediamo che l'identità - oltre ad essere suriettiva - è anche iniettiva:
 
 ![Tracciando le linee esattamente come prima, vediamo che non incrociano mai il grafico in più di un punto.](MathAssets/graph6.svg width=250px)
 
@@ -477,42 +463,33 @@ Infatti, se - per esempio - sostituisco una delle incognite con tre, l'unica sol
 
 Prendendo in esempio l'equazione che ha questo grafico, come nella scorsa sezione:
 
-![Qualsiasi <span style="color:green">linea verticale</span> incontrerà il grafico al massimo in un punto, quindi la prima incognita è uno a uno. Una linea <span style="color:darkred">linea orizzontale</span> incontra il grafico in due punti, quindi la seconda incognita non è uno a uno.](MathAssets/graph8.svg width=250px)
-
-</div>
+![Qualsiasi <span style="color:green">linea verticale</span> incontrerà il grafico al massimo in un punto, quindi l'equazione è iniettiva rispetto alla prima incognita. Una linea <span style="color:darkred">linea orizzontale</span> incontra il grafico in due punti, quindi l'equazione non è iniettiva rispetto alla seconda incognita.](MathAssets/graph8.svg width=250px)
 
 !!!
-    *Ripasso:*
+    Visto che nelle funzioni iniettive sostituendo l'incognita abbiamo al massimo una soluzione, non è mai possibile che ci siano due soluzioni con la stessa componente verticale/orizzontale.
 
-    Un'incognita è uno a uno se, dopo una sostituzione, <span class="test">abbiamo al massimo una soluzione</span>.
+    Per questo motivo in inglese *iniettiva* è spesso tradotto in *one-to-one*, ovvero *uno-a-uno*, perché scegliendo un valore della seconda incognita ce ne sarà solo uno corrispondente nella primo incognita, o opposto.
 
-    Nel grafico cartesiano questo significa che <span class="test">ogni linea verticale od orizzontale (a seconda dell'incognita di cui stiamo parlando) tocca il grafico in almeno un punto</span>.
+In tutti questi esempi, le equazioni erano o contemporaneamente iniettive e suriettive o nessuna delle due. Spesso possiamo avere anche equazioni suriettive ma non iniettive od opposto.
 
-    Nell'altro tipo di grafico questo significa che <span class="test">ogni punto dell'asse dei numeri dell'incognita è collegato con al massimo una linea</span>.
+> Quando, però, un'equazione è iniettiva e suriettiva rispetto a un'incognita, diciamo che è **funzione rispetto a quell'incognita**.
+>
+
+Ad esempio abbiamo visto che l'identità è funzione rispetto a entrambe le incognite. Ultima definizione importante:
+
+> Quando un'equazione è funzione rispetto ad entrambe le incognite, viene chiamata *funzione biettiva*.
+>
+</div>
 
 **Esercizi**
 
-- Disegnare il grafico cartesiano di un'equazione in cui entrambe le incognite non sono né coperte né uno a uno.
+- Disegnare il grafico di un'equazione che non sia né iniettiva né suriettiva rispetto a entrambe le incognite.
 
-- Disegnare il grafico cartesiano di un'equazione in cui la prima incognita è coperta e uno a uno, ma la seconda è solo coperta.
+- Disegnare il grafico di un'equazione funzione rispetto alla prima incognita e iniettiva rispetto alla seconda.
 
-- Disegnare il grafico cartesiano di un'equazione in cui la prima incognita è solo uno a uno mentre la seconda è coperta e uno a uno.
+- Disegnare il grafico di un'equazione funzione rispetto alla seconda incognita e suriettiva rispetto alla prima.
 
 ## In funzione di
-
-<div class="card">
-Visto che **incognita coperta** significa *"c'è sempre almeno una soluzione"* (dopo una sostituzione) e **incognita uno a uno** significa *"c'è sempre non più di una soluzione"*, possiamo unire le due cose e vedere che una **incognita coperta uno a uno** avrà - dopo una sostituzione - sempre *una e una sola soluzione*.
-
-Ovvero, se decidiamo un valore per quell'incognita, ci sarà una sola soluzione dell'equazione; in questo caso, diciamo che
-
-> Se un'incognita è *coperta* e *uno a uno*, allora diciamo che l'equazione è **in funzione di quell'incognita**.
->
-
-Nel caso dell'identità, per esempio, abbiamo visto che entrambe le incognite sono coperte e uno a uno, quindi l'identità e *in funzioni di* entrambe le incognite (ovvero, se sostituisco una delle due incognite con un valore, ci sarà sempre uno e un solo risultato). Abbiamo un nome anche per questo caso:
-
-> Quando un'equazione è in funzione di entrambe le incognite, la chiamiamo **bigettiva**.
->
-</div>
 
 <div class="card">
 Per concludere, chiariamo qualche termine. D'ora in poi, per semplicità, dirò *funzione* per intendere *funzione rispetto alla prima incognita*.

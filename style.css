@@ -10,7 +10,7 @@ body {
 }
 @font-face {
     font-family: manrope;
-    src: url(manrope.ttf);
+    src: url(MainAssets/Manrope.ttf);
 }
 .image {
     margin-left: 0 !important;
@@ -21,6 +21,7 @@ html {font-size: 20px;}
     border-radius: 15px;
     padding: 20px;
     border: 1px solid #ddd;
+    box-shadow: 0px 30px 40px -20px hsl(229, 6%, 66%);
     overflow: auto;
 }
 .md h2, .md .nonumberh2 {
@@ -46,22 +47,7 @@ html {font-size: 20px;}
         bottom:0px;
         margin: 0px;
         padding: 0px;
-        padding-left: 20px;
-        z-index: -1;
-    }
-    .money {
-        display: block;
-        width: 260px;
-        overflow-y: show;
-        position: fixed;
-        right: 0px;
-        top: 0px;
-        bottom: 0px;
-        margin: 0px;
-        padding: 0px;
-        padding-right: 20px;
-        padding-top: 20px;
-        padding-left: 30px;
+        padding-left: 40px;
         z-index: -1;
     }
 }

@@ -612,33 +612,148 @@ Siamo abituati a misurare l'inclinazione (o, in generale, gli angoli) usando i g
 Dimentichiamoci dell'esistenza dei gradi e cerchiamo di formalizzare questo concetto dell'inclinazione "tot quadretti verso destra e tot verso l'alto".
 </div>
 
-### Inclinazione
+!!!
+    *Riassunto:*
+
+    Le funzioni *identità*, *metà* e *doppio* sono tutte e tre lineari e passano dal centro.
+
+    L'inclinazione *dell'identità* è <span class="test">un quadretto a destra, un quadretto verso l'alto</span>. L'inclinazione della *metà* è <span class="test">due quadretti verso destra, uno verso l'alto</span>. L'inclinazione del doppio è <span class="test">un quadretto verso destra, due verso l'alto</span>.
+
+**Esercizi:**
+
+- Disegnare i grafici cartesiani della funzione *tripo* e della funzione *"il doppio del primo numero è il tripo del secondo"*.
+
+- Tutti i grafici visti finora passano dal centro. Perché? Puoi fare un esempio di funzione lineare che non passa dal centro?
+
+- Qual è l'inclinazione di una linea verticale? E di una orizzontale? Sono funzioni?
+
+### Definire l'inclinazione
 
 <div class="card">
 Iniziamo dal dire che "un quadretto a destra, uno verso l'alto" è la stessa cosa di "due quadretti verso destra, due verso l'alto". Ci sono diversi modi di esprimere la stessa inclinazione. In generale, se moltiplico entrambi i numeri per lo stesso valore otterrò la stessa inclinazione:
 
-Per esempio, ecco "due quadretti verso destra, tre verso l'altro" moltiplicato per vari fattori; è facile vedere che in tutti i casi parliamo della stessa inclinazione:
+Per esempio, ecco "due quadretti verso destra, quattro verso l'altro" moltiplicato per vari fattori; è facile vedere che in tutti i casi parliamo della stessa inclinazione:
 
 Fattore | Quadretti verso destra | Quadretti verso l'alto
 ---------- | ------------------ | ------------
-uno | due | tre
-due | quattro | sei
-un mezzo | uno | tre mezzi
-meno uno | meno due | meno tre
+uno | due | quattro
+due | quattro | otto
+un mezzo | uno | due
+meno uno | meno due | meno quattro
 
-Come standard, noi prendiamo l'inclinazione che inizia con "un quadretto verso destra". In questo caso, quindi, preferiamo dire "un quadretto verso destra, tre mezzi verso l'alto" rispetto a "due quadretti verso destra, tre verso l'alto".
+Per questo motivo, a noi interessa il *rapporto* che abbiamo tra *Quadretti verso destra* e *Quadretti verso l'alto*. Ovvero: possiamo notare che i "quadretti verso l'alto", nella tabella sopra, sono sempre il doppio rispetto ai "quadretti verso destra". Questo perché il *rapporto* tra "quadretti verso l'alto" e "quadretti verso destra" è 2; in altre parole, *(quadretti verso l'alto) diviso (quadretti verso destra) = 2* in questo caso specifico.
 
-In questo modo, possiamo dare un solo numero all'inclinazione:
+Se moltiplichiamo entrambi i membri della divisione per un qualsiasi fattore, il risultato non cambia. Quattro diviso due fa due esattamente come otto diviso quattro fa sempre due. Per questo motivo, prendendo come inclinazione *(quadretti verso l'alto) diviso (quadretti verso destra)* siamo sicuri di avere un numero che identifichi l'inclinazione in modo univoco.
 
-> Se abbiamo un'inclinazione di "un quadretto verso destra, *tot* verso l'alto", diremo semplicemente che abbiamo **un'inclinazione di tot**.
+> Se abbiamo un'inclinazione di "*tot* quadretto verso destra, *tot* verso l'alto", diremo semplicemente che abbiamo **un'inclinazione di (quadretti verso destra) diviso (quadretti verso l'alto)**.
 >
 
-Per esempio, l'identità ha un'inclinazione di uno. La funzione *doppio* ha un'inclinazione di due. La funzione *metà* ha un'inclinazione di un mezzo. Più l'inclinazione è un numero alto, più la linea sarà inclinata verso l'alto. Se l'inclinazione è zero, la linea sarà orizzontale. Se l'inclinazione è negativa, la retta andrà verso il basso.
+Per esempio, l'identità ha un'inclinazione di uno.  Infatti, si disegna con "un quadretto verso destra, e uno verso l'alto"; e uno diviso uno è uno.
+
+La funzione *doppio* ha un'inclinazione di due: "un quadretto verso destra, due verso l'alto", e due diviso uno è uno.
+
+La funzione *metà* ha un'inclinazione di un mezzo: "due quadretti verso destra, uno verso l'alto", e uno diviso due è un mezzo.
+
+Più l'inclinazione è un numero alto, più la linea sarà inclinata verso l'alto. Se l'inclinazione è zero, la linea sarà orizzontale. Se l'inclinazione è negativa, la retta andrà verso il basso.
+</div>
+
+### Calcolare l'inclinazione
+
+<div class="card">
+Finora siamo andati ad occhio per misurare l'inclinazione delle funzioni; vediamo di trovare un modo più pratico. Vogliamo capire quanto, la nostra funzione, va "verso destra" e quanto "verso l'alto". Ora, se prendiamo due soluzioni nel grafico della funzione,
+
+> Quanto la funzione va *verso destra* è la differenza delle componenti orizzontali dei due punti; quanto la funzione va *verso l'alto* è la differenza delle componenti verticali dei due punti. Infatti:
+>
+
+(GRAFICO QUI)
+
+Ricordiamoci che la componente orizzontale è la prima incognita, mentre la componente verticale è la seconda. Prendiamo una funzione (chiamata funzione). Abbiamo visto che
+
+> La funzione della prima incognita è la seconda incognita.
+>
+
+Scegliamo due valori per la prima incognita; li chiamerò "primo" e "secondo". In questo caso,
+
+> L'inclinazione della funzione è "*primo meno secondo* verso destra, *funzione di primo meno funzione di secondo* verso l'alto".
+>
+
+proprio perché "primo meno secondo" è la differenza di componenti orizzontali, mentre "funzione di primo meno funzione di secondo" è la differenza di componenti verticali.
+
+Cambia qualcosa se scegliamo dei valori diversi per "primo" e "secondo"? Nel caso di linee, no:
+
+(GRAFICO QUI)
+
+Se la funzione fosse più irregolare, avremmo un'inclinazione diversa a seconda di quale due punti scegliamo; ma in questo momento non ci interessa affatto.
+
+Concludiamo: abbiamo trovato di quanti "quadretti" si va verso destra e di quanti verso l'alto. Per calcolare l'inclinazione, come abbiamo visto nella scorsa sezione, dividiamo quelli "verso l'alto" per quelli "verso destra".
+
+> L'inclinazione della funzione è **(funzione di primo meno funzione di secondo) diviso (primo meno secondo)**
+>
+
+</div>
+
+### Inclinazioni particolari
+
+<div class="card">
+Abbiamo detto che "quadratini verso destra" corrisponde alla *differenza di componenti orizzontali* e "quadratini verso l'alto" corrisponde alla *differenza di componenti verticali* (di due punti qualsiasi sulla linea).
+
+Da questo, un altro modo di esprimere la formula con cui abbiamo concluso la scorsa sezione, semplicemente guardando il grafico, è:
+
+> Dati due punti sulla linea, l'inclinazione di questa è la **(differenza di componente verticale) diviso (differenza di componente orizzontale)**.
+>
+
+Adesso vediamo due linee che hanno delle inclinazioni particolari. La prima è la linea orizzontale. Che inclinazione ha?
+
+Se prendiamo due punti a caso su una linea orizzontale, vedremo che avremmo un *tot* di differenza di componente orizzontale, però nessuna differenza di componente verticale; questo perché, essendo la retta orizzontale, tutti i suoi punti hanno la stessa componente verticale, e per cui la loro differenza è zero.
+
+L'inclinazione è quindi *zero diviso tot*, che è semplicemente zero. Quindi l'inclinazione è zero.
+
+Ora parliamo della retta verticale. Per lo stesso ragionamento di cui sopra, abbiamo che - prendendo due punti a caso - abbiamo una differenza di componente verticale di *tot* e una differenza di componente orizzontale nulla. È letteralmente lo stesso ragionamento di cui sopra, ma cambiando 'verticale' e 'orizzontale'.
+
+Ora calcoliamo l'inclinazione. "(differenza di componente verticale) diviso (differenza di componente orizzontale)" divenat *tot diviso zero*. Sfortunatamente, non si può dividere per zero, quindi c'è qualche intoppo.
+
+L'intoppo è che una linea verticale non è una funzione rispetto alla prima incognita. Per essere  una funzione, dobbiamo avere che - scegliendo una componente orizzontale - avremo una e una soltanto soluzione. Ma, essendo una linea verticale, quasi per tutte le componenti orizzontali non ci sarà una soluzione! Se invece scegliamo la componente orizzontale che ha la linea verticale, avremo infinite soluzioni, che è altrettanto sbagliato.
+
+Cosa vuol dire questo? Nulla di troppo grave: semplicemente, la nostra misura dell'inclinazione funziona solo con le funzioni.
+
+Un paio di precisazioni: visto che più una linea si avvicina alla verticale più la sua inclinazione è alta, si potrebbe dire che l'inclinazione di una linea verticale è "infinito". Io di base non escludo niente, ma ci sono vari motivi per evitare una tale decisione, a meno di fare le adeguate premesse. Vedremo questo più avanti.
+
+Infine, ho utilizato un sacco il termine "quadretti". È un termino molto poco matematico, anche se da un'idea chiara, visto che tutti noi abbiamo probabilmente utilizzato un quaderno a quadretti. In realtà dovrei parlare di *unità*, nel senso: "un quadretto a destra" significa aumentare di uno la componente orizzontale. D'altronde, questa non sarà la prima volta che utilizzerò termini inusuali perché sono più chiari; per esempio vedrete, più avanti, le funzioni *felici* e *tristi*.
 </div>
 
 <!--
 - Definizione di radice rispetto alle due incognite, ovvero la soluzione ponendo quell'incognita uguale a zero
 - Definizione di equazione lineare, di inclinazione, di altezza, come trovarne le radici
 -->
+
+## Zeri delle Funzioni Lineari
+
+<div class="card">
+Finora, la maggior parte delle funzioni lineari che abbiamo visto - quando disegnate - passavano dall'origine (ovvero, *0 e 0* era una soluzione).
+
+Ci sono motivi (validi) per chiamare funzioni **lineari** solo ed esclusivamente questa famiglia di funzioni; cioè, richiedere sempre che passino dall'origine. Li vedremo successivamente.
+
+Prima, però finiamo di studiare le funzioni "lineari" in senso meno stretto considerando anche quelle che *non* passano per il centro. È facile vedere che se una linea non passa per il centro di un grafico cartesiano, allora incontrerà l'asse verticale in un punto, e l'asse orizzontale in un altro punto:
+
+GRAFICO QUI
+
+Ricordiamo una cosa importante di come funzionano i grafici cartesiani, che può sembrare filastroccosa ma è in realtà molto semplice:
+
+> La componente orizzontale di tutti i punti sull'asse verticale è nulla.
+>
+
+> La componente verticale di tutti i punti sull'asse orizzontale è nulla.
+>
+
+Il punto in cui la nostra linea incontra l'asse *verticale*, quindi, avrà componente *orizzontale* nulla; e il punto in cui la nostra linea incontra l'asse *orizzontale* avrà componente *verticale* nulla.
+
+Ricordiamoci che la prima incognita corrisponde alla componente orizzontale e la seconda alla verticale. Quindi, la linea incontra l'asse *verticale* se ha la prima incognita uguale a zero, e quella *orizzontale* se ha seconda incognita pari a zero.
+
+Comunque sia, chiamiamo il punto in cui la prima incognita è zero **zero della prima incognita**, e il punto in cui la seconda incognita è zero **zero della seconda incognita**.
+
+Prendiamo lo **zero della seconda incognita**. Questo punto avrà ovviamente *zero* come componente verticale. Ma quanto avrà come componente orizzontale?
+
+Allo stesso modo, prendiamo lo **zero della prima incognita**. Questo punto avrà *zero* come componente orizzontale, ma quanto sarà la componente verticale?
+</div>
 
 <!-- Markdeep: --> <meta charset="utf-8" emacsmode="-*- markdown -*"> <meta name="viewport" content="width=device-width, initial-scale=1"><script>markdeepOptions={tocStyle:'long', autoLinkImages:false}</script><link rel="stylesheet" href="style.css"><style class="fallback">body{visibility:hidden;white-space:pre;font-family:monospace}</style> <script src="markdeep.min.js" charset="utf-8"></script> <script>window.alreadyProcessedMarkdeep||(document.body.style.visibility="visible")</script>

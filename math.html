@@ -756,4 +756,115 @@ Prendiamo lo **zero della seconda incognita**. Questo punto avrà ovviamente *ze
 Allo stesso modo, prendiamo lo **zero della prima incognita**. Questo punto avrà *zero* come componente orizzontale, ma quanto sarà la componente verticale?
 </div>
 
+### Zero della prima incognita
+
+<div class="card">
+Partiamo dallo zero della prima incognita; ovvero, il punto il cui la prima incognita è zero. Vogliamo sapere, in quel punto, che valore avrà la seconda incognita.
+
+Ricordiamoci che le funzioni possono essere formulate come *"la funzione della prima incognita è la seconda incognita"*. Ad esempio, *"il doppio di un numero è quel numero per due"*: qui "un numero" è la prima incognita e "quel numero per due" è la seconda incognita.
+
+Visto che nello zero della prima incognita la prima incognita è zero, otteniamo che in quel punto *"la funzione di zero è la seconda incognita"*. Quindi, se vogliamo sapere quanto è la seconda incognita, basta calcolare la funzione di zero.
+
+Esempio pratico: prendiamo la funzione *doppio*. Nello zero della prima incognita, la prima incognita sarà zero. La seconda incognità sarà *il doppio di zero*, ovvero zero. Quindi lo zero della prima incognita è il punto *zero e zero*; il che ha senso, visto che *zero e zero* è l'origine, e la funzione *doppio* passa per l'origine.
+
+Peraltro, in questo modo abbiamo anche scoperto lo zero della seconda incognita, visto che in *zero e zero* anche la seconda incognita è zero. Questo vuol dire che gli zeri delle due incognite coincidono.
+
+Facciamo un secondo esempio. Ricordate la funzione che collegava il voto alla prossima verifica, e il voto in pagella? Chiamando questa funzione semplicement "funzione", abbiamo che *"la funzione del voto della prossima verifica è la media di quel voto, sei e mezzo, e sette."* (sei e mezzo e sette erano i voti che avevamo assegnato a questo studente immaginario).
+
+Abbiamo che la prima incognita è *il voto della prossima verifica* e la seconda incognita è *il voto in pagella*. Per trovare lo zero della prima incognita, poniamo *il voto della prossima verifica* uguale a zero, e ci chiediamo quanto sia il voto in pagella in quel caso:
+
+> La funzione di zero è (in questo caso) la media tra zero, sei e mezzo, e sette.
+> Ovvero (0+6.5+7)/3 = 4.5
+>
+
+Quindi lo zero della prima incognita sarà *zero e quattro e mezzo*.
+</div>
+
+### Zero della seconda incognita
+
+<div class="card">
+Nello zero della seconda incognita sappiamo che la seconda incognita è zero. Quindi, *"la funzione della prima incognita è zero"*. In pratica, ci stiamo chiedendo: per quale numero *tot* abbiamo che *la funzione di tot* è zero?
+
+Abbiamo visto come calcolare l'inclinazione e abbiamo visto come calcolare lo zero della prima incognita. Uno potrebbe semplicemente "andare ad occhio", ma sarebbe bello avere una formula precisa. Visto che l'inclinazione è abbastanza facile da calcolare, e lo zero della prima incognita è molto facile da calcolare (*la funzione di zero*), sarebbe bello riuscire ad avere la formula in base a questi due valori.
+
+Facciamo due esempi per schiarirci le idee. Supponiamo di avere una linea che ha, come componente dello zero della prima incognita, dieci; Ovvero, passa dal punto con componente orizzontale zero e componente verticale dieci:
+
+GRAFICO
+
+Supponiamo che abbia un'inclinazione di meno due; ovvero, l'inclinazione sia "un quadretto verso destra, meno due verso l'alto", ovvero "un quadretto verso destra, due verso il basso". Iniziando a disegnare dal punto in cui sappiamo questa linea passa (*zero e dieci*), quanto a destra dobbiamo spostarci perché la linea tocchi l'asse orizzontale?
+
+Beh, visto che partiamo da una componente verticale di dieci, dopo un quadretto saremo a otto. Dopo due quadretti, a sei. Dopo tre quadretti, a quattro. Dopo quattro, a due. Dopo cinque, a zero; ovvero, tocchiamo l'asse orizzontale nel punto *cinque e zero*.
+
+GRAFICO
+
+Avremmo potuto arrivarci semplicemente facendo: dieci diviso due uguale cinque. Ora, supponiamo che l'inclinazione sia di *due* invece di *meno due*. Questo vuol dire che, se continuamo a disegnare la linea in avanti, continueremo a salire per sempre:
+
+GRAFICO
+
+Quindi, lo zero della seconda incognita (ovvero, dove tocca l'asse orizzontale la linea) dev'essere *prima* dell'asse verticale, non *dopo*. Un'inclinazione di "un quadretto a destra, due verso l'alto" è la stessa cosa di "un quadretto a sinistra, due verso il basso" (e noi dobbiamo andare verso il basso).
+
+Dovremmo spostarci quindi cinque quadretti a sinistra per raggiungere lo zero della seconda incognita; ovvero, lo zero della seconda incognita è *zero e meno cinque* (e, di nuovo, dieci diviso due è cinque).
+
+Ricapitolando: possiamo trovare lo zero della seconda incognita partendo dallo zero della prima incognita e - visto che sappiamo l'inclinazione - disegnando la linea verso sinistra o destra finché non tocchiamo l'asse orizzontale.
+
+Possiamo considerare *l'inclinazione* come "quanto saliamo ad ogni quadretto". Considerando l'opposto dell'inclinazione (per esempio, *-2* invece di *2*) abbiamo "quanto *scendiamo* ad ogni quadretto". E la componente verticale dello zero della prima incognita è "quanto dobbiamo scendere per toccare l'asse orizzontale". Quindi,
+
+> (quanto dobbiamo scendere per toccare l'asse orizzontale) / (quanto scendiamo ad ogni quadretto) = quanti quadretti verso destra percorriamo prima di toccare l'asse orizzontale
+>
+
+ovvero
+
+> (componente verticale dello zero della prima incognita) / (-inclinazione) = componente orizzontale dello zero della seconda incognita
+>
+
+ovvero
+
+> (funzione di zero) / (-inclinazione) = componente orizzontale della zero della seconda incognita
+>
+
+che è il valore che cercavamo.
+</div>
+
+
+### Procedimento inverso e segni
+
+<div class="card">
+Per quanto abbiamo visto sia proprio facile trovare lo zero della prima incognita (è il punto con componente orizzontale *zero* e verticale *funzione di zero*) per completezza mostriamo come possiamo calcolarlo partendo dall'inclinazione e dallo zero della seconda incognita.
+
+Allora, l'obiettivo è iniziare a disegnare una linea con l'inclinazione data dallo zero della seconda incognita finché non incontra l'asse verticale, e a quel punto vedere quanto siamo "saliti":
+
+GRAFICO
+
+Allora, l'inclinazione come l'abbiamo definita è "tot quadretti a destra, tot quadretti verso l'alto". In questo caso però dobbiamo andare a *sinistra*, quindi prendiamo l'opposto dell'inclinazione (*-inclinazione*).
+
+Abbiamo che i quadretti che percorriamo per arrivare all'asse verticale sono uguali alla componente orizzontale dello zero della seconda incognita; quindi:
+
+> (quadretti che percorriamo per arrivare all'asse verticale) * (quadretti verso l'alto ad ogni quadretto verso sinistra) = quadretti verso l'alto totali
+>
+
+ovvero
+
+> (componente orizzonatle dello zero della seconda incognita) * (-inclinazione) = (componente verticale dello zero della prima incognita)
+>
+
+che è quello che cercavamo. Faccio anche una piccola precisazione sui segni. Ho detto in questa sezione che "vogliamo andare verso sinistra", ma il punto da cui partiamo potrebbe trovarsi già a sinistra dell'asse verticale. Nello stesso modo, ho detto nella scorsa sezione che "vogliamo andare verso il basso", ma il punto da cui partiamo potrebbe trovarsi già sotto l'asse orizzontale.
+
+Potremmo quindi dire che non serve il meno prima dell'inclinazione in questi casi. C'è un problema, e prendiamo quello di cui parlavamo in questa sezione:
+
+GRAFICO
+
+In questo caso, sì, l'inclinazione va bene così com'è, ma la componente orizzontale dello zero della seconda incognita è negativa! Quindi avremmo una distanza dall'asse verticale di "meno cinque", che non ha senso. Quindi, in questi casi, il meno andrebbe prima della componente orizzontale, in modo da fare in modo sia sempre positiva:
+
+> (- componente orizzonatle dello zero della seconda incognita) * (inclinazione) = (componente verticale dello zero della prima incognita)
+>
+
+Però "*meno* qualcosa per qualcos'altro" e "qualcosa per *meno* qualcos'altro" sono la stessa identica cosa, quindi possiamo spostare il meno prima dell'inclinazione senza che il risultato cambi:
+
+> (componente orizzonatle dello zero della seconda incognita) * (-inclinazione) = (componente verticale dello zero della prima incognita)
+>
+
+Ch è la stessa formula di prima. Insomma, le formule che abbiamo mostrato valgono sempre, e non abbiamo bisogno di aggiustare i segni ogni volta.
+
+</div>
+
 <!-- Markdeep: --> <meta charset="utf-8" emacsmode="-*- markdown -*"> <meta name="viewport" content="width=device-width, initial-scale=1"><script>markdeepOptions={tocStyle:'long', autoLinkImages:false}</script><link rel="stylesheet" href="style.css"><style class="fallback">body{visibility:hidden;white-space:pre;font-family:monospace}</style> <script src="markdeep.min.js" charset="utf-8"></script> <script>window.alreadyProcessedMarkdeep||(document.body.style.visibility="visible")</script>

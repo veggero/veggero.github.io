@@ -710,7 +710,7 @@ L'inclinazione è quindi *zero diviso tot*, che è semplicemente zero. Quindi l'
 
 Ora parliamo della retta verticale. Per lo stesso ragionamento di cui sopra, abbiamo che - prendendo due punti a caso - abbiamo una differenza di componente verticale di *tot* e una differenza di componente orizzontale nulla. È letteralmente lo stesso ragionamento di cui sopra, ma cambiando 'verticale' e 'orizzontale'.
 
-Ora calcoliamo l'inclinazione. "(differenza di componente verticale) diviso (differenza di componente orizzontale)" divenat *tot diviso zero*. Sfortunatamente, non si può dividere per zero, quindi c'è qualche intoppo.
+Ora calcoliamo l'inclinazione. "(differenza di componente verticale) diviso (differenza di componente orizzontale)" diventa *tot diviso zero*. Sfortunatamente, non si può dividere per zero, quindi c'è qualche intoppo.
 
 L'intoppo è che una linea verticale non è una funzione rispetto alla prima incognita. Per essere  una funzione, dobbiamo avere che - scegliendo una componente orizzontale - avremo una e una soltanto soluzione. Ma, essendo una linea verticale, quasi per tutte le componenti orizzontali non ci sarà una soluzione! Se invece scegliamo la componente orizzontale che ha la linea verticale, avremo infinite soluzioni, che è altrettanto sbagliato.
 
@@ -720,11 +720,6 @@ Un paio di precisazioni: visto che più una linea si avvicina alla verticale pi�
 
 Infine, ho utilizato un sacco il termine "quadretti". È un termino molto poco matematico, anche se da un'idea chiara, visto che tutti noi abbiamo probabilmente utilizzato un quaderno a quadretti. In realtà dovrei parlare di *unità*, nel senso: "un quadretto a destra" significa aumentare di uno la componente orizzontale. D'altronde, questa non sarà la prima volta che utilizzerò termini inusuali perché sono più chiari; per esempio vedrete, più avanti, le funzioni *felici* e *tristi*.
 </div>
-
-<!--
-- Definizione di radice rispetto alle due incognite, ovvero la soluzione ponendo quell'incognita uguale a zero
-- Definizione di equazione lineare, di inclinazione, di altezza, come trovarne le radici
--->
 
 ## Zeri delle Funzioni Lineari
 
@@ -748,6 +743,9 @@ Ricordiamo una cosa importante di come funzionano i grafici cartesiani, che può
 Il punto in cui la nostra linea incontra l'asse *verticale*, quindi, avrà componente *orizzontale* nulla; e il punto in cui la nostra linea incontra l'asse *orizzontale* avrà componente *verticale* nulla.
 
 Ricordiamoci che la prima incognita corrisponde alla componente orizzontale e la seconda alla verticale. Quindi, la linea incontra l'asse *verticale* se ha la prima incognita uguale a zero, e quella *orizzontale* se ha seconda incognita pari a zero.
+
+In questo caso, sì, l'inclinazione va bene così com'è, ma la componente orizzontale dello zero della seconda incognita è negativa! Quindi avremmo una distanza dall'asse verticale di "meno cinque", che non ha senso. Quindi, in questi casi, il meno andrebbe prima della componente orizzontale, in modo da fare in modo sia sempre positiva:
+
 
 Comunque sia, chiamiamo il punto in cui la prima incognita è zero **zero della prima incognita**, e il punto in cui la seconda incognita è zero **zero della seconda incognita**.
 
@@ -773,6 +771,9 @@ Facciamo un secondo esempio. Ricordate la funzione che collegava il voto alla pr
 
 Abbiamo che la prima incognita è *il voto della prossima verifica* e la seconda incognita è *il voto in pagella*. Per trovare lo zero della prima incognita, poniamo *il voto della prossima verifica* uguale a zero, e ci chiediamo quanto sia il voto in pagella in quel caso:
 
+
+In questo caso, sì, l'inclinazione va bene così com'è, ma la componente orizzontale dello zero della seconda incognita è negativa! Quindi avremmo una distanza dall'asse verticale di "meno cinque", che non ha senso. Quindi, in questi casi, il meno andrebbe prima della componente orizzontale, in modo da fare in modo sia sempre positiva:
+
 > La funzione di zero è (in questo caso) la media tra zero, sei e mezzo, e sette.
 > Ovvero (0+6.5+7)/3 = 4.5
 >
@@ -791,6 +792,9 @@ Facciamo due esempi per schiarirci le idee. Supponiamo di avere una linea che ha
 
 GRAFICO
 
+In questo caso, sì, l'inclinazione va bene così com'è, ma la componente orizzontale dello zero della seconda incognita è negativa! Quindi avremmo una distanza dall'asse verticale di "meno cinque", che non ha senso. Quindi, in questi casi, il meno andrebbe prima della componente orizzontale, in modo da fare in modo sia sempre positiva:
+
+
 Supponiamo che abbia un'inclinazione di meno due; ovvero, l'inclinazione sia "un quadretto verso destra, meno due verso l'alto", ovvero "un quadretto verso destra, due verso il basso". Iniziando a disegnare dal punto in cui sappiamo questa linea passa (*zero e dieci*), quanto a destra dobbiamo spostarci perché la linea tocchi l'asse orizzontale?
 
 Beh, visto che partiamo da una componente verticale di dieci, dopo un quadretto saremo a otto. Dopo due quadretti, a sei. Dopo tre quadretti, a quattro. Dopo quattro, a due. Dopo cinque, a zero; ovvero, tocchiamo l'asse orizzontale nel punto *cinque e zero*.
@@ -800,7 +804,7 @@ GRAFICO
 Avremmo potuto arrivarci semplicemente facendo: dieci diviso due uguale cinque. Ora, supponiamo che l'inclinazione sia di *due* invece di *meno due*. Questo vuol dire che, se continuamo a disegnare la linea in avanti, continueremo a salire per sempre:
 
 GRAFICO
-
+divenat
 Quindi, lo zero della seconda incognita (ovvero, dove tocca l'asse orizzontale la linea) dev'essere *prima* dell'asse verticale, non *dopo*. Un'inclinazione di "un quadretto a destra, due verso l'alto" è la stessa cosa di "un quadretto a sinistra, due verso il basso" (e noi dobbiamo andare verso il basso).
 
 Dovremmo spostarci quindi cinque quadretti a sinistra per raggiungere lo zero della seconda incognita; ovvero, lo zero della seconda incognita è *zero e meno cinque* (e, di nuovo, dieci diviso due è cinque).
@@ -819,6 +823,9 @@ ovvero
 
 ovvero
 
+In questo caso, sì, l'inclinazione va bene così com'è, ma la componente orizzontale dello zero della seconda incognita è negativa! Quindi avremmo una distanza dall'asse verticale di "meno cinque", che non ha senso. Quindi, in questi casi, il meno andrebbe prima della componente orizzontale, in modo da fare in modo sia sempre positiva:
+
+
 > (funzione di zero) / (-inclinazione) = componente orizzontale della zero della seconda incognita
 >
 
@@ -831,7 +838,7 @@ che è il valore che cercavamo.
 <div class="card">
 Per quanto abbiamo visto sia proprio facile trovare lo zero della prima incognita (è il punto con componente orizzontale *zero* e verticale *funzione di zero*) per completezza mostriamo come possiamo calcolarlo partendo dall'inclinazione e dallo zero della seconda incognita.
 
-Allora, l'obiettivo è iniziare a disegnare una linea con l'inclinazione data dallo zero della seconda incognita finché non incontra l'asse verticale, e a quel punto vedere quanto siamo "saliti":
+Allora, l'obiettivo è iniziare a disegnare una linea con l'inclinazione data dallo zero della seconda incognita finché non incontra l'asse verticale, e a quel punto vedere quanto siamo "saliti":divenat
 
 GRAFICO
 
@@ -867,4 +874,180 @@ Ch è la stessa formula di prima. Insomma, le formule che abbiamo mostrato valgo
 
 </div>
 
+## Formulazioni standard
+
+<div class="card">
+Come vedremo tra poco, ci sono funzioni che a prima vista sembrano molto diverse - per come sono formulate - ma che in realtà sono uguali; nel senso, hanno le stesse identiche soluzioni. Per fare un esempio semplice: "il primo numero è il secondo numero più uno" e "il primo numero meno uno è il secondo uno" hanno le stesse identiche soluzioni. Quello che voremmo fare, a questo punto, è trovare il modo più semplice possibile di esprimere una funzione lineare, e scoprire come esprimere qualsiasi funzione lineare in quel modo. Questo ci semplificherà tanto i conti se avremo mai a che fare con funzioni lineari che hanno un aspetto orribile. Per sottolineare questo punto, facciamo subito un esempio di una funzione lineare con un aspetto terribile.
+</div>
+
+### Esempi di funzioni lineari disastrose
+
+<div class="card">
+Uno potrebbe a questo punto chiedersi ragionevolmente perché abbiato tirato fuori tutto questo casino quando lavorare con le funzioni lineari è solitamente molto facile. Ad esempio, perché usare la formula dell'inclinazione, quando possiamo disegnare il grafico o - a volte - semplicemente leggere la funzione? Della funzione *doppio*, per dire, possiamo dire che l'inclinazione è due anche senza usare la formula.
+
+Per farvi capire il perché di tutto questo, vi propongo questa funzione, che chiamerò *disastro*:
+
+> Il disastro di *tot* è: (*tot* alla quinta meno cinque per *tot* alla quarta meno trentacinque per *tot* alla terza più centoventicinque per *tot* alla seconda più centonovantaquattro per *tot* meno duecentoottanta) diviso (*tot* alla quarta meno quattro per *tot* alla terza meno trentanova per *tot* alla seconda più ottantasei per *tot* più duecentoottanta)
+>
+
+Ora, supponiamo di avere per certo (perché ve lo dico io) che questa funzione è lineare. Supponiamo anche di doverla analizzare, questa funzione. Intanto, così è proprio illeggibile. Per semplificarci la vita, utilizziamo **"x"** al posto di *tot*, **"+"** al posto di *più*, $\frac{qualcosa}{qualcosaltro}$ per *diviso*, **"="** al posto di *è*, ${x}^2$ per indicare *tot alla seconda*, $x^3$ per indicare *tot alla terza* e così via. Insomma, passiamo al "matematichese":
+
+> disastro di $x = \frac{x^5 - 5x^4 - 35x^3 + 125x^2 + 194x - 280}{x^4 - 4x^3 - 39x^2 + 86x + 280}$
+>
+
+Ancora un disastro, ma almeno leggibile. Riuscite a vedere ad occhio l'inclinazione, o gli zero? No? Neanche io. Ma adesso le troviamo con un po' di pazienza e una calcolatrice. Iniziamo dallo zero della prima incognita. Abbiamo visto che:
+
+> La componente verticale dello zero della prima incognita è la funzione di zero (in questo caso, il disastro di zero)
+>
+
+Calcoliamo il disastro di zero:
+
+> disastro di $0 = \frac{0^5 - 5*0^4 - 35*0^3 + 125*0^2 + 194*0 - 280}{0^4 - 4*0^3 - 39*0^2 + 86*0 + 280}$
+>
+
+Ok, ricordiamoci che "zero alla seconda" è zero, "zero alla terza" è zero, e così via:
+
+> disastro di $0 = \frac{0 - 5*0 - 35*0 + 125*0 + 194*0 - 280}{0 - 4*0 - 39*0 + 86*0 + 280}$
+>
+
+Ok, ricordiamoci che "zero per qualsiasi cosa" è zero:
+
+> disastro di $0 = \frac{0 - 0 - 0 + 0 + 0 - 280}{0 - 0 - 0 + 0 + 280} = \frac{-280}{280}$
+>
+
+Ricordiamoci che "qualcosa diviso se stesso" è uno. In realtà, -280 non è 280, ma "*meno* qualcosa diviso se stesso" è *meno* uno. Quindi, *il disastro di zero è meno uno*. Non serviva neanche la calcolatrice.
+
+Passiamo all'inclinazione. La formula è, scegliendo due numeri *primo* e *secondo*:
+
+> (funzione di primo meno funzione di secondo) diviso (primo meno secondo)
+>
+
+Primo e secondo sono a nostra scelta. Prendiamo "zero" come primo, visto che abbiamo già calcolato la funzione di zero. Come secondo prendiamo uno, che è un numero piccolo che probabilmente non farà diventare troppo difficili i calcoli; per esempio, possiamo usare il fatto che uno alla seconda è uno, uno alla terza è uno, eccetera. Calcoliamo la funzione di uno:
+
+
+> disastro di $1 = \frac{1^5 - 5*1^4 - 35*1^3 + 125*1^2 + 194*1 - 280}{1^4 - 4*1^3 - 39*1^2 + 86*1 + 280}$
+>
+
+Ricordiamoci che uno alla seconda è uno, eccetera:
+
+> disastro di $1 = \frac{1 - 5*1 - 35*1 + 125*1 + 194*1 - 280}{1 - 4*1 - 39*1 + 86*1 + 280}$
+>
+
+Ricordiamoci che qualsiasi numero per uno è quel numero:
+
+
+> disastro di $1 = \frac{1 - 5 - 35 + 125 + 194 - 280}{1 - 4 - 39 + 86 + 280}$
+>
+
+Tiriamo le somme:
+
+
+> disastro di $1 = \frac{0}{324}$
+>
+
+Ricordiamoci che zero diviso qualsiasi cosa fa zero, e abbiamo che *il disastro di uno è zero*. Quindi, inserendo tutto nella formula dell'inclinazione:
+
+> inclinazione del disastro = (funzione di primo meno funzione di secondo) diviso (primo meno secondo)
+>
+
+diventa
+
+> inclinazione del disastro = (funzione di zero meno funzione di uno) diviso (zero meno uno)
+>
+
+diventa
+
+> inclinazioe del disastro = (meno uno meno zero) diviso (meno uno) = (meno uno) diviso (meno uno) = uno
+>
+
+Ecco che nonostante questa funzione sia disastrosa, ne abbiamo trovato uno zero e l'inclinazione. A questo punto saremmo anche in grado di disegnarla, partendo dal punto *zero e meno uno* (che è lo zero della prima incognita) e proseguendo *un quadretto verso destra, un quadretto verso l'alto*. Potremmo anche calcolare lo zero della seconda incognita, ma in realtà vedremo che ci interessa meno.
+
+Il nostro obiettivo, ora, è riuscire a buttare via proprio tutta la funzione "disastro" così come l'avevamo scritta e riscriverla nuovamente in modo semplice e chiaro. Vedremo che, fatto questo, avremo che
+
+> Il disastro di un numero è quel numero meno uno
+>
+
+tutto qui. Sembrava un disastro ma, sotto sotto, non lo era affatto.
+</div>
+
+### Trovare la formulazione standard
+
+<div class="card">
+Partiamo da un presupposto importante: *se due funzioni lineari hanno la stessa inclinazione e lo stesso zero della prima incognita, sono la stessa funzione*. Perché?
+
+Beh, due funzioni sono uguali se hanno le stesse soluzioni, ovvero se il loro grafico è uguale. Quindi due funzioni lineari sono uguali se le linee che descrivono sono uguali.
+
+Se due linee hanno la stessa *inclinazione* e basta, non è detto siano la stessa linea, perché potrebbero partire da punti diversi. Ma se diciamo che hanno la stessa *inclinazione* e lo stesso *zero della seconda incognita*, ovvero hanno la stessa inclinazione e possiamo iniziare a disegnarle dallo stesso punto, chiaramente saranno uguali.
+
+GRAFICO QUI
+
+Passiamo al prossimo presupposto: prendendo un numero *tot* e con la funzione *"la funzione di un numero è quel numero per tot"*, abbiamo che questa funzione è lineare e la sua inclinazione è tot. Per fare qualche esempio, se tot è due, la funzione sarà *doppio*, e abbiamo visto che la sua inclinazione è due. Se tot è un mezzo, la funzione è metà, e l'inclinazione è un mezzo, e così via. Per sicurezza, dimostriamo questo fatto formalmente utilizzando la formula per l'inclinazione.
+
+> Con due numeri "primo" e "secondo", l'inclinazione di una funzione è (funzione di primo meno funzione di secondo) diviso (primo meno secondo)
+>
+
+Possiamo scegliere liberamente primo e secondo; prendiamo uno come primo e zero come secondo:
+
+> L'inclinazione è (funzione di uno meno funzione di zero) diviso (uno meno zero)
+>
+
+Che diventa (uno meno zero è uno, e dividere per uno non cambia il risultato):
+
+> L'inclinazione è funzione di uno meno funzione di zero
+>
+
+Ovvero
+
+> L'inclinazione è uno per tot meno zero per tot
+>
+
+"tot per zero" è zero, mentre "tot per uno" è tot. Quindi l'inclinazione è tot.
+
+GRAFICO QUI
+
+Ultimo presupposto: supponiamo di avere un numero chiamato *inclinazione* (che sostituisce il *tot* di prima), e un altro numero chiamato sempre *tot*. Prendiamo la funzione *"la funzione di un numero è quel numero per l'inclinazione più tot"*. in pratica, uguale a prima, però sommando tot al risultato. Intanto, potete facilmente verificare che l'inclinazione è ancora "inclinazione" (phew!); ovvero, aggiungere un numero al risultato sempre uguale non cambia l'inclinazione. Invece, sposta la funzione verso l'alto:
+
+GRAFICO QUI
+
+Ecco, l'ultima cosa che voglio dimostrare è che *lo zero della prima incognita è tot*. È facilissimo:
+
+> Lo zero della prima incognita è la funzione di zero
+>
+
+Ovvero
+
+> Lo zero della prima incognita è zero per l'inclinazione più tot
+>
+
+E, visto che qualsiasi cosa per zero è zero,
+
+> Lo zero della prima incognita è tot
+>
+
+Cambiamo il nome "tot" in "zero della prima incognita". Abbiamo quindi che la funzione
+
+> La funzione di un numero è quel numero per l'inclinazione più lo zero della prima incognita
+>
+
+È una funzione lineare con inclinazione "inclinazione" e zero della prima incognita è "zero della prima incognita".
+
+Per concludere, supponiamo di avere una funzione disastrosa come quella della scorsa sezione. Possiamo sempre calcolarne l'inclinazione (uno, in quel caso) e zero della prima incognita e lo zero della prima incognita (meno uno, in quel caso). Allora, possiamo sempre riscrivere quella funzione disastrosa come
+
+> La funzione disastrosa di un numero è quel numero per l'inclinazione (che abbiamo calcolato) più lo zero della prima incognita (che abbiamo calcolato)
+>
+
+Perché abbiamo appena visto che riscrivendola in questo modo l'inclinazione sarà quella che abbiamo calcolato, e lo zero della prima incognita anche. E abbiamo visto a inizio sezione che due funzione con la stessa inclinazione e lo stesso zero della prima incognita sono la stessa funzione. Questi due fatti assieme dimostrano che l'affermazione sopra è effettivamente vera.
+
+In particolare, la funzione della stessa sezione può essere riscritta come (l'inclinazione era uno, e lo zero della prima incognita meno uno):
+
+> Il disastro di un numero è quel numero per uno più (meno uno)
+>
+
+Un numero per uno è sempre il numero, e "più (meno uno)" diventa semplicemente "meno uno", ovvero:
+
+> Il disastro di un numero è quel numero meno uno.
+>
+
+Che è chiarmente molto, molto, molto più semplice da utilizzare rispetto a come era scritta originariamente.
+</div>
 <!-- Markdeep: --> <meta charset="utf-8" emacsmode="-*- markdown -*"> <meta name="viewport" content="width=device-width, initial-scale=1"><script>markdeepOptions={tocStyle:'long', autoLinkImages:false}</script><link rel="stylesheet" href="style.css"><style class="fallback">body{visibility:hidden;white-space:pre;font-family:monospace}</style> <script src="markdeep.min.js" charset="utf-8"></script> <script>window.alreadyProcessedMarkdeep||(document.body.style.visibility="visible")</script>

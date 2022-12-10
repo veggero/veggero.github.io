@@ -1050,4 +1050,72 @@ Un numero per uno è sempre il numero, e "più (meno uno)" diventa semplicemente
 
 Che è chiarmente molto, molto, molto più semplice da utilizzare rispetto a come era scritta originariamente.
 </div>
+
+## Utilizzare le Funzioni Lineari
+
+<div class="card">
+Le funzioni lineari si riveleranno assolutamente fondamentali in tutto il mondo matematico. Sono strumenti particolarmente utili perché rappresentano siano tanto un sacco di funzioni, ma anche perché possono essere utilizzate per descrivere linee nel piano cartesiano. Diventano quindi anche uno strumento geometrico. Vediamo alcune applicazioni per risolvere alcuni problemi geometrici con le funzioni lineari.
+
+Un problema abbastanza stupido che potremmo voler affrontare: mettiamo di sapere che su un terreno ci sono due binari dritti. Mettiamo di sapere le coordinate di alcuni punti per cui passano questi binari. Come facciamo a capire dove si incontreranno, per metterci un bel semaforo? Possiamo mettere le coordinate su un piano cartesiano, trovare le funzioni lineari (=linee dritte) che passano per quei punti, e vedere dove *intersecano* (ovvero, dove le due linee si incontrano).
+
+GRAFICO QUI
+</div>
+
+### Funzione lineare tra due punti
+
+<div class="card">
+Partiamo da un presupposto: se abbiamo due punti, tra quei due punti passerà una e una sola linea. (Immaginate che casino se per due punti distinti passassero più linee dritte diverse contemporeaneamente. Sarebbe un bel casino, no? Ecco, ci arriveremo con le geometrie non euclidee).
+
+GRAFICO
+
+Quindi, il lavoro è semplice: dobbiamo trovare la funzione lineare che descrive la linea che passa per quei due punti. I due punti avranno delle componenti orizzontali (chiamiamole *primo* e *secondo*) e delle componenti verticali (chiamiamole *funzione di primo* e *funzione di secondo*, visto che *funzione della componente orizzontale è la componente verticale*).
+
+Iniziamo dalla parte semplice: l'inclinazione. Abbiamo già la formula pronta:
+
+> L'inclinazione di una funzione è (funzione di primo meno funzione di secondo) diviso (primo meno secondo).
+>
+
+Adesso viene la parte un filo più complessa: dobbiamo trovare lo zero della prima incognita. Fatto quello, potremmo utilizzare quello che abbiamo scoperto nelle sezioni precedenti per creare la funzione lineare "standard", che passerà per i due punti.
+
+Vediamo la situazione:
+
+GRAFICO
+
+Partiamo dal punto "primo" e continuiamo la linea fino a raggiungere l'asse verticale. La domanda è: di quanto scenderà (o salirà) la nostra linea, partendo da "primo", prima di raggiungere l'asse verticale?
+
+Ricordiamoci che l'inclinazione "tot verso destra, tot verso l'alto" è la stessa cosa di "tot verso sinistra, tot verso il basso". Quanto devo andare a sinistra prima di incontrare l'asse verticale?
+
+GRAFICO
+
+La distanza tra "primo" e l'asse verticale è proprio la componente orizzontale di "primo". Visto che l'inclinazione ci dice *ad ogni quadretto verso sinistra, quanto andiamo verso il basso* mentre la componente orizzontale di "primo" è *quanti quadretti vado a sinistra prima di incontrare l'asse verticale*, abbiamo che in totale andremo verso il basso di questa quantità:
+
+> (componente orizzontale di primo) * (inclinazione) = quanto vado verso il basso prima di raggiungere l'asse verticale
+>
+
+Qual è l'altezza da cui partiamo?
+
+GRAFICO
+
+Partiamo dall'altezza di "componente verticale di 'primo'". Quindi alla fine la nostra altezza, quando raggiungeremo l'asse verticale?
+
+> Componente verticale quando raggiungo l'asse verticale = componente verticale da cui parto - quanto vado verso il basso prima di raggiungere l'asse verticale
+>
+
+Ovvero,
+
+> Componente verticale quando raggiungo l'asse verticale = (componente verticale di primo) - (componente orizzontale di primo) * (inclinazione)
+>
+
+Che in numeri è
+
+> Zero della prima incognita = (funzione di primo) - primo * inclinazione
+>
+</div>
+
+
+### Intersezione tra funzioni lineari
+
+### Somma di funzioni lineari
+
+# Funzioni Quadratiche
 <!-- Markdeep: --> <meta charset="utf-8" emacsmode="-*- markdown -*"> <meta name="viewport" content="width=device-width, initial-scale=1"><script>markdeepOptions={tocStyle:'long', autoLinkImages:false}</script><link rel="stylesheet" href="style.css"><style class="fallback">body{visibility:hidden;white-space:pre;font-family:monospace}</style> <script src="markdeep.min.js" charset="utf-8"></script> <script>window.alreadyProcessedMarkdeep||(document.body.style.visibility="visible")</script>

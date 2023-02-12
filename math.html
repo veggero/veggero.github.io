@@ -1110,12 +1110,97 @@ Che in numeri è
 
 > Zero della prima incognita = (funzione di primo) - primo * inclinazione
 >
+
+Visto che abbiamo lo zero della primo incognita e l'inclinazione, possiamo trovare la funzione che cercavamo con la solita formula
+
+> La funzione di un numero è quel numero per l'inclinazione più lo zero della prima incognita
+>
 </div>
 
+### Somma di funzioni lineari
+
+<div class="card">
+Supponiamo di avere ora due funzioni lineari; chiamiamole, la "prima" funzione lineare e la "seconda" funzione lineare. Ora, noi sappiamo sommare due *numeri*. Ci chiediamo cosa succede se sommiamo due *funzioni lineari*.
+
+Le due funzioni saranno esprimibili in questo modo
+
+> La prima funzione di un numero è *qualcosa* di quel numero.
+>
+
+> La seconda funzione di un numero è *qualcos'altro* di quel numero.
+>
+
+Non sappiamo che funzioni siano, quindi non sappiamo cosa sia "qualcosa" e "qualcos'altro". Noi potremmo dire che la somma di funzioni lineari è questa:
+
+> La (prima funzione più la seconda funzione) di un numero è (*qualcosa* di quel numero più *qualcos'altro* di quel numero)
+>
+
+In pratica: scegliamo un numero, lo diamo alle due funzioni, e sommiamo il risultato delle due funzioni. Questa somma la possiamo fare per qualsiasi numero, e ci darà sempre lo stesso risultato, quindi è anch'essa una funzione, che chiamiamo appunto "somma delle due funzioni", o "prima funzione più la seconda funzione".
+
+Cerchiamo di capire cosa significa questo per le nostree linee. Prendiamo il grafico di due funzioni lineari a caso:
+
+GRAFICO QUI
+
+Prendiamo un numero sull'asse orizzontale, per esempio due, e vediamo a quale componente verticale corrisponde questo numero per le due funzioni:
+
+GRAFICO QUI
+
+E facciamo la somma di questi due valori:
+
+GRAFICO QUI
+
+In questo modo, abbiamo la componente verticale della somma delle due funzioni. Questo possiamo farlo per ogni punto sull'asse orizzontale:
+
+GRAFICO QUI
+
+E vediamo che otteniamo una nuova linea. Quindi, la somma di queste due funzioni lineari sarà una nuova funzione lineare! In generale, possiamo fare questo processo varie volte, sommando funzioni lineari diverse, e vediamo che otterremo sempre funzioni lineari come risultato:
+
+GRAFICO QUI
+
+Sorgono quindi un paio di domande:
+
+> Abbiamo una funzione con zero della prima incognita "tot".
+>
+> Ne abbiamo un altra con zero della prima incognita "quid".
+>
+> ("quid" è un sinonimo di "tot")
+>
+> Quale sarà lo zero della prima incognita della loro somma?
+
+Usiamo la formula:
+
+> Lo zero della prima incognita della funzione è la funzione di zero
+>
+
+che diventa
+
+> Lo zero della prima incognita della somma di funzioni sarà la somma delle funzioni di zero
+>
+
+Per calcolare la somma delle funzioni di zero, calcoliamo la "prima funzione di zero", poi la "seconda funzione di zero", e sommiamo i risultati.
+
+Ma, per la stessa formula che abbiamo sopra, la prima funzione di zero è lo zero della prima incognita della prima funzione, e la seconda funzione di zero è lo zero della prima incognita della seconda funzione. E ci rimane solo sommarle assieme.
+
+Quindi, sommando due funzioni lineari, otteniamo una nuova funzione lineare, e per trovare lo zero della prima incognita di questa nuova funzione basta sommare lo zero della prima incognita delle altre due.
+
+> Qual è l'inclinazione della somma di (una funzione lineare con inclinazione *tot* e una funzione lineare con inclinazione *quid*)?
+>
+
+Potremmo usare la formula per l'inclinazione, ma è molto più semplice. Abbiamo che l'inclinazione è "uno verso destra, tot verso l'alto" (nel primo caso) e "uno verso destra, quid verso l'alto" (nel secondo caso).
+
+Visto che la somma di funzioni semplicemente somma i valori delle due funzioni in ogni punto avremo che: andando uno a destra, andremo anche *tot* verso l'alto (grazie alla prima funzione) **più** *quid* verso l'alto. Quindi l'inclinazione è: "uno verso destra, tot+quid verso l'alto". In pratica, stiamo solo sommando l'inclinazione.
+
+</div>
 
 ### Intersezione tra funzioni lineari
 
-### Somma di funzioni lineari
+<div class="card">
+Ora, supponiamo di avere due funzioni lineari di cui dobbiamo trovare l'"intersezione", ovvero il punto in cui si toccano. Se sono parallele, ovvero se hanno la stessa inclinazione, non si toccheranno mai:
+
+GRAFICO
+
+Invece, se hanno due inclinazioni diverse, in qualche punto dovranno incontrarsi (perché due linee infinite non parallele si incontrano sempre!). Chiamiamo le due funzioni "prima" e "seconda".
+</div>
 
 # Funzioni Quadratiche
 <!-- Markdeep: --> <meta charset="utf-8" emacsmode="-*- markdown -*"> <meta name="viewport" content="width=device-width, initial-scale=1"><script>markdeepOptions={tocStyle:'long', autoLinkImages:false}</script><link rel="stylesheet" href="style.css"><style class="fallback">body{visibility:hidden;white-space:pre;font-family:monospace}</style> <script src="markdeep.min.js" charset="utf-8"></script> <script>window.alreadyProcessedMarkdeep||(document.body.style.visibility="visible")</script>

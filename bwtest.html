@@ -1,0 +1,39 @@
+<html>
+    <head>
+        <style>
+        @keyframes example {
+            from {transform: rotate(0deg);}
+            33% {transform: rotate(120deg);}
+            66% {transform: rotate(240deg);}
+            to {transform: rotate(360deg);}
+        }
+        #background {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            transform: rotate(45deg);
+            animation: example 5s 0s infinite;
+        }
+        #circle {
+            position: absolute;
+            top: calc(50% - 25px); left: 25%; width: 50; height: 50;
+            background-color: black;
+            border-radius: 50px;
+        }
+        #othercircle {
+            position: absolute;
+            top: calc(50% - 35px); left: 40%; width: 70; height: 70;
+            background-color: black;
+            border-radius: 70px;
+        }
+        body {
+            overflow: hidden;
+        }
+        </style>
+    </head>
+    <body>
+        <div id="background">
+            <div id="circle"></div>
+            <div id="othercircle"></div>
+        </div>
+    </body>
+</html>

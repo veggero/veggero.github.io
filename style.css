@@ -68,3 +68,34 @@ html {font-size: 20px;}
     color: black;
     border-bottom: 1px solid rgba(0, 0, 0, 0);
 }
+
+details > summary {
+    text-align: center;
+    color: gray;
+    font-size: 1.2em;
+    user-select: none;
+}
+
+details {
+    border: 1px solid rgba(0, 0, 0, .25);
+    border-radius: 5px;
+}
+
+details details summary {
+    text-align: left;
+    color: black;
+    font-size: 1em;
+    font-weight: bold;
+}
+
+details details {
+    border: none;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+details {
+
+}

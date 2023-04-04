@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Make Your Own Fleet</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <script>
+      function loadCSS() {
+        const linkElem = document.createElement('link');
+        linkElem.setAttribute('rel', 'stylesheet');
+        linkElem.setAttribute('href', 'test.css');
+        window.addEventListener('load', () => {
+          document.body.shadowRoot.appendChild(linkElem);
+        });
+      }
+    </script>
+    <script src="../lib/qmlweb.js" onload="loadCSS()"></script>
+
+  </head>
+  <body style="margin: 0" data-qml="qml/main.qml"></body>
+</html>

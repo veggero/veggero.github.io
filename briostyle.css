@@ -1,0 +1,103 @@
+body {
+    background-color: rgb(245, 245, 245);
+    font-family: manrope !important;
+}
+.md a:link, .md a:visited {
+    font-family: manrope !important;
+}
+.md img {
+    border-radius: 8px;
+}
+@font-face {
+    font-family: manrope;
+    src: url(MainAssets/Manrope.ttf);
+}
+.image {
+    margin-left: 0 !important;
+}
+html {font-size: 20px;}
+.card {
+    background-color: white;
+    border-radius: 15px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    box-shadow: 0px 30px 40px -20px hsl(229, 6%, 66%);
+    overflow: auto;
+}
+.md h2, .md .nonumberh2 {
+    font-size: 23;
+    color: black;
+    border-bottom: 3px solid black;
+}
+.md h1, .md .nonumberh1 {
+    font-size: 35;
+    color: #444;
+    font-weight: 300;
+    border-bottom: none;
+    text-align: center;
+}
+@media only screen and (min-width: 1270px) {
+    .md .longTOC {
+        display: block;
+        white-space: nowrap;
+        width: 260px;
+        overflow-y:show;
+        font-size: 18px;
+        position: fixed;
+        left: 00px;
+        top: 0px;
+        bottom:0px;
+        margin: 0px;
+        padding: 0px;
+        padding-left: 40px;
+        z-index: -1;
+    }
+}
+
+.md pre.tilde
+{
+    resize: vertical;
+    width: auto;
+}
+
+.test {
+    color: rgba(0, 0, 0, 0);
+    border-bottom: 1px solid black;
+    transition: color 1s, border 1s;
+}
+
+.test:hover {
+    color: black;
+    border-bottom: 1px solid rgba(0, 0, 0, 0);
+}
+
+details > summary {
+    text-align: center;
+    color: gray;
+    font-size: 1.2em;
+    user-select: none;
+}
+
+details {
+    border: 1px solid rgba(0, 0, 0, .25);
+    border-radius: 5px;
+}
+
+details details summary {
+    text-align: left;
+    color: black;
+    font-size: 1em;
+    font-weight: bold;
+}
+
+details details {
+    border: none;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+details {
+
+}

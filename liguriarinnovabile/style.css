@@ -308,4 +308,11 @@ label[for='consent'] {
 #footer a {
     font-size: 18px;
     text-decoration: none;
+    color: lightblue;
+}
+
+#ecflogo {
+    height: 120px;
+    float: right;
+    margin-left: 2em;
 }

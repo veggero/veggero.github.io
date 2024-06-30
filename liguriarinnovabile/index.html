@@ -174,7 +174,7 @@
                 font-family: "Libre Baskerville", serif;
             }
 
-            #manifesto center button {
+            #manifesto center button, input[type='submit'] {
                 background-color: #006633;
                 border: none;
                 color: white;
@@ -213,6 +213,17 @@
                 vertical-align: bottom;
             }
 
+            #form {
+                background-color: #C8EAF9;
+                padding-block: 20px;
+            }
+
+            #form center h1 {
+                font-weight: 900;
+                font-size: 44px;
+                max-width: 800px;
+            }
+
             @media (max-width: 1350px) {
                 #imageoverlay {
                     display: none;
@@ -224,6 +235,59 @@
                     padding-right: 0;
                 }
             }
+
+            form {
+                max-width: 1310px;
+                width: 100%;
+            }
+
+            label, input {
+                display: block;
+            }
+
+            label {
+                font-size: 20px;
+                margin-left: 20px;
+                text-align: left;
+                font-weight: bold;
+            }
+
+            input[type='text'], input[type='email'] {
+                border: none;
+                border-radius: 0;
+                width: 100%;
+                max-width: 600px;
+                height: 60px;
+                margin-top: 10px;
+                font-size: 30px;
+                padding-left: 10px;
+            }
+
+            input[type='submit'] {
+                background-color: #009FE3;
+            }
+
+            input[type='checkbox'] {
+                display: inline;
+                transform: scale(2);
+                border: none;
+                border-radius: 0;
+            }
+
+            label[for='consent'] {
+                display: inline;
+                font-weight: normal;
+            }
+
+            .containment {
+                max-width: 600px;
+                width: 80%;
+                display: inline-block;
+                margin-bottom: 50px;
+                margin-right: 50px;
+            }
+
+
         </style>
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -260,23 +324,12 @@
                     <p>Per questo motivo è necessaria una strategia chiara e urgente sulle soluzioni da implementare per spostarci verso l’energia pulita.</p>
                 </div>
             </div>
-
-            <h1><span>LE NOSTRE PROPOSTE</span></h1>
-            <div class="columns">
-                <div  id="overflowleft" class="overflowtext">
-                    <p>Abbiamo quindi creato un documento con tutte le azioni che riteniamo necessarie a livello regionale, da oggi al 2030, per una transizione energetica che coinvolga e porti benefici alle imprese locali e a tutte le comunità coinvolte.</p>
-                </div>
-                <div>
-                    <p>La nostra regione è <b>ultima in Italia</b> per consumo di energia rinnovabile sul totale dell’energia consumata in un anno.<br> Questo ci rende dipendenti da petrolio, gas e altri combustibili fossili acquistati a caro prezzo dall’estero (insicurezza energetica), con ricadute negative anche sull’inquinamento locale e sulla salute delle cittadine e dei cittadini liguri.</p>
-                </div>
-            </div>
         </div>
 
         <div id="manifesto" class="section">
 
             <center>
-                <h1>IL MANIFESTO</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <h1>LE NOSTRE PROPOSTE</h1>
             </center>
 
             <span class="floatingbox floatleft">
@@ -303,10 +356,44 @@
             </span><br>
 
             <center>
-                <h1>IL BRIEFING</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <h1>IL DOCUMENTO COMPLETO</h1>
+                <p>Abbiamo quindi <b>creato un documento con tutte le azioni che riteniamo necessarie a livello regionale</b>, da oggi al 2030, <b>per una transizione energetica che coinvolga e porti benefici alle imprese locali e a tutte le comunità coinvolte.</b></p>
                 <button>SCOPRI DI PIÙ</button>
+                <p>Come associazione Cittadini Sostenibili siamo a disposizione per un <b>confronto costruttivo</b> con tutte le associazioni, istituzioni regionali e locali che vogliano collaborare al raggiungimento dei nostri obiettivi regionali sulle rinnovabili. In questi mesi ci siamo impegnati per <b>incontrare tutti i portatori di interesse</b> su questo tema e, inoltre, fare degli <b>incontri di divulgazione</b> aperti a tutte e tutti, sui benefici economici, sociali e ambientali della transizione energetica verso l’energia rinnovabile.</p>
             </center>
+
+        </div>
+
+        <div id="form" class="section">
+
+            <center>
+                <h1>RIMANI AGGIORNATO!</h1>
+                <form id="fs-frm" name="simple-contact-form" accept-charset="utf-8" action="https://formspree.io/f/{form_id}" method="post">
+
+                    <span class="containment">
+                        <label for="name">Nome:</label>
+                        <input type="text" name="name" id="name" required="">
+                    </span>
+
+                    <span class="containment">
+                        <label for="email">Email:</label>
+                        <input type="email" name="_replyto" id="email" required="">
+                    </span>
+
+                    <span class="containment">
+                        <label for="surname">Cognome:</label>
+                        <input type="text" name="surname" id="surname" required="">
+                    </span>
+
+                    <span class="containment">
+                        <input type="checkbox" id="consent" name="consent" required>
+                        <label for="consent">Acconsento al trattamento dei dati personali ai fini dell'iscrizione.</label>
+                    </span><br>
+
+                    <input type="submit" value="ISCRIVITI">
+                </form>
+            </center>
+
 
         </div>
 

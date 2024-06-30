@@ -1,295 +1,6 @@
 <html>
     <head>
-        <style>
-            :root {
-                --background-color: white;
-                --subheader-color: #009640;
-                --introduction-color: #A0D8B8;
-
-                font-family: "Lato", sans-serif;
-            }
-
-            body {
-                background-color: red;
-                margin: 0;
-            }
-
-            .section {
-                padding-left: 100px;
-                padding-right: 100px;
-            }
-
-            #imageoverlay {
-                position: absolute;
-                top: 0;
-                right: 0;
-                width: 45%;
-                max-width: 800px;
-            }
-
-            #header  {
-                background-color: var(--background-color);
-                padding-block: 20px;
-            }
-
-            #subheader {
-                background-color: var(--subheader-color);
-                font-size: 28px;
-                font-family: "Libre Baskerville", serif;
-                color: white;
-            }
-
-            #subheader p {
-                padding: 14px;
-                margin: 0;
-            }
-
-            #introduction {
-                background-color: var(--introduction-color);
-                font-size: 32px;
-                padding-block: 20px;
-            }
-
-            #introduction p {
-                padding-right: calc(50% + 70px);
-            }
-
-            #introduction .highlight {
-                color: #2F6F3C;
-                font-weight: bold;
-            }
-
-            #problema {
-                background-color: var(--background-color);
-                padding-block: 20px;
-                font-size: 24px;
-            }
-
-            #problema h1 span, #galleria h1 span {
-                color: #006633;
-                font-size: 36px;
-                font-weight: 900;
-                padding-right: 20px;
-                padding-left: 100px;
-                box-shadow: inset 0 -15px 0 0 #CCD4DA;
-            }
-
-            .columns {
-                display: flex;
-                box-sizing: border-box;
-                gap: 50px;
-                align-items: center;
-            }
-
-            .columns div {
-                display: flex;
-                flex: 1 1 0px;
-                flex-wrap: wrap;
-            }
-
-            .overflowtext {
-                font-weight: 700;
-                font-family: "Libre Baskerville", serif;
-                color: white;
-                background-color: #006633;
-                padding: 20px;
-            }
-
-            #overflowright {
-                padding-left: 40px;
-                box-shadow: 100px 0 #006633;
-            }
-
-            #overflowleft {
-                padding-right: 40px;
-                box-shadow: -100px 0 #006633;
-            }
-
-            #manifesto {
-                background-color: #30AB64;
-                padding-block: 20px;
-                overflow: hidden;
-                counter-reset: statements;
-            }
-
-            #manifesto center {
-                color: white;
-            }
-
-            #manifesto center h1 {
-                font-weight: 900;
-                font-size: 44px;
-                max-width: 800px;
-                box-shadow: inset 0 -15px 0 0 #006633;
-            }
-
-            #manifesto center p {
-                font-size: 24px;
-                max-width: 800px;
-                text-align: left;
-            }
-
-            .floatingbox {
-                background-color: #C0E5D0;
-                padding: 1px 50px 1px 50px;
-                margin-top: 40px;
-                display: inline-block;
-                counter-increment: statements;
-                position: relative;
-            }
-
-            .floatright {
-                float: right;
-            }
-
-            .floatingbox::after {
-                font-weight: 900;
-                content: counter(statements);
-                font-size: 58px;
-                position: absolute;
-                left: -30px;
-                top: -30px;
-                color: white;
-                background-color: #006633;
-                border-radius: 100%;
-                padding-left: 20px;
-                padding-right: 20px;
-            }
-
-            .floatright::after {
-                right: -30px;
-                left: auto;
-            }
-
-            .floatingbox h1 {
-                color: #006633;
-                max-width: 1000px;
-                font-size: 36px;
-                font-weight: 900;
-            }
-
-            .floatingbox p {
-                font-size: 30px;
-                max-width: 1000px;
-                font-family: "Libre Baskerville", serif;
-            }
-
-            #manifesto center button, input[type='submit'] {
-                background-color: #006633;
-                border: none;
-                color: white;
-                padding: 15px 62px;
-                text-align: center;
-                text-decoration: none;
-                display: inline-block;
-                font-size: 28px;
-                font-family: "Libre Baskerville", serif;
-                cursor: pointer;
-                margin: 20px;
-            }
-
-            #galleria {
-                background-color: var(--background-color);
-                padding-block: 20px;
-            }
-
-            ul {
-                display: flex;
-                flex-wrap: wrap;
-                gap: 20px;
-                list-style-type: none;
-                width: 100%;
-            }
-
-            li {
-                height: 20vh;
-                flex-grow: 1;
-            }
-
-            #galleria img {
-                max-height: 100%;
-                min-width: 100%;
-                object-fit: cover;
-                vertical-align: bottom;
-            }
-
-            #form {
-                background-color: #C8EAF9;
-                padding-block: 20px;
-            }
-
-            #form center h1 {
-                font-weight: 900;
-                font-size: 44px;
-                max-width: 800px;
-            }
-
-            @media (max-width: 1350px) {
-                #imageoverlay {
-                    display: none;
-                }
-                .columns {
-                    flex-direction: column;
-                }
-                #introduction p {
-                    padding-right: 0;
-                }
-            }
-
-            form {
-                max-width: 1310px;
-                width: 100%;
-            }
-
-            label, input {
-                display: block;
-            }
-
-            label {
-                font-size: 20px;
-                margin-left: 20px;
-                text-align: left;
-                font-weight: bold;
-            }
-
-            input[type='text'], input[type='email'] {
-                border: none;
-                border-radius: 0;
-                width: 100%;
-                max-width: 600px;
-                height: 60px;
-                margin-top: 10px;
-                font-size: 30px;
-                padding-left: 10px;
-            }
-
-            input[type='submit'] {
-                background-color: #009FE3;
-            }
-
-            input[type='checkbox'] {
-                display: inline;
-                transform: scale(2);
-                border: none;
-                border-radius: 0;
-            }
-
-            label[for='consent'] {
-                display: inline;
-                font-weight: normal;
-            }
-
-            .containment {
-                max-width: 600px;
-                width: 80%;
-                display: inline-block;
-                margin-bottom: 50px;
-                margin-right: 50px;
-            }
-
-
-        </style>
-
+        <link href="style.css" rel="stylesheet">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
@@ -368,7 +79,7 @@
 
             <center>
                 <h1>RIMANI AGGIORNATO!</h1>
-                <form id="fs-frm" name="simple-contact-form" accept-charset="utf-8" action="https://formspree.io/f/{form_id}" method="post">
+                <form id="fs-frm" name="simple-contact-form" accept-charset="utf-8" action="https://formspree.io/f/mnnaqqkq" method="post">
 
                     <span class="containment">
                         <label for="name">Nome:</label>
@@ -376,13 +87,13 @@
                     </span>
 
                     <span class="containment">
-                        <label for="email">Email:</label>
-                        <input type="email" name="_replyto" id="email" required="">
+                        <label for="surname">Cognome:</label>
+                        <input type="text" name="surname" id="surname" required="">
                     </span>
 
                     <span class="containment">
-                        <label for="surname">Cognome:</label>
-                        <input type="text" name="surname" id="surname" required="">
+                        <label for="email">Email:</label>
+                        <input type="email" name="_replyto" id="email" required="">
                     </span>
 
                     <span class="containment">
@@ -408,6 +119,12 @@
                 <li><img src="pics/pic3.jpg"></img></li>
                 <li><img src="pics/pic9.jpg"></img></li>
             <ul>
+        </div>
+
+        <div id="footer" class="section">
+            <p>“Liguria Rinnovabile” è un progetto realizzato grazie al contributo della European Climate Foundation.</p>
+            <h2>PRIVACY</h2>
+            <a>Leggi l'informativa completa</a>
         </div>
     </body>
 </html>

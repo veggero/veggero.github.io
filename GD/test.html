@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dynamic Canvas Editor & Download</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --canvas-w: 1080px;
+      --canvas-h: 1350px;
+      --gap: 55px;
+
+      --mock-blur: 10px;
+      --mock-opacity: 0.6;
+
+      --post-height: calc(var(--canvas-h) * 0.75);
+      --avatar-size: 120px;
+      --name-size: 40pt;
+      --role-size: 36pt;
+      --content-size: 45pt;
+
+      --shadow-dist: 50px;
+      --shadow-opacity: 0.18;
+
+      --primary-color: #3498db;
+      --secondary-color: #2ecc71;
+      --danger-color: #e74c3c;
+      --text-color: #333;
+      --light-gray: #f5f7fa;
+      --border-color: #ddd;
+    }
+
+    body {
+      font-family: 'Nunito Sans';
+      margin: 0;
+      background: var(--light-gray);
+      padding: 20px 0 160px;
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 15px;
+    }
+
+    .canvas-wrapper {
+      margin: 40px auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .canvas-container {
+      transform-origin: top center;
+    }
+
+    .canvas {
+      width: var(--canvas-w);
+      height: var(--canvas-h);
+      background-color: white;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border-radius: 0px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    }
+
+    .post {
+    width: calc(100% - var(--gap) * 2);
+    max-height: calc(75% - var(--gap) * 2);
+    padding: var(--gap) var(--gap);
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--gap) / 2);
+    overflow: hidden;
+    flex-shrink: 0;
+    background-color: white;
+}
+.post:not(.selected) {
+    opacity: var(--mock-opacity);
+    filter: blur(var(--mock-blur));
+}
+.post.selected {
+    box-shadow: 0 0px var(--shadow-dist) rgba(0, 0, 0, var(--shadow-opacity));
+    z-index: 1000;
+    opacity: 1;
+}
+.post-top{
+    display: flex;
+    align-items: center;
+    gap: calc(var(--gap) / 2);
+    min-height: calc(var(--avatar-size));
+}
+.avatar{
+    width: var(--avatar-size);
+    height: var(--avatar-size);
+    object-fit: cover;
+    border-radius: 50%;
+    display: block;
+}
+.meta{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+}
+.name{
+    font-weight: 400;
+    color: #5f1616;
+    font-size: var(--name-size);
+    line-height: 1;
+    margin: 0;
+    letter-spacing: -0.5px;
+    text-wrap: nowrap;
+}
+.role{
+    font-weight: 200;
+    color: black;
+    opacity: 0.9;
+    font-size: var(--role-size);
+    margin: 0;
+    line-height: 1;
+    text-wrap: nowrap;
+}
+.content{
+    font-weight: 300;
+    font-size: var(--content-size);
+    line-height: 1.1;
+    margin: 0;
+    letter-spacing: 1px;
+    max-width: 100%;
+    /*word-wrap: break-word;*/
+}
+.content b {
+    font-weight: 700;
+}
+.post-image {
+    flex: 1 1 auto;
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    border-radius: 18px;
+    overflow: hidden;
+    object-fit: cover;
+}
+
+
+    .controls {
+      margin-top: 20px;
+      padding: 25px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      width: 100%;
+      max-width: var(--canvas-w);
+      box-sizing: border-box;
+    }
+
+    .controls label {
+      display: block;
+      margin: 15px 0 8px;
+      font-weight: 600;
+      color: #444;
+    }
+
+    .controls input[type="text"],
+    .controls textarea,
+    .controls select,
+    .controls div[contenteditable] {
+      width: 100%;
+      padding: 12px 15px;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+      font-family: 'Nunito Sans', sans-serif;
+      margin-bottom: 15px;
+      font-size: 16px;
+      transition: border 0.3s, box-shadow 0.3s;
+    }
+
+    .controls div[contenteditable] {
+      min-height: 120px;
+      background: white;
+      overflow-y: auto;
+    }
+
+    .controls input:focus,
+    .controls textarea:focus,
+    .controls select:focus,
+    .controls div[contenteditable]:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+    }
+
+    .format-buttons {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 15px;
+    }
+
+    .format-buttons button {
+      padding: 10px 15px;
+      border: 1px solid var(--border-color);
+      background: white;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.2s;
+    }
+
+    .format-buttons button:hover {
+      background: #f5f5f5;
+    }
+
+    .controls button:not(.format-buttons button) {
+      padding: 12px 20px;
+      margin-right: 10px;
+      border: none;
+      border-radius: 8px;
+      background: var(--primary-color);
+      color: white;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 16px;
+      transition: all 0.3s;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    .controls button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 8px rgba(0,0,0,0.15);
+    }
+
+    .controls button:active {
+      transform: translateY(0);
+    }
+
+    .button-container {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: white;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      box-shadow: 0 -5px 15px rgba(0,0,0,0.1);
+      z-index: 1000;
+    }
+
+    .main-button {
+      padding: 14px 22px;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 700;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      color: white;
+      transition: all 0.3s;
+      min-width: 160px;
+      text-align: center;
+    }
+
+    .main-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+    }
+
+    .main-button:active {
+      transform: translateY(0);
+    }
+
+    #downloadBtn {
+      background: var(--primary-color);
+    }
+
+    #addCanvasBtn {
+      background: var(--secondary-color);
+    }
+
+    #resetBtn {
+      background: var(--danger-color);
+    }
+
+    h1 {
+      text-align: center;
+      margin: 20px 0 30px;
+      color: #2c3e50;
+      font-weight: 800;
+      font-size: 2.5rem;
+    }
+
+    /* Mobile Responsive Styles */
+    @media (max-width: 1200px) {
+      .controls {
+        width: 95%;
+      }
+    }
+
+    @media (max-width: 1080px) {
+      /* Scale only the canvas container, not the controls */
+      .canvas-container {
+        transform: scale(0.9);
+      }
+      .controls {
+        margin-top: -135px;
+      }
+    }
+
+    @media (max-width: 960px) {
+      .canvas-container {
+        transform: scale(0.8);
+      }
+      .controls {
+        margin-top: -270px;
+      }
+    }
+
+    @media (max-width: 840px) {
+      .canvas-container {
+        transform: scale(0.7);
+      }
+      .controls {
+        margin-top: -405px;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .canvas-container {
+        transform: scale(0.6);
+      }
+      .controls {
+        margin-top: -540px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .canvas-container {
+        transform: scale(0.5);
+      }
+      .controls {
+        margin-top: -675px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .canvas-container {
+        transform: scale(0.45);
+      }
+    }
+
+    @media (max-width: 420px) {
+      .canvas-container {
+        transform: scale(0.4);
+      }
+      .controls {
+        margin-top: -805px;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .canvas-container {
+        transform: scale(0.35);
+      }
+      .controls {
+        margin-top: -870px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .controls {
+        padding: 20px;
+      }
+
+      .button-container {
+        flex-direction: column;
+        align-items: center;
+        padding: 12px 15px;
+        gap: 10px;
+      }
+
+      .main-button {
+        width: 100%;
+        max-width: 280px;
+        padding: 12px 18px;
+        font-size: 15px;
+        min-width: auto;
+      }
+
+      h1 {
+        font-size: 2rem;
+        margin: 15px 0 20px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .controls {
+        padding: 15px;
+      }
+
+      .format-buttons {
+        justify-content: center;
+      }
+
+      .main-button {
+        width: 100%;
+      }
+
+      h1 {
+        font-size: 1.8rem;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .controls button:not(.format-buttons button) {
+        width: 100%;
+        margin: 5px 0;
+      }
+
+      .button-container {
+        padding: 10px 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Canvas Editor</h1>
+    <div id="canvases"></div>
+  </div>
+
+  <div class="button-container">
+    <button id="downloadBtn" class="main-button">Download All Canvases</button>
+    <button id="addCanvasBtn" class="main-button">Add Canvas</button>
+    <button id="resetBtn" class="main-button">Reset Everything</button>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"></script>
+
+  <script>
+    const authors = [
+      {name: 'Niccolò Venerandi', role: 'Comunicazione', avatar: 'avatar.jpg'},
+      {name: 'Pietro Sapori', role: 'Segretario', avatar: 'avatar2.jpg'},
+      {name: 'Eleonora Lintas', role: 'Giovani Amministratori', avatar: 'avatar3.jpg'},
+      {name: 'Matteo Sobrero', role: 'Europa, Lavoro ed Entroterra', avatar: 'avatar4.jpg'},
+      {name: 'Thomas Sivero', role: 'Organizzazione e Tesoreria', avatar: 'avatar5.jpg'},
+      {name: 'Giulia Lanzillotti', role: 'Terzo Settore e Politiche di Genere', avatar: 'avatar6.jpg'},
+    ];
+    const defaultLorem = "Lorem ipsum dolor sit amet, <b>consectetur adipiscing</b> elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. <b>Ut enim</b> ad minim veniam, quis nostrud exercitation ullamco laboris nisi.";
+    const canvasesContainer = document.getElementById('canvases');
+    const addCanvasBtn = document.getElementById('addCanvasBtn');
+    const resetBtn = document.getElementById('resetBtn');
+    const downloadBtn = document.getElementById('downloadBtn');
+
+    let canvasCount = 0;
+    let savedData = JSON.parse(localStorage.getItem('canvasData') || '[]');
+
+    function saveToStorage() {
+      const wrappers = document.querySelectorAll('.canvas-wrapper');
+      const data = [];
+      wrappers.forEach(wrapper => {
+        const selectedPost = wrapper.querySelector('.post.selected');
+        const contentDiv = wrapper.querySelector('[contenteditable]');
+        const authorSelect = wrapper.querySelector('select');
+        const img = selectedPost.querySelector('.post-image');
+        data.push({
+          content: contentDiv.innerHTML,
+          author: authorSelect.value,
+          img: img ? img.src : null
+        });
+      });
+      localStorage.setItem('canvasData', JSON.stringify(data));
+    }
+
+    function getRandomAuthor(excludeName) {
+      const options = authors.filter(a => a.name !== excludeName);
+      return options[Math.floor(Math.random() * options.length)];
+    }
+
+    function createCanvas(saved=null) {
+      canvasCount++;
+      const wrapper = document.createElement('div');
+      wrapper.className = 'canvas-wrapper';
+
+      const selectedAuthor = saved ? authors.find(a => a.name===saved.author) : authors[0];
+      const post1Author = getRandomAuthor(selectedAuthor.name);
+      const post3Author = getRandomAuthor(selectedAuthor.name);
+
+      wrapper.innerHTML = `
+        <div class="canvas-container">
+          <div id="canvas-${canvasCount}" class="canvas">
+            <div class="post" id="post-${canvasCount}-1">
+              <div class="post-top">
+                <img src="${post1Author.avatar}" class="avatar">
+                <div class="meta">
+                  <h3 class="name">${post1Author.name}</h3>
+                  <div class="role">${post1Author.role}</div>
+                </div>
+              </div>
+              <p class="content">${defaultLorem}</p>
+            </div>
+            <div class="post selected" id="post-${canvasCount}-2">
+              <div class="post-top">
+                <img src="${selectedAuthor.avatar}" class="avatar">
+                <div class="meta">
+                  <h3 class="name">${selectedAuthor.name}</h3>
+                  <div class="role">${selectedAuthor.role}</div>
+                </div>
+              </div>
+              <p class="content">${saved ? saved.content : defaultLorem}</p>
+              ${ (saved && saved.img) ? `<img class="post-image" src="${saved.img}">` : '' }
+            </div>
+            <div class="post" id="post-${canvasCount}-3">
+              <div class="post-top">
+                <img src="${post3Author.avatar}" class="avatar">
+                <div class="meta">
+                  <h3 class="name">${post3Author.name}</h3>
+                  <div class="role">${post3Author.role}</div>
+                </div>
+              </div>
+              <p class="content">${defaultLorem}</p>
+            </div>
+          </div>
+        </div>
+      `;
+
+      const controls = document.createElement('div');
+      controls.className = 'controls';
+      controls.innerHTML = `
+        <div class="format-buttons">
+          <button type="button" data-command="bold"><b>B</b></button>
+          <button type="button" data-command="italic"><i>I</i></button>
+          <button type="button" data-command="underline"><u>U</u></button>
+        </div>
+        <label for="author-${canvasCount}">Author</label>
+        <select id="author-${canvasCount}">
+          ${authors.map(a => `<option value="${a.name}" ${selectedAuthor.name===a.name?'selected':''}>${a.name} (${a.role})</option>`).join('')}
+        </select>
+
+        <label for="content-${canvasCount}">Content</label>
+        <div id="content-${canvasCount}" contenteditable="true">${saved ? saved.content : defaultLorem}</div>
+
+        <label for="image-${canvasCount}">Image</label>
+        <input type="file" id="image-${canvasCount}" accept="image/*">
+        <button id="removeImage-${canvasCount}">Remove Image</button>
+      `;
+
+      wrapper.appendChild(controls);
+      canvasesContainer.appendChild(wrapper);
+
+      const selectedPost = wrapper.querySelector('.post.selected');
+      const contentDiv = wrapper.querySelector('[contenteditable]');
+      const authorSelect = wrapper.querySelector('select');
+      const imageInput = wrapper.querySelector('input[type="file"]');
+      const removeImageBtn = wrapper.querySelector('button[id^="removeImage"]');
+
+      // format buttons
+      controls.querySelectorAll('.format-buttons button').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.execCommand(btn.dataset.command, false, null);
+          updateContent();
+        });
+      });
+
+      function updateContent() {
+        const html = contentDiv.innerHTML.trim();
+        const textOnly = contentDiv.textContent.trim();
+
+        // Check if content is empty (no text or just empty tags)
+        if (textOnly === '' || html === '<br>' || html === '<div><br></div>') {
+          // Remove the content element completely
+          const p = selectedPost.querySelector('.content');
+          if (p) p.remove();
+        } else {
+          // Create or update the content element
+          let p = selectedPost.querySelector('.content');
+          if (!p) {
+            p = document.createElement('p');
+            p.className = 'content';
+            // Insert before the image if it exists, otherwise at the end
+            const img = selectedPost.querySelector('.post-image');
+            if (img) {
+              selectedPost.insertBefore(p, img);
+            } else {
+              selectedPost.appendChild(p);
+            }
+          }
+          p.innerHTML = html;
+        }
+        saveToStorage();
+      }
+
+      contentDiv.addEventListener('input', updateContent);
+
+      authorSelect.addEventListener('change', () => {
+        const author = authors.find(a => a.name===authorSelect.value);
+        selectedPost.querySelector('.name').textContent = author.name;
+        selectedPost.querySelector('.role').textContent = author.role;
+        selectedPost.querySelector('.avatar').src = author.avatar;
+        saveToStorage();
+      });
+
+      imageInput.addEventListener('change', () => {
+        const file = imageInput.files[0];
+        if(!file) return;
+        const img = selectedPost.querySelector('.post-image') || document.createElement('img');
+        img.className = 'post-image';
+        img.src = URL.createObjectURL(file);
+        if(!selectedPost.contains(img)) selectedPost.appendChild(img);
+        saveToStorage();
+      });
+
+      removeImageBtn.addEventListener('click', () => {
+        const img = selectedPost.querySelector('.post-image');
+        if(img) img.remove();
+        imageInput.value = '';
+        saveToStorage();
+      });
+    }
+
+    addCanvasBtn.addEventListener('click', () => createCanvas());
+    resetBtn.addEventListener('click', () => {
+      localStorage.removeItem('canvasData');
+      location.reload();
+    });
+
+    // Download all canvases
+    downloadBtn.addEventListener('click', () => {
+      const wrappers = document.querySelectorAll('.canvas-wrapper .canvas');
+      wrappers.forEach((canvasEl, index) => {
+        domtoimage.toBlob(canvasEl, {
+          width: 1080,
+          height: 1350,
+          style: { transform: 'none' }  // ensure no scale transform
+        })
+        .then(blob => {
+          const link = document.createElement('a');
+          link.href = URL.createObjectURL(blob);
+          link.download = `canvas-${index+1}.png`;
+          link.click();
+        })
+        .catch(err => {
+          console.error('Error exporting canvas', err);
+        });
+      });
+    });
+
+    // initialize canvases
+    if (savedData.length) {
+      savedData.forEach(data => createCanvas(data));
+    } else {
+      createCanvas();
+    }
+  </script>
+</body>
+</html>

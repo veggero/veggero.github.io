@@ -95,8 +95,8 @@
   }
 
   /* Phone */
-  @media (max-width: 899px) {
-    :root { --strip-w: 100%; --frame-w: calc(100vw - 90px); }
+  @media (max-width: 1023px) {
+    :root { --strip-w: 100%; --frame-w: min(calc(100vw - 90px), 420px); }
     body { background: var(--film); }
     .contact { top: 16px; right: 16px; }
     .rail { display: none; }
@@ -108,15 +108,15 @@
     }
     .row { flex-direction: column; min-height: 0; padding-top: 72px; }
     .row .spacer { display: none; }
-    .row .frame { order: 1; flex: 0 0 auto; width: 100%; padding: 0 45px; box-sizing: border-box; }
-    .row .frame > a, .row .frame > div { width: 100%; gap: 6px; }
+    .row .frame { order: 1; flex: 0 0 auto; width: 100%; padding: 0 45px; box-sizing: border-box; align-items: center; }
+    .row .frame > a, .row .frame > div { width: 100%; max-width: 420px; gap: 6px; }
     .row .pic { width: 100%; height: auto; aspect-ratio: 3 / 4; border-radius: 3px; }
     .edge { font-size: 10px; }
     .row .text, .row.left .text, .row.right .text {
-      order: 2; align-items: flex-start; text-align: left;
+      order: 2; align-items: center; text-align: left;
       padding: 20px 45px 40px;
     }
-    .row .text > div, .row.left .text > div, .row.right .text > div { max-width: none; align-items: flex-start; gap: 10px; margin: 0; }
+    .row .text > div, .row.left .text > div, .row.right .text > div { width: 100%; max-width: 420px; align-items: flex-start; gap: 10px; margin: 0; }
     h1 { font-size: 36px; color: var(--film-text); }
     h2 { font-size: 30px; color: var(--film-text); }
     .desc { font-size: 15px; line-height: 1.5; color: var(--film-body); }

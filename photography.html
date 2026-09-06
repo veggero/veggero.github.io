@@ -45,8 +45,9 @@
   .hint { right: 40px; bottom: 24px; top: auto; height: 32px; padding: 0 12px; font-size: 12px; font-weight: 400; color: var(--muted); }
 
   .wall {
+    --cols: 4;
     position: fixed; inset: 0;
-    display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
+    display: grid; grid-template-columns: repeat(var(--cols), minmax(0, 1fr));
     gap: var(--gap); padding: 0 var(--pad); box-sizing: border-box;
   }
   .col { position: relative; will-change: transform; }
@@ -74,10 +75,8 @@
   .lightbox .next { right: 24px; top: 50%; transform: translateY(-50%); }
   .lightbox .count { position: absolute; left: 40px; bottom: 24px; font-size: 11px; letter-spacing: 0.1em; color: var(--edge); }
 
-  @media (max-width: 1100px) { .wall { grid-template-columns: repeat(3, minmax(0, 1fr)); } .col:nth-child(4) { display: none; } }
   @media (max-width: 720px) {
     :root { --gap: 14px; --pad: 14px; }
-    .wall { grid-template-columns: repeat(2, minmax(0, 1fr)); } .col:nth-child(3) { display: none; }
     .brand { left: 16px; top: 16px; } .contact { right: 16px; top: 16px; }
     .caption { left: 16px; bottom: 16px; } .hint { display: none; }
     .card { border-radius: 10px; }
@@ -262,7 +261,51 @@
 
 <script>
 (function () {
-  var cols = Array.prototype.slice.call(document.querySelectorAll('.col'));
+  var wall = document.getElementById('wall');
+
+  // Gather every card once, reading across the built columns so shoots stay interleaved.
+  var seed = Array.prototype.slice.call(wall.querySelectorAll('.col')).map(function (col) {
+    return Array.prototype.slice.call(col.querySelector('.stack').children);
+  });
+  var cards = [];
+  var longest = Math.max.apply(null, seed.map(function (s) { return s.length; }));
+  for (var r = 0; r < longest; r++) for (var c = 0; c < seed.length; c++) if (seed[c][r]) cards.push(seed[c][r]);
+  var fulls = cards.map(function (c) { return c.getAttribute('href'); });
+
+  // Deal the cards into as many columns as the screen has room for. Every card stays on the page.
+  var cols = [], n = 0;
+  function columnsFor(w) { return w <= 720 ? 2 : w <= 1100 ? 3 : 4; }
+  function stack(list, hidden) {
+    var s = document.createElement('div'); s.className = 'stack';
+    if (hidden) s.setAttribute('aria-hidden', 'true');
+    list.forEach(function (card) { s.appendChild(hidden ? card.cloneNode(true) : card); });
+    return s;
+  }
+  var lastWidth = -1;
+  function layout() {
+    lastWidth = window.innerWidth;
+    var want = columnsFor(lastWidth);
+    if (want === n) return;
+    n = want;
+    var lists = [], heights = [];
+    for (var i = 0; i < n; i++) { lists.push([]); heights.push(0); }
+    cards.forEach(function (card) {
+      var img = card.querySelector('img');
+      var k = heights.indexOf(Math.min.apply(null, heights));
+      lists[k].push(card); heights[k] += img.getAttribute('height') / img.getAttribute('width');
+    });
+    wall.innerHTML = '';
+    wall.style.setProperty('--cols', n);
+    cols = lists.map(function (list) {
+      var col = document.createElement('div'); col.className = 'col';
+      col.appendChild(stack(list, false)); col.appendChild(stack(list, true));
+      wall.appendChild(col); return col;
+    });
+  }
+  layout();
+  var resizeTimer;
+  window.addEventListener('resize', function () { clearTimeout(resizeTimer); resizeTimer = setTimeout(layout, 150); });
+
   // Each column drifts at its own pace, so neighbours slide past each other.
   var speeds = [1.0, 1.35, 0.85, 1.15];
   var drift = 18;          // px per second when idle
@@ -274,6 +317,7 @@
   function heightOf(col) { return col.querySelector('.stack').offsetHeight + parseFloat(getComputedStyle(col.querySelector('.stack + .stack')).paddingTop); }
 
   function frame(now) {
+    if (window.innerWidth !== lastWidth) layout();
     var dt = Math.min(0.05, (now - last) / 1000); last = now;
     if (!paused) {
       offset += drift * dt + velocity * dt;
@@ -305,9 +349,6 @@
   window.addEventListener('touchend', function () { touchY = null; });
 
   // Lightbox: every card links to the full-size file; JS shows it in place instead.
-  var cards = Array.prototype.slice.call(document.querySelectorAll('.card'));
-  var fulls = [];
-  cards.forEach(function (c) { if (fulls.indexOf(c.getAttribute('href')) < 0) fulls.push(c.getAttribute('href')); });
   var box = document.getElementById('lightbox');
   var boxImg = document.getElementById('lightbox-img');
   var count = document.getElementById('lightbox-count');
@@ -316,15 +357,18 @@
   function show(i) {
     current = (i + fulls.length) % fulls.length;
     boxImg.src = fulls[current];
-    var card = document.querySelector('.card[href="' + fulls[current] + '"] img');
-    boxImg.alt = card ? card.alt : '';
+    var img = cards[current].querySelector('img');
+    boxImg.alt = img ? img.alt : '';
     count.textContent = String(current + 1).padStart(2, '0') + ' / ' + String(fulls.length).padStart(2, '0');
     box.hidden = false; paused = true;
   }
   function hide() { box.hidden = true; paused = false; boxImg.src = ''; }
 
-  cards.forEach(function (c) {
-    c.addEventListener('click', function (e) { e.preventDefault(); show(fulls.indexOf(c.getAttribute('href'))); });
+  wall.addEventListener('click', function (e) {
+    var card = e.target.closest('.card');
+    if (!card) return;
+    e.preventDefault();
+    show(fulls.indexOf(card.getAttribute('href')));
   });
   box.querySelector('.close').addEventListener('click', hide);
   box.querySelector('.prev').addEventListener('click', function (e) { e.stopPropagation(); show(current - 1); });

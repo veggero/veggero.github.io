@@ -1,0 +1,696 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Open plasmashell bugs</title>
+<meta name="data-base" content="https://luna.tail8b3802.ts.net:10000/">
+<meta name="description" content="Open plasmashell bug reports on bugs.kde.org over time, updated every minute.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' rx='3' fill='%231d99f3'/%3E%3Cpath d='M3 5h3v3h3v-2h4v6' fill='none' stroke='white' stroke-width='1.6'/%3E%3C/svg%3E">
+<style>
+:root {
+  --bg: #f6f7f9; --card: #fff; --text: #1d2125; --muted: #6a717a; --border: #e2e5e9; --hover: #f0f2f5;
+  --accent: #1d99f3; --p4: #7c3aed; --up: #c2410c; --down: #15803d;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #15171a; --card: #1e2125; --text: #e7e9ec; --muted: #969ca4; --border: #32363b; --hover: #272b30;
+    --accent: #3daee9; --p4: #b794f6; --up: #fb923c; --down: #4ade80;
+    color-scheme: dark;
+  }
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--text); font: 15px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", sans-serif; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+main { max-width: 1120px; margin: 0 auto; padding: 22px 16px 40px; }
+.fr { font-size: 13px; margin-bottom: 10px; }
+.num { font-variant-numeric: tabular-nums; }
+.muted { color: var(--muted); }
+
+.head { display: flex; justify-content: space-between; align-items: flex-end; gap: 6px 16px; flex-wrap: wrap; margin-bottom: 16px; }
+h1 { font-size: 24px; line-height: 1.2; margin: 0; letter-spacing: -.01em; }
+.sub { margin: 4px 0 0; color: var(--muted); font-size: 13.5px; }
+.status { font-size: 13px; color: var(--muted); white-space: nowrap; }
+.dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--down); margin-right: 6px; vertical-align: 1px; }
+.dot.stale { background: var(--up); }
+.dot.down { background: #dc2626; }
+
+.tiles { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-bottom: 14px; }
+.tile { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 10px 14px; min-width: 0; }
+.tile .k { font-size: 12.5px; color: var(--muted); }
+.tile .v { font-size: 26px; font-weight: 650; line-height: 1.25; font-variant-numeric: tabular-nums; }
+.tile .s { font-size: 12px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.up-t { color: var(--up); } .down-t { color: var(--down); }
+@media (max-width: 720px) {
+  .tiles { grid-template-columns: repeat(4, 1fr); gap: 8px; }
+  .tile:first-child { grid-column: 1 / -1; display: flex; align-items: baseline; gap: 10px; }
+  .tile { padding: 8px 10px; }
+  .tile .v { font-size: 20px; }
+  .tile:first-child .v { font-size: 26px; }
+}
+
+.card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; margin-bottom: 14px; min-width: 0; }
+h2 { font-size: 16px; margin: 0; }
+.bar { display: flex; justify-content: space-between; align-items: center; gap: 8px 12px; flex-wrap: wrap; margin-bottom: 6px; }
+.seg { display: inline-flex; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+.seg button { border: 0; border-right: 1px solid var(--border); background: none; color: var(--text); font: inherit; font-size: 13px;
+  padding: 4px 10px; cursor: pointer; font-variant-numeric: tabular-nums; }
+.seg button:last-child { border-right: 0; }
+.seg button:hover { background: var(--hover); }
+.seg button.on { background: var(--accent); color: #fff; }
+.chips { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; font-size: 13px; }
+.chip { border: 1px solid var(--border); background: none; color: var(--muted); font: inherit; font-size: 13px; border-radius: 999px;
+  padding: 2px 10px; cursor: pointer; }
+.chip:hover { background: var(--hover); }
+.chip.on { color: var(--text); border-color: var(--text); }
+.chip .sw { margin-right: 6px; }
+.row2 { display: flex; justify-content: space-between; align-items: center; gap: 6px 12px; flex-wrap: wrap; min-height: 4px; margin-bottom: 4px; }
+.row2:empty { display: none; }
+.linkbtn { border: 0; background: none; color: var(--accent); font: inherit; font-size: 13px; cursor: pointer; padding: 0; }
+.sw { display: inline-block; width: 12px; height: 0; border-top: 3px solid var(--accent); vertical-align: 3px; }
+.sw.plasma4 { border-top-color: var(--p4); }
+.sw.combined { border-top: 2px dashed var(--text); }
+
+#chartwrap { position: relative; }
+#chart { width: 100%; height: auto; display: block; font-size: 11.5px; touch-action: pan-y; user-select: none; -webkit-user-select: none; }
+#chart .grid { stroke: var(--border); stroke-width: 1; }
+#chart .axis text { fill: var(--muted); }
+#chart .rel { stroke: var(--muted); stroke-width: 1; opacity: .35; stroke-dasharray: 2 3; }
+#chart .rel.dense { opacity: .18; }
+#chart .rel-l { fill: var(--muted); font-size: 10.5px; }
+#chart .line { fill: none; stroke: var(--accent); stroke-width: 2; stroke-linejoin: round; }
+#chart .line.plasma4 { stroke: var(--p4); }
+#chart .line.combined { stroke: var(--text); stroke-width: 1.5; stroke-dasharray: 5 3; }
+#chart .band { fill: var(--accent); opacity: .15; }
+#chart .band.plasma4 { fill: var(--p4); }
+#chart .band.combined { fill: var(--text); opacity: .08; }
+#chart .dot { fill: var(--accent); stroke: var(--card); stroke-width: 2; }
+#chart .dot.plasma4 { fill: var(--p4); }
+#chart .dot.combined { fill: var(--text); }
+#chart .end-l { fill: var(--text); font-weight: 600; paint-order: stroke; stroke: var(--card); stroke-width: 4px; stroke-linejoin: round; }
+#chart .cross { stroke: var(--muted); stroke-width: 1; }
+#chart .sel { fill: var(--accent); opacity: .14; }
+#chart .msg { fill: var(--muted); font-size: 14px; }
+#tip { position: absolute; pointer-events: none; background: var(--card); border: 1px solid var(--border); border-radius: 8px;
+  padding: 6px 10px; font-size: 12.5px; box-shadow: 0 4px 14px rgba(0,0,0,.14); display: none; white-space: nowrap; z-index: 2; }
+#tip b { font-variant-numeric: tabular-nums; }
+#tip .ev { overflow: hidden; text-overflow: ellipsis; max-width: 340px; }
+#summary { font-size: 13px; color: var(--muted); margin-top: 6px; font-variant-numeric: tabular-nums; }
+#summary b { color: var(--text); font-weight: 600; }
+
+.cols { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 14px; align-items: start; }
+.cols .card { margin-bottom: 0; }
+@media (max-width: 820px) { .cols { grid-template-columns: 1fr; } }
+.h { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; margin-bottom: 8px; }
+.h .muted { font-size: 13px; text-align: right; }
+
+#top { list-style: none; margin: 0; padding: 0; }
+#top li { position: relative; display: grid; grid-template-columns: 26px 1fr auto; gap: 8px; padding: 4px 8px; border-radius: 6px; align-items: baseline; }
+#top li .bg { position: absolute; left: 0; top: 2px; bottom: 2px; background: var(--accent); opacity: .12; border-radius: 6px; }
+#top li > span { position: relative; }
+#top .rk { color: var(--muted); font-size: 12.5px; text-align: right; font-variant-numeric: tabular-nums; }
+#top .nm { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+#top .nm.anon { color: var(--muted); font-style: italic; }
+#top .n { font-weight: 600; font-variant-numeric: tabular-nums; }
+#toptotal { font-size: 12.5px; color: var(--muted); margin: 8px 0 0; }
+
+#recent .ev { display: grid; grid-template-columns: 26px 1fr auto; gap: 0 10px; padding: 6px 0; border-bottom: 1px solid var(--border); align-items: baseline; }
+#recent .ev:last-child { border-bottom: 0; }
+#recent .d { font-weight: 700; font-variant-numeric: tabular-nums; grid-row: span 2; }
+#recent .title { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
+#recent .when { font-size: 12px; color: var(--muted); white-space: nowrap; }
+#recent .what { font-size: 12.5px; color: var(--muted); grid-column: 2 / 4; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+@media (max-width: 600px) {
+  #recent .title { white-space: normal; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+}
+#more { margin-top: 8px; }
+footer { margin-top: 18px; font-size: 12.5px; color: var(--muted); }
+</style>
+</head>
+<body>
+<main>
+<header class="head">
+  <div>
+    <h1>Open plasmashell bugs</h1>
+    <p class="sub" id="sub">Unconfirmed, confirmed, assigned and reopened reports, not counting wishlists.</p>
+  </div>
+  <div class="status" id="status"><span class="dot stale"></span>Loading…</div>
+</header>
+
+<div class="tiles" id="tiles"></div>
+
+<section class="card">
+  <div class="bar">
+    <div class="seg" id="ranges" role="group" aria-label="Time range"></div>
+    <div class="chips" id="include" role="group" aria-label="Also count"></div>
+  </div>
+  <div class="row2" id="row2"></div>
+  <div id="chartwrap"><svg id="chart" role="img" aria-label="Open plasmashell bugs over time"></svg><div id="tip"></div></div>
+  <div id="summary"></div>
+</section>
+
+<div class="cols">
+  <section class="card">
+    <div class="h"><h2>Top 20 resolvers</h2><span class="muted" id="toprange"></span></div>
+    <ol id="top"></ol>
+    <p id="toptotal"></p>
+  </section>
+  <section class="card">
+    <div class="h"><h2>Latest changes</h2></div>
+    <div id="recent"></div>
+    <button type="button" class="linkbtn" id="more" hidden>Show more</button>
+  </section>
+</div>
+
+<footer>Data from <a href="https://bugs.kde.org/describecomponents.cgi?product=plasmashell">bugs.kde.org</a>, updated every minute.</footer>
+<noscript><p>This page needs JavaScript.</p></noscript>
+</main>
+<script>
+(function () {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const svg = $('chart'), tip = $('tip'), wrap = $('chartwrap');
+  const NS = 'http://www.w3.org/2000/svg';
+  const HOUR = 3600, DAY = 86400;                         // data times are in seconds
+  const RANGES = [['1d', '1D', 'day', DAY], ['1w', '1W', 'week', 7 * DAY], ['1m', '1M', 'month', 30 * DAY],
+    ['3m', '3M', '3 months', 91 * DAY], ['1y', '1Y', 'year', 365 * DAY], ['3y', '3Y', '3 years', 3 * 365 * DAY],
+    ['6y', '6Y', '6 years', 6 * 365 * DAY], ['all', 'All', 'everything', null]];
+  const LABEL = { plasmashell: 'plasmashell', plasma4: 'Plasma 4', combined: 'Both' };
+  const VARIANTS = ['', 'w', 'n', 'wn'];
+  const INCLUDE = [['wishlist', 'Wishlists', 'w'], ['needsinfo', 'Needsinfo', 'n']];
+  const CHANGES = [['24 hours', DAY], ['7 days', 7 * DAY], ['30 days', 30 * DAY], ['1 year', 365 * DAY]];
+  const MAIN = 'plasmashell', AUTO_MIN = 25, EVENTS_MAX = 8 * DAY, TOP = 20, RECENT = 12;
+  const M = { l: 46, r: 12, t: 22, b: 26 };
+  const BUG = 'https://bugs.kde.org/show_bug.cgi?id=';
+  const dataMeta = document.querySelector('meta[name="data-base"]');     // the nicco.love copy reads luna's data
+  let base = dataMeta ? dataMeta.content : location.pathname.replace(/[^/]*\.html$/, '');
+  if (!base.endsWith('/')) base += '/';
+
+  const fmtN = n => n.toLocaleString('en-US');
+  const sign = n => (n > 0 ? '+' : n < 0 ? '−' : '±') + fmtN(Math.abs(n));
+  const MON = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  const WDAY = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  const date = t => new Date(t * 1000);
+  const fmtShort = t => { const d = date(t); return d.getDate() + ' ' + MON[d.getMonth()]; };
+  const fmtDay = t => fmtShort(t) + ' ' + date(t).getFullYear();
+  const fmtClock = t => { const d = date(t); return String(d.getHours()).padStart(2, '0') + ':' + String(d.getMinutes()).padStart(2, '0'); };
+  const fmtMin = t => `${WDAY[date(t).getDay()]} ${fmtDay(t)}, ${fmtClock(t)}`;
+  const fmtRecent = t => {                // "11:56", "Fri 11:50", "17 Oct 11:50", "24 Oct 2025"
+    const age = Date.now() / 1000 - t, d = date(t);
+    if (age < 20 * HOUR && d.getDate() === new Date().getDate()) return fmtClock(t);
+    if (age < 6 * DAY) return WDAY[d.getDay()] + ' ' + fmtClock(t);
+    if (age < 300 * DAY) return fmtShort(t) + ' ' + fmtClock(t);
+    return fmtDay(t);
+  };
+
+  // ---------------------------------------------------------------- data
+  // history.json: every count's steps and resolutions up to `cut` (loaded once, rewritten about once a day);
+  // live.json: everything after `cut`, the last poll and the latest changes (polled every minute).
+  let hist = null, live = null, data = null, cache = new Map(), failed = false;
+
+  function steps(enc, t0) {
+    const n = enc.dt.length, T = new Float64Array(n), d = new Int8Array(n);
+    let t = t0;
+    for (let i = 0; i < n; i++) { t += enc.dt[i]; T[i] = t; d[i] = enc.d.charCodeAt(i) === 43 ? 1 : -1; }
+    return { T, d };
+  }
+  function cat(a, b) {
+    const out = {};
+    for (const k in a) { const x = new a[k].constructor(a[k].length + b[k].length); x.set(a[k]); x.set(b[k], a[k].length); out[k] = x; }
+    return out;
+  }
+  function res(enc, t0) {
+    const n = enc.dt.length, t = new Float64Array(n);
+    let x = t0;
+    for (let i = 0; i < n; i++) { x += enc.dt[i]; t[i] = x; }
+    return { t, p: Int32Array.from(enc.p), m: Int32Array.from(enc.m), bug: Int32Array.from(enc.bug) };
+  }
+  function build() {
+    const raw = {};
+    for (const k in hist.steps) raw[k] = cat(steps(hist.steps[k], 0), steps(live.steps[k] || { dt: [], d: '' }, hist.cut));
+    const lines = hist.lines.map(l => l.key);
+    data = {
+      raw, lines, keys: lines.length > 1 ? lines.concat(['combined']) : lines,
+      res: cat(res(hist.res, 0), res(live.res, hist.cut)), people: hist.people.concat(live.people),
+      updated: Date.parse(live.updated) / 1000, events: live.events,
+    };
+    cache = new Map();
+  }
+  function merge(a, b) {                   // two step lists, by time (a first on ties)
+    const n = a.T.length + b.T.length, T = new Float64Array(n), d = new Int8Array(n);
+    let i = 0, j = 0, k = 0;
+    while (i < a.T.length || j < b.T.length) {
+      if (j >= b.T.length || (i < a.T.length && a.T[i] <= b.T[j])) { T[k] = a.T[i]; d[k++] = a.d[i++]; }
+      else { T[k] = b.T[j]; d[k++] = b.d[j++]; }
+    }
+    return { T, d };
+  }
+  function rawSeries(line, v) {             // counts with wishlists/needsinfo are stored as the difference to the plain one
+    return v ? merge(data.raw[line], data.raw[line + '+' + v]) : data.raw[line];
+  }
+  function series(line, v) {               // {T, C}: the count is C[i] from T[i] on
+    const key = line + '|' + v;
+    if (!cache.has(key)) {
+      const s = line === 'combined' ? data.lines.map(l => rawSeries(l, v)).reduce(merge) : rawSeries(line, v);
+      const C = new Int32Array(s.T.length);
+      let c = 0;
+      for (let i = 0; i < C.length; i++) C[i] = c += s.d[i];
+      cache.set(key, { T: s.T, C });
+    }
+    return cache.get(key);
+  }
+  function bisect(T, t) { let lo = 0, hi = T.length; while (lo < hi) { const m = (lo + hi) >> 1; if (T[m] <= t) lo = m + 1; else hi = m; } return lo; }
+  function at(S, t) { const i = bisect(S.T, t); return i ? S.C[i - 1] : 0; }
+  function scan(S, t0, t1, n) {            // value at t0 and t1, lowest and highest, n buckets {t: end, v: value at end, lo, hi}
+    const T = S.T, C = S.C, width = (t1 - t0) / n;
+    let i = bisect(T, t0), v = i ? C[i - 1] : 0;
+    const start = v, low = [t0, v], high = [t0, v], buckets = [];
+    for (let k = 1; k <= n; k++) {
+      const e = k === n ? t1 : t0 + width * k;
+      let lo = v, hi = v;
+      while (i < T.length && T[i] <= e) {
+        let j = i;
+        while (j + 1 < T.length && T[j + 1] === T[i]) j++;     // several steps in one second: only the result existed
+        v = C[j]; i = j + 1;
+        if (v < lo) lo = v;
+        if (v > hi) hi = v;
+        if (v < low[1]) { low[0] = T[j]; low[1] = v; }
+        if (v > high[1]) { high[0] = T[j]; high[1] = v; }
+      }
+      buckets.push({ t: e, v, lo, hi });
+    }
+    return { start, end: v, low, high, buckets };
+  }
+
+  async function getJSON(name) {
+    const r = await fetch(base + name, { cache: 'no-cache' });
+    if (!r.ok) throw new Error(name + ': HTTP ' + r.status);
+    return r.json();
+  }
+  let polling = false;
+  async function poll() {
+    if (polling) return;
+    polling = true;
+    try {
+      const first = hist ? null : getJSON('history.json');        // first load: both at once
+      const l = await getJSON('live.json');
+      if (!hist || hist.v !== l.hv) {
+        let h = first && await first;
+        if (!h || h.v !== l.hv) h = await getJSON('history.json');
+        if (h.v !== l.hv) { setTimeout(poll, 3000); return; }   // rewritten in between: try again
+        hist = h;
+      }
+      live = l; failed = false;
+      build();
+      render();
+    } catch (e) {
+      failed = true;
+      status();
+    } finally { polling = false; }
+  }
+
+  // ---------------------------------------------------------------- view
+  let view = parseHash() || { range: '1y' }, V = null, drag = null, lastX = null, recentAll = false;
+
+  function parseHash() {
+    const [h, ...opts] = decodeURIComponent(location.hash.slice(1)).split(';');
+    const opt = k => (opts.find(o => o.startsWith(k + '=')) || '').slice(k.length + 1);
+    const v = {};
+    if (opt('l')) v.lines = opt('l').split(',');
+    if (opt('i')) v.include = opt('i').split(',');
+    if (RANGES.some(r => r[0] === h)) return Object.assign(v, { range: h });
+    const m = /^(\d+)-(\d+)$/.exec(h);
+    return m ? Object.assign(v, { from: +m[1], to: +m[2] }) : (h ? null : Object.keys(v).length ? Object.assign(v, { range: '1y' }) : null);
+  }
+  function setView(v) {
+    view = v;
+    history.replaceState(null, '', '#' + (v.range || `${v.from}-${v.to}`) + (v.lines ? ';l=' + v.lines.join(',') : '') +
+      (v.include && v.include.length ? ';i=' + v.include.join(',') : ''));
+    render();
+  }
+  const variantOf = inc => INCLUDE.filter(x => (inc || []).includes(x[0])).map(x => x[2]).join('');
+
+  function compute() {                     // the shown range and lines, as the old server side did
+    const v = variantOf(view.include), keys = data.keys;
+    const end = Math.max(data.updated || 0, ...keys.map(k => { const T = series(k, v).T; return T.length ? T[T.length - 1] : 0; }));
+    const first = {};
+    for (const k of keys) { const T = series(k, v).T; first[k] = T.length ? T[0] : end - DAY; }
+    const explicit = keys.filter(k => view.lines && view.lines.includes(k));
+    const candidates = explicit.length ? explicit : keys.filter(k => k !== 'combined');
+    const lead = ks => { const f = Math.min(...ks.map(k => first[k])); return f - (end - f) / 100; };
+    const r = RANGES.find(x => x[0] === view.range);
+    let t0, t1, rng = view.range;
+    if (r && r[3]) { t0 = end - r[3]; t1 = end; }
+    else if (view.from == null) { rng = 'all'; t0 = lead(candidates); t1 = end; }
+    else { rng = null; t0 = view.from; t1 = view.to; }
+    t1 = Math.min(t1, end);
+    t0 = Math.max(t0, lead(keys));
+    if (t1 - t0 < 600) t0 = t1 - 600;
+    const shown = explicit.length ? explicit : candidates.filter(k => k === MAIN || scan(series(k, v), t0, t1, 1).high[1] >= AUTO_MIN);
+    if (rng === 'all') t0 = Math.max(t0, lead(shown));
+    return { v, j: VARIANTS.indexOf(v), rng, t0, t1, end, shown, explicit: explicit.length > 0,
+      other: keys.some(k => k !== MAIN && k !== 'combined' && scan(series(k, v), t0, t1, 1).high[1] >= AUTO_MIN) };
+  }
+
+  function el(tag, attrs, parent, text) {
+    const e = document.createElementNS(NS, tag);
+    for (const k in attrs) e.setAttribute(k, attrs[k]);
+    if (text != null) e.textContent = text;
+    (parent || svg).appendChild(e);
+    return e;
+  }
+  function h(parent, tag, cls, text) {
+    const e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text != null) e.textContent = text;
+    parent.appendChild(e);
+    return e;
+  }
+  const swatch = (parent, key) => h(parent, 'span', 'sw ' + key);
+  const rangeText = () => {
+    if (V.rng === 'all') return 'Since ' + date(V.t0).getFullYear();
+    const r = RANGES.find(x => x[0] === V.rng);
+    if (r) return 'Last ' + r[2];
+    return V.t1 - V.t0 <= 4 * DAY ? `${fmtMin(V.t0)} – ${fmtMin(V.t1)}` : `${fmtDay(V.t0)} – ${fmtDay(V.t1)}`;
+  };
+
+  function status() {
+    const s = $('status');
+    s.textContent = '';
+    const dot = h(s, 'span', 'dot');
+    if (!data) { dot.classList.add(failed ? 'down' : 'stale'); s.append(failed ? 'Could not load the data' : 'Loading…'); return; }
+    const age = Date.now() / 1000 - data.updated;
+    if (failed || live.error) dot.classList.add('down'); else if (age > 5 * 60) dot.classList.add('stale');
+    s.append(live.error ? `bugs.kde.org unreachable since ${fmtClock(Date.parse(live.error.since) / 1000)}`
+      : failed ? `Offline · last update ${fmtClock(data.updated)}` : `Updated ${fmtClock(data.updated)}`);
+  }
+
+  function render() {
+    if (!data) return;
+    V = compute();
+    status();
+    const w = V.v.includes('w'), n = V.v.includes('n');
+    $('sub').textContent = `Unconfirmed, confirmed, assigned${n ? ', reopened and needsinfo' : ' and reopened'} reports` +
+      (w ? ', wishlists included.' : ', not counting wishlists.');
+
+    const S = series(MAIN, V.v), now = at(S, V.end), tiles = $('tiles');
+    tiles.textContent = '';
+    const t = h(tiles, 'div', 'tile');
+    h(t, 'div', 'k', 'Open now');
+    h(t, 'div', 'v', fmtN(now));
+    for (const [label, d] of CHANGES) {
+      const was = at(S, V.end - d), c = now - was, e = h(tiles, 'div', 'tile');
+      h(e, 'div', 'k', label);
+      h(e, 'div', 'v' + (c > 0 ? ' up-t' : c < 0 ? ' down-t' : ''), sign(c));
+      h(e, 'div', 's', 'from ' + fmtN(was));
+    }
+
+    const rbox = $('ranges');
+    if (!rbox.children.length) for (const [k, label, long] of RANGES) {
+      const b = h(rbox, 'button', null, label);
+      b.type = 'button'; b.dataset.k = k; b.title = k === 'all' ? 'Everything since 2001' : (/^\d/.test(long) ? '' : '1 ') + long;
+      b.addEventListener('click', () => setView({ range: k, lines: view.lines, include: view.include }));
+    }
+    for (const b of rbox.children) { b.classList.toggle('on', b.dataset.k === view.range); b.setAttribute('aria-pressed', b.dataset.k === view.range); }
+
+    const ibox = $('include'), inc = view.include || [];
+    ibox.textContent = '';
+    h(ibox, 'span', 'muted', 'Include');
+    for (const [k, label] of INCLUDE) {
+      const on = inc.includes(k), b = h(ibox, 'button', 'chip' + (on ? ' on' : ''), label);
+      b.type = 'button'; b.setAttribute('aria-pressed', on);
+      b.addEventListener('click', () => setView(Object.assign({}, view, { include: on ? inc.filter(x => x !== k) : inc.concat([k]) })));
+    }
+
+    const row2 = $('row2');
+    row2.textContent = '';
+    if (V.other || V.explicit) {
+      const lb = h(row2, 'div', 'chips');
+      for (const k of data.keys) {
+        const on = V.shown.includes(k), b = h(lb, 'button', 'chip' + (on ? ' on' : ''));
+        swatch(b, k); b.append(LABEL[k] || k);
+        b.type = 'button'; b.setAttribute('aria-pressed', on);
+        b.addEventListener('click', () => {
+          const next = on ? V.shown.filter(x => x !== k) : V.shown.concat([k]);
+          if (next.length) setView(Object.assign({}, view, { lines: next }));
+        });
+      }
+      if (V.explicit) {
+        const a = h(lb, 'button', 'linkbtn', 'Auto'); a.type = 'button';
+        a.addEventListener('click', () => setView(Object.assign({}, view, { lines: undefined })));
+      }
+    }
+    if (!view.range) {
+      const z = h(row2, 'div', 'chips');
+      h(z, 'span', 'muted', rangeText());
+      const a = h(z, 'button', 'linkbtn', 'Reset zoom'); a.type = 'button';
+      a.addEventListener('click', () => setView({ range: '1y', lines: view.lines, include: view.include }));
+    }
+
+    draw();
+
+    const sum = $('summary');
+    sum.textContent = '';
+    const toNow = V.t1 >= V.end - 1, fmtW = x => V.t1 - V.t0 <= 4 * DAY ? fmtMin(x) : fmtDay(x);
+    for (const k of V.shown) {
+      const r = scan(series(k, V.v), V.t0, V.t1, 1), row = h(sum, 'div');
+      if (V.shown.length > 1) { swatch(row, k); row.append(' ' + LABEL[k] + ': '); }
+      row.append(`${fmtW(V.t0)} `); h(row, 'b', null, fmtN(r.start));
+      row.append(` → ${toNow ? 'now' : fmtW(V.t1)} `); h(row, 'b', null, fmtN(r.end));
+      row.append(` (${sign(r.end - r.start)}) · low ${fmtN(r.low[1])} on ${fmtW(r.low[0])} · high ${fmtN(r.high[1])} on ${fmtW(r.high[0])}`);
+    }
+
+    top();
+    recent();
+  }
+
+  function top() {
+    const idx = {}, R = data.res;
+    data.lines.forEach((l, i) => { idx[l] = i; });
+    let mask = 0;
+    for (const k of V.shown) for (const l of (k === 'combined' ? data.lines : [k])) mask |= 1 << (4 * idx[l] + V.j);
+    const per = new Map(), all = new Set();
+    for (let i = bisect(R.t, V.t0), e = bisect(R.t, V.t1); i < e; i++) {
+      if (!(R.m[i] & mask)) continue;
+      let s = per.get(R.p[i]);
+      if (!s) per.set(R.p[i], s = new Set());
+      s.add(R.bug[i]); all.add(R.bug[i]);
+    }
+    const name = p => data.people[p] || '';
+    const list = [...per].map(([p, s]) => ({ p, n: s.size })).sort((a, b) => b.n - a.n || name(a.p).localeCompare(name(b.p))).slice(0, TOP);
+    $('toprange').textContent = rangeText();
+    const ol = $('top');
+    ol.textContent = '';
+    const max = list.length ? list[0].n : 1;
+    list.forEach((x, i) => {
+      const li = h(ol, 'li');
+      h(li, 'i', 'bg').style.width = (x.n / max * 100).toFixed(1) + '%';
+      h(li, 'span', 'rk', String(i + 1));
+      h(li, 'span', 'nm' + (name(x.p) ? '' : ' anon'), name(x.p) || 'no public name');
+      h(li, 'span', 'n', fmtN(x.n));
+    });
+    $('toptotal').textContent = list.length ? `${fmtN(all.size)} report${all.size === 1 ? '' : 's'} resolved by ${fmtN(per.size)} ${per.size === 1 ? 'person' : 'people'}`
+      : 'Nobody resolved a report in this range.';
+  }
+
+  function recent() {
+    const rec = $('recent'), evs = data.events.map(e => Object.assign({}, e, { d: e.dv[V.j] })).filter(e => e.d);
+    rec.textContent = '';
+    if (!evs.length) h(rec, 'div', 'muted', 'Nothing yet.');
+    for (const e of evs.slice(0, recentAll ? 60 : RECENT)) {
+      const row = h(rec, 'div', 'ev');
+      h(row, 'div', 'd ' + (e.d > 0 ? 'up-t' : 'down-t'), e.d > 0 ? '+1' : '−1');
+      const title = h(row, 'div', 'title');
+      const a = h(title, 'a', null, '#' + e.bug); a.href = BUG + e.bug; a.target = '_blank'; a.rel = 'noopener';
+      if (e.summary) { title.append(' ' + e.summary); title.title = e.summary; }
+      h(row, 'div', 'when', fmtRecent(e.t));
+      h(row, 'div', 'what', e.what + (e.who ? ' · ' + e.who : ''));
+    }
+    $('more').hidden = recentAll || evs.length <= RECENT;
+  }
+  $('more').addEventListener('click', () => { recentAll = true; recent(); });
+
+  // ---------------------------------------------------------------- chart
+  function niceStep(range, n) {
+    const raw = range / n, p = Math.pow(10, Math.floor(Math.log10(raw)));
+    return [1, 2, 2.5, 5, 10].map(m => m * p).find(s => s >= raw && s >= 1);
+  }
+  const TICKS = [[HOUR, 'h', 1], [3 * HOUR, 'h', 3], [6 * HOUR, 'h', 6], [12 * HOUR, 'h', 12], [DAY, 'd', 1], [2 * DAY, 'd', 2],
+    [7 * DAY, 'w', 1], [14 * DAY, 'w', 2], [30.4 * DAY, 'M', 1], [91 * DAY, 'M', 3], [182 * DAY, 'M', 6],
+    [365 * DAY, 'y', 1], [730 * DAY, 'y', 2], [1826 * DAY, 'y', 5]];
+  function ticks(t0, t1, max) {
+    const [, unit, k] = TICKS.find(s => (t1 - t0) / s[0] <= max) || TICKS[TICKS.length - 1];
+    const d = date(t0), out = [];
+    if (unit === 'h') d.setMinutes(0, 0, 0); else d.setHours(0, 0, 0, 0);
+    if (unit === 'w') d.setDate(d.getDate() - (d.getDay() + 6) % 7);
+    if (unit === 'M' || unit === 'y') d.setDate(1);
+    if (unit === 'y') d.setMonth(0);
+    for (let guard = 0; d.getTime() <= t1 * 1000 && guard < 5000; guard++) {
+      const ok = unit === 'h' ? d.getHours() % k === 0 : unit === 'd' ? Math.round(d.getTime() / 864e5) % k === 0
+        : unit === 'w' ? Math.round(d.getTime() / (7 * 864e5)) % k === 0 : unit === 'M' ? d.getMonth() % k === 0 : d.getFullYear() % k === 0;
+      const t = d.getTime() / 1000;
+      if (ok && t >= t0) {
+        const label = unit === 'h' ? (d.getHours() === 0 ? fmtShort(t) : fmtClock(t))
+          : unit === 'd' || unit === 'w' ? fmtShort(t)
+          : unit === 'M' ? (d.getMonth() === 0 ? String(d.getFullYear()) : MON[d.getMonth()])
+          : String(d.getFullYear());
+        out.push([t, label]);
+      }
+      if (unit === 'h') d.setHours(d.getHours() + 1);
+      else if (unit === 'd') d.setDate(d.getDate() + 1);
+      else if (unit === 'w') d.setDate(d.getDate() + 7);
+      else if (unit === 'M') d.setMonth(d.getMonth() + 1);
+      else d.setFullYear(d.getFullYear() + 1);
+    }
+    return out;
+  }
+  function fmtLen(s) {
+    if (s < 2 * HOUR) return Math.max(1, Math.round(s / 60)) + ' min';
+    if (s < 2 * DAY) return Math.round(s / HOUR) + ' hours';
+    return Math.round(s / DAY) + ' days';
+  }
+
+  function draw() {
+    svg.textContent = '';
+    const W = Math.max(300, wrap.clientWidth), H = Math.round(Math.min(440, Math.max(240, W * 0.4)));
+    svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+    const T0 = V.t0, T1 = V.t1;
+    M.r = 16 + 7 * Math.max(...V.shown.map(k => fmtN(at(series(k, V.v), T1)).length));   // room for the end values
+    const n = Math.max(50, Math.min(1500, Math.round(W - M.l - M.r)));
+    const LS = V.shown.map(k => Object.assign({ key: k }, scan(series(k, V.v), T0, T1, n)));
+    const B0 = LS[0].buckets;
+    let lo = Math.min(...LS.map(l => l.low[1])), hi = Math.max(...LS.map(l => l.high[1]));
+    if (hi - lo < 4) { lo -= 2; hi += 2; }
+    const step = niceStep(hi - lo, W < 600 ? 4 : 6);
+    lo = Math.max(0, Math.floor((lo - step * 0.2) / step) * step); hi = Math.ceil((hi + step * 0.2) / step) * step;
+    const X = t => M.l + (t - T0) / (T1 - T0) * (W - M.l - M.r);
+    const Y = v => M.t + (hi - v) / (hi - lo) * (H - M.t - M.b);
+    svg.setAttribute('aria-label', 'Open bugs over time: ' + LS.map(l => `${LABEL[l.key]} ${fmtDay(T0)} ${l.start}, ${fmtDay(T1)} ${l.end}`).join('; '));
+
+    const ax = el('g', { class: 'axis' });
+    for (let v = lo; v <= hi + 1e-9; v += step) {
+      el('line', { class: 'grid', x1: M.l, x2: W - M.r, y1: Y(v), y2: Y(v) }, ax);
+      el('text', { x: M.l - 6, y: Y(v) + 4, 'text-anchor': 'end' }, ax, fmtN(v));
+    }
+    for (const [t, label] of ticks(T0, T1, Math.floor((W - M.l - M.r) / 70))) {
+      el('line', { class: 'grid', x1: X(t), x2: X(t), y1: H - M.b, y2: H - M.b + 4 }, ax);
+      el('text', { x: X(t), y: H - M.b + 17, 'text-anchor': 'middle' }, ax, label);
+    }
+
+    const releases = hist.releases.map(r => ({ t: Date.parse(r.date + 'T00:00:00Z') / 1000, version: r.version })).filter(r => r.t >= T0 && r.t <= T1);
+    let lastEnd = -1e9;
+    const dense = releases.length > (W - M.l - M.r) / 40;
+    for (const r of releases) {
+      const x = X(r.t), w = r.version.length * 6, right = x + 3 + w > W - M.r;
+      el('line', { class: dense ? 'rel dense' : 'rel', x1: x, x2: x, y1: M.t - 6, y2: H - M.b });
+      const start = right ? x - 3 - w : x + 3;
+      if (start < lastEnd + 6) continue;
+      el('text', { class: 'rel-l', x: right ? x - 3 : x + 3, y: M.t - 10, 'text-anchor': right ? 'end' : 'start' }, null, r.version);
+      lastEnd = start + w;
+    }
+
+    for (const l of LS.slice().reverse()) {
+      let band = '', line = `M${X(T0).toFixed(1)},${Y(l.start).toFixed(1)}`, prevT = T0, prevV = l.start;
+      for (const b of l.buckets) {
+        const xa = X(prevT).toFixed(1), xb = X(b.t).toFixed(1);
+        if (b.hi > b.lo) band += `M${xa},${Y(b.hi).toFixed(1)}H${xb}V${Y(b.lo).toFixed(1)}H${xa}Z`;
+        line += `H${xb}`;
+        if (b.v !== prevV) line += `V${Y(b.v).toFixed(1)}`;
+        prevT = b.t; prevV = b.v;
+      }
+      if (band) el('path', { class: 'band ' + l.key, d: band });
+      el('path', { class: 'line ' + l.key, d: line });
+    }
+    let prevY = null;
+    for (const l of LS.slice().sort((a, b) => b.end - a.end)) {
+      el('circle', { class: 'dot ' + l.key, cx: X(T1), cy: Y(l.end), r: 4 });
+      let y = Y(l.end) + 4;
+      if (prevY !== null && y < prevY + 13) y = prevY + 13;
+      el('text', { class: 'end-l', x: X(T1) + 8, y }, null, fmtN(l.end));
+      prevY = y;
+    }
+
+    const events = T1 - T0 <= EVENTS_MAX ? data.events.map(e => Object.assign({}, e, { d: e.dv[V.j] })).filter(e => e.d && e.t > T0 && e.t <= T1) : [];
+    const moves = hist.moves.map(m => ({ t: Date.parse(m.date + 'T00:00:00Z') / 1000, m })).filter(p => p.t + DAY > T0 && p.t <= T1);
+    const sel = el('rect', { class: 'sel', x: 0, y: M.t, width: 0, height: H - M.t - M.b, visibility: 'hidden' });
+    const cross = el('line', { class: 'cross', y1: M.t, y2: H - M.b, x1: -10, x2: -10, visibility: 'hidden' });
+    const hots = LS.map(l => el('circle', { class: 'dot ' + l.key, r: 4, cx: -10, cy: -10, visibility: 'hidden' }));
+    const hit = el('rect', { x: M.l, y: 0, width: W - M.l - M.r, height: H, fill: 'transparent' });
+
+    const sx = cx => { const box = svg.getBoundingClientRect(); return Math.max(M.l, Math.min(W - M.r, (cx - box.left) * W / box.width)); };
+    const tAt = x => T0 + (x - M.l) / (W - M.l - M.r) * (T1 - T0);
+    function show(cx) {
+      lastX = cx;
+      const box = svg.getBoundingClientRect(), x = sx(cx);
+      let t = tAt(x);
+      if (events.length) {                  // snap to the nearest change within 8 px
+        const near = events.reduce((a, e) => Math.abs(X(e.t) - x) < Math.abs(X(a.t) - x) ? e : a);
+        if (Math.abs(X(near.t) - x) <= 8) t = near.t;
+      }
+      const k = Math.max(0, Math.min(B0.length - 1, Math.ceil((t - T0) / (T1 - T0) * B0.length) - 1));
+      const bt = B0[k].t, ta = k ? B0[k - 1].t : T0;
+      cross.setAttribute('x1', X(bt)); cross.setAttribute('x2', X(bt)); cross.setAttribute('visibility', 'visible');
+      tip.textContent = '';
+      h(tip, 'div', null, (bt - ta) < DAY ? fmtMin(bt) : fmtDay(bt));
+      LS.forEach((l, i) => {
+        const b = l.buckets[k];
+        hots[i].setAttribute('cx', X(bt)); hots[i].setAttribute('cy', Y(b.v)); hots[i].setAttribute('visibility', 'visible');
+        const row = h(tip, 'div');
+        if (LS.length > 1) { swatch(row, l.key); row.append(' '); }
+        h(row, 'b', null, fmtN(b.v));
+        row.append(' open' + (LS.length > 1 ? ' · ' + LABEL[l.key] : '') + (k === B0.length - 1 && T1 >= V.end - 1 ? ' now' : ''));
+        if (b.hi > b.lo) h(tip, 'div', 'muted', `${fmtN(b.lo)}–${fmtN(b.hi)} in the ${fmtLen(bt - ta)} before`);
+      });
+      const evs = events.filter(e => e.t > ta && e.t <= bt);
+      for (const e of evs.slice(0, 6)) h(tip, 'div', 'ev', `${e.d > 0 ? '+1' : '−1'} #${e.bug} ${e.what}${e.summary ? ': ' + e.summary : ''}`);
+      if (evs.length > 6) h(tip, 'div', 'muted', `and ${evs.length - 6} more`);
+      for (const r of releases) if (r.t > ta && r.t <= bt) h(tip, 'div', 'muted', `Plasma ${r.version} released`);
+      for (const p of moves) {
+        if (p.t >= bt || p.t + DAY <= ta) continue;
+        for (const x of p.m.moves) h(tip, 'div', 'muted', `${fmtN(Math.abs(x.change))} open bugs moved ${x.change > 0 ? 'in from' : 'out to'} ${x.product}`);
+      }
+      tip.style.display = 'block';
+      const px = X(bt) * box.width / W, py = Y(B0[k].v) * box.height / H, tw = tip.offsetWidth;
+      tip.style.left = Math.max(0, Math.min(box.width - tw, px + (px + tw + 16 > box.width ? -tw - 12 : 12))) + 'px';
+      tip.style.top = Math.max(0, py - 60) + 'px';
+    }
+    function hide() { lastX = null; tip.style.display = 'none'; cross.setAttribute('visibility', 'hidden'); hots.forEach(x => x.setAttribute('visibility', 'hidden')); }
+    hit.addEventListener('pointerdown', e => { drag = { x: sx(e.clientX) }; hit.setPointerCapture(e.pointerId); show(e.clientX); });
+    hit.addEventListener('pointermove', e => {
+      if (drag) {
+        const x = sx(e.clientX);
+        sel.setAttribute('x', Math.min(x, drag.x)); sel.setAttribute('width', Math.abs(x - drag.x)); sel.setAttribute('visibility', 'visible');
+      }
+      show(e.clientX);
+    });
+    hit.addEventListener('pointerup', e => {
+      if (!drag) return;
+      const a = drag.x, b = sx(e.clientX);
+      drag = null; sel.setAttribute('visibility', 'hidden');
+      if (Math.abs(b - a) < 12) return;
+      const f = Math.round(tAt(Math.min(a, b))), t = Math.round(tAt(Math.max(a, b)));
+      setView({ from: f, to: Math.max(t, f + 3600), lines: view.lines, include: view.include });
+    });
+    hit.addEventListener('pointercancel', () => { drag = null; sel.setAttribute('visibility', 'hidden'); hide(); });
+    hit.addEventListener('pointerleave', () => { if (!drag) hide(); });
+    if (lastX !== null) show(lastX);
+  }
+
+  // ---------------------------------------------------------------- start
+  status();
+  poll();
+  setInterval(() => { if (!document.hidden && !drag) poll(); }, 60e3);
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) poll(); });
+  window.addEventListener('hashchange', () => { const v = parseHash(); if (v) { view = v; render(); } });
+  let drawnW = null, rt;
+  new ResizeObserver(() => {
+    if (wrap.clientWidth === drawnW) return;
+    drawnW = wrap.clientWidth; clearTimeout(rt); rt = setTimeout(render, 100);
+  }).observe(wrap);
+})();
+</script>
+</body>
+</html>

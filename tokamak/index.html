@@ -99,7 +99,7 @@ button { font: inherit; color: inherit; }
 .tabs button:hover { color: var(--ink); }
 
 /* ledger */
-.row { display: grid; grid-template-columns: 92px minmax(0, 1fr) 200px; gap: 24px; padding-block: 20px;
+.row { display: grid; grid-template-columns: 92px minmax(0, 1fr) 110px; gap: 24px; padding-block: 20px;
   border-bottom: 1px solid var(--line); text-decoration: none; }
 .row:hover .id b { color: var(--hot); }
 .row:hover .t { text-decoration: underline; text-decoration-color: var(--line); text-decoration-thickness: 2px; text-underline-offset: 5px; }
@@ -113,9 +113,11 @@ button { font: inherit; color: inherit; }
 .meta { font: 400 11.5px/1.7 var(--mono); font-variation-settings: "wdth" 87.5; color: var(--muted); text-align: right; overflow-wrap: anywhere; }
 .meta span { display: block; }
 .meta .mr { color: var(--hot); }
+.meta .size { font-size: 14px; } .meta i { font-style: normal; } .meta .pl { color: var(--cool); } .meta .mi { color: var(--hot); }
 .meta .ok { color: var(--cool); }
 .meta .ch { color: var(--hot); }
 .tabs .rf { margin-left: auto; display: flex; gap: 18px; }
+.tabs .rf2 { margin-left: 28px; }
 .tabs .rf button { font-size: 14px; }
 .verdict { display: inline-block; font: 500 11px/1 var(--mono); text-transform: uppercase; letter-spacing: .1em; margin-bottom: 10px; }
 .verdict.ok { color: var(--cool); } .verdict.ch { color: var(--hot); }
@@ -192,7 +194,7 @@ figcaption { margin-top: 10px; font-size: 14px; line-height: 1.5; color: var(--m
   .search { margin-top: 26px; }
   .search label, .search input { font-size: 20px; }
   .tabs { gap: 22px; margin-top: 18px; flex-wrap: wrap; }
-  .tabs .rf { margin-left: 0; width: 100%; }
+  .tabs .rf { margin-left: 0; width: 100%; } .tabs .rf2 { margin-left: 0; }
   .row { grid-template-columns: minmax(0, 1fr); gap: 6px; padding-block: 18px; }
   .id { flex-direction: row; align-items: baseline; gap: 12px; }
   .id b { font-size: 14px; }
@@ -233,7 +235,7 @@ figcaption { margin-top: 10px; font-size: 14px; line-height: 1.5; color: var(--m
   const $ = s => document.querySelector(s);
   const E = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[c]));
   const NS = 'http://www.w3.org/2000/svg';
-  let ALL = [], byId = new Map(), filter = 'all', rfilter = 'any', text = '', shown = 0, list = [], obs = null, homeY = 0, built = false;
+  let ALL = [], byId = new Map(), filter = 'all', rfilter = 'any', order = 'simple', text = '', shown = 0, list = [], obs = null, homeY = 0, built = false;
   const cache = new Map();
   const isWish = x => x.kind === 'wish';
   const homeEl = $('#home'), bugEl = $('#bug');
@@ -272,7 +274,7 @@ figcaption { margin-top: 10px; font-size: 14px; line-height: 1.5; color: var(--m
   const row = x => `<a class="row" href="#${x.id}">
       <div class="id"><b>${x.id}</b><span class="kind ${x.kind}">${kindLabel(x)}</span></div>
       <div><p class="t">${E(x.title)}</p><p class="l">${E(x.line)}</p></div>
-      <div class="meta">${x.repos.map(r => `<span>${E(r)}</span>`).join('')}${x.status === 'open-mr' ? '<span class="mr">MR open</span>' : ''}${RV[x.review] ? `<span class="${RV[x.review][0]}">${RV[x.review][1]}</span>` : ''}</div></a>`;
+      <div class="meta"><span class="size"><i class="pl">+${x.add || 0}</i> <i class="mi">−${x.del || 0}</i></span></div></a>`;
 
   function buildHome() {
     const bugs = ALL.filter(x => !isWish(x)).length, wishes = ALL.length - bugs;
@@ -290,7 +292,7 @@ figcaption { margin-top: 10px; font-size: 14px; line-height: 1.5; color: var(--m
         <svg class="flux" id="flux" aria-hidden="true"></svg>
       </section>
       <nav class="tabs" aria-label="Show">${[['all', 'All'], ['bug', 'Bugs'], ['wish', 'Wishes']].map(([k, l]) =>
-        `<button type="button" data-f="${k}" class="${k === filter ? 'on' : ''}" aria-pressed="${k === filter}">${l} <span id="c-${k}"></span></button>`).join('')}<span class="rf">${[['any', 'Any review'], ['accepted', 'Accepted'], ['requires-changes', 'Changes requested']].map(([k, l]) => `<button type="button" data-r="${k}" class="${k === rfilter ? 'on' : ''}" aria-pressed="${k === rfilter}">${l}</button>`).join('')}</span></nav>
+        `<button type="button" data-f="${k}" class="${k === filter ? 'on' : ''}" aria-pressed="${k === filter}">${l} <span id="c-${k}"></span></button>`).join('')}<span class="rf">${[['simple', 'Simplest first'], ['new', 'Newest first']].map(([k, l]) => `<button type="button" data-o="${k}" class="${k === order ? 'on' : ''}" aria-pressed="${k === order}">${l}</button>`).join('')}</span><span class="rf rf2">${[['any', 'Any review'], ['accepted', 'Accepted'], ['requires-changes', 'Changes requested']].map(([k, l]) => `<button type="button" data-r="${k}" class="${k === rfilter ? 'on' : ''}" aria-pressed="${k === rfilter}">${l}</button>`).join('')}</span></nav>
       <div id="list"></div><div id="more"></div>`;
     flux($('#flux'), 210, 290, 11, 1.1);
     $('#form').addEventListener('submit', ev => {
@@ -316,6 +318,7 @@ figcaption { margin-top: 10px; font-size: 14px; line-height: 1.5; color: var(--m
   }
   function fill() {
     list = filtered(); shown = 0;
+    if (order === 'simple') list.sort((a, b) => ((a.add || 0) + (a.del || 0)) - ((b.add || 0) + (b.del || 0)) || b.id - a.id);
     $('#list').innerHTML = list.length ? '' : '<p class="empty">Nothing matches.</p>';
     counts(); hint(); more();
     watch();
@@ -446,6 +449,8 @@ figcaption { margin-top: 10px; font-size: 14px; line-height: 1.5; color: var(--m
   }
   document.addEventListener('click', ev => {
     if (ev.target.closest('[data-lucky]')) { lucky(); return; }
+    const ob = ev.target.closest('[data-o]');
+    if (ob) { order = ob.dataset.o; document.querySelectorAll('[data-o]').forEach(b => { b.classList.toggle('on', b === ob); b.setAttribute('aria-pressed', b === ob); }); fill(); return; }
     const rb = ev.target.closest('[data-r]');
     if (rb) { rfilter = rb.dataset.r; document.querySelectorAll('[data-r]').forEach(b => { b.classList.toggle('on', b === rb); b.setAttribute('aria-pressed', b === rb); }); fill(); return; }
     const f = ev.target.closest('[data-f]');

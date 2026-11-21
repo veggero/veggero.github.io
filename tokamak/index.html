@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Tokamak</title>
+<meta name="description" content="Plasma bug fixes, each with before and after and the code change.">
+<style>
+body { margin: 0; background: #f7f7fb; color: #6a6c7d; font: 15px system-ui, sans-serif; }
+@media (prefers-color-scheme: dark) { body { background: #101118; color: #9a9caf; } }
+p { max-width: 980px; margin: 0 auto; padding: 22px 16px; }
+</style>
+</head>
+<body>
+<p id="msg">Loading…</p>
+<script>
+// The page itself lives on luna and reads its data from there, so changing it needs no push here.
+(function () {
+  var SRC = 'https://luna.tail8b3802.ts.net:10000/tokamak/';
+  fetch(SRC, { cache: 'no-cache' })
+    .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.text(); })
+    .then(function (html) {
+      html = html.replace('<meta name="description"', '<meta name="data-base" content="' + SRC + '">\n<meta name="description"');
+      document.open(); document.write(html); document.close();
+    })
+    .catch(function () { document.getElementById('msg').textContent = 'The page could not be loaded. Try again in a minute.'; });
+})();
+</script>
+</body>
+</html>

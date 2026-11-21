@@ -2,29 +2,451 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Tokamak</title>
-<meta name="description" content="Plasma bug fixes, each with before and after and the code change.">
+<meta name="description" content="KDE Plasma bug fixes and implemented wishes, each with before and after and the code change.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Martian+Mono:wdth,wght@75..112.5,100..800&display=swap">
 <style>
-body { margin: 0; background: #f7f7fb; color: #6a6c7d; font: 15px system-ui, sans-serif; }
-@media (prefers-color-scheme: dark) { body { background: #101118; color: #9a9caf; } }
-p { max-width: 980px; margin: 0 auto; padding: 22px 16px; }
+/* Layout: one 1120px column; hero = statement + plasma cross-section; the database is a ledger keyed by bug number.
+   Color: cool steel ground, ink text; "hot" (plasma core) marks before/removed, "cool" (edge) marks after/added. */
+:root {
+  --bg: #f2f4f7;
+  --surface: #ffffff;
+  --ink: #0f1520;
+  --muted: #586273;
+  --faint: #8a93a3;
+  --line: #d8dde5;
+  --hot: #c92d64;
+  --cool: #1a5fd0;
+  --hot-tint: #fbe7ee;
+  --cool-tint: #e4edfc;
+  --hover: #e8ecf2;
+  --shade: rgba(10, 14, 22, .86);
+
+  --display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --body: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --mono: "Martian Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --wrap: 1120px;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0b0e14; --surface: #121722; --ink: #e7ebf2; --muted: #95a0b2; --faint: #6b7587;
+    --line: #232a37; --hot: #ff6f9c; --cool: #6ea6ff; --hot-tint: #35141f; --cool-tint: #12233f;
+    --hover: #161c28; --shade: rgba(0, 0, 0, .9); color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0b0e14; --surface: #121722; --ink: #e7ebf2; --muted: #95a0b2; --faint: #6b7587;
+  --line: #232a37; --hot: #ff6f9c; --cool: #6ea6ff; --hot-tint: #35141f; --cool-tint: #12233f;
+  --hover: #161c28; --shade: rgba(0, 0, 0, .9); color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font: 400 16px/1.5 var(--body); font-variation-settings: "wdth" 104; overflow-wrap: break-word;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 0 72px;
+  overflow-x: hidden;
+}
+a { color: inherit; }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--cool); outline-offset: 3px; border-radius: 2px; }
+.wrap { max-width: var(--wrap); margin: 0 auto; }
+.mono { font-family: var(--mono); font-variation-settings: "wdth" 87.5; }
+
+/* top bar */
+.bar { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 22px; }
+.brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none;
+  font: 800 15px/1 var(--display); font-variation-settings: "wdth" 125; letter-spacing: .14em; }
+.brand svg { width: 22px; height: 30px; display: block; }
+.lucky { background: none; border: 0; padding: 6px 0; cursor: pointer;
+  font: 500 14px/1 var(--body); color: var(--ink);
+  text-decoration: underline; text-decoration-color: var(--line); text-decoration-thickness: 2px; text-underline-offset: 6px; }
+.lucky:hover { text-decoration-color: var(--hot); }
+
+/* hero */
+.hero { display: grid; grid-template-columns: minmax(0, 1fr) 210px; gap: 48px; align-items: center; padding-block: 48px 8px; }
+.hero h1 { margin: 0; font: 760 clamp(34px, 5.4vw, 66px)/1.0 var(--display); font-variation-settings: "wdth" 118;
+  letter-spacing: -.02em; text-wrap: balance; max-width: 13em; }
+.sub { margin: 20px 0 0; font-size: 18px; color: var(--muted); max-width: 34em; text-wrap: pretty; }
+.sub b { font: 600 .92em var(--mono); font-variation-settings: "wdth" 87.5; color: var(--ink); }
+.flux { width: 100%; height: auto; display: block; }
+
+.search { margin-top: 36px; display: flex; align-items: center; border-bottom: 2px solid var(--ink); max-width: 680px; }
+.search label { font: 500 26px/1 var(--mono); color: var(--faint); padding-right: 12px; }
+.search input { flex: 1; min-width: 0; border: 0; background: none; color: var(--ink); outline: none;
+  font: 500 26px/1.2 var(--body); padding: 12px 0; }
+.search input::placeholder { color: var(--faint); }
+.search input::-webkit-search-cancel-button { filter: grayscale(1); }
+.search button { border: 0; background: none; cursor: pointer; font: 500 24px/1 var(--body); padding: 8px 0 8px 12px; color: var(--muted); }
+.search button:hover { color: var(--ink); }
+.search:focus-within { border-bottom-color: var(--cool); }
+.hint { min-height: 20px; margin-top: 10px; font: 400 12.5px/1.6 var(--mono); font-variation-settings: "wdth" 87.5; color: var(--muted); }
+.hint a { color: var(--cool); }
+
+/* switch */
+.tabs { display: flex; gap: 28px; border-bottom: 1px solid var(--line); margin-top: 24px; }
+.tabs button { background: none; border: 0; padding: 12px 0; margin-bottom: -1px; cursor: pointer;
+  font: 600 15px/1 var(--body); color: var(--muted); border-bottom: 2px solid transparent; display: inline-flex; gap: 8px; align-items: baseline; }
+.tabs button span { font: 400 12px/1 var(--mono); font-variation-settings: "wdth" 87.5; color: var(--faint); }
+.tabs button.on { color: var(--ink); border-bottom-color: var(--ink); }
+.tabs button:hover { color: var(--ink); }
+
+/* ledger */
+.row { display: grid; grid-template-columns: 92px minmax(0, 1fr) 200px; gap: 24px; padding-block: 20px;
+  border-bottom: 1px solid var(--line); text-decoration: none; }
+.row:hover .id b { color: var(--hot); }
+.row:hover .t { text-decoration: underline; text-decoration-color: var(--line); text-decoration-thickness: 2px; text-underline-offset: 5px; }
+.id { display: flex; flex-direction: column; gap: 6px; }
+.id b { font: 500 17px/1.3 var(--mono); font-variation-settings: "wdth" 87.5; letter-spacing: -.01em; }
+.kind { font: 500 10.5px/1 var(--mono); font-variation-settings: "wdth" 100; text-transform: uppercase; letter-spacing: .1em; color: var(--faint); }
+.kind.wish { color: var(--cool); }
+.kind.crash { color: var(--hot); }
+.row .t { margin: 0; font: 600 18px/1.3 var(--display); font-variation-settings: "wdth" 102; text-wrap: pretty; }
+.row .l { margin: 6px 0 0; font-size: 15px; color: var(--muted); text-wrap: pretty; }
+.meta { font: 400 11.5px/1.7 var(--mono); font-variation-settings: "wdth" 87.5; color: var(--muted); text-align: right; overflow-wrap: anywhere; }
+.meta span { display: block; }
+.meta .mr { color: var(--hot); }
+.empty { color: var(--muted); padding-block: 32px; }
+#more { height: 1px; }
+
+/* bug page */
+.page { padding-top: 28px; }
+.back { font: 500 14px/1 var(--body); color: var(--muted); text-decoration: none; }
+.back:hover { color: var(--ink); }
+.kick { margin-top: 36px; display: flex; flex-wrap: wrap; gap: 6px 18px; font: 400 12.5px/1.6 var(--mono); font-variation-settings: "wdth" 87.5; color: var(--muted); }
+.kick a { color: var(--ink); text-decoration-color: var(--line); text-underline-offset: 4px; }
+.kick a:hover { text-decoration-color: var(--cool); }
+.kick .wish { color: var(--cool); }
+.kick .mr { color: var(--hot); }
+.page h1 { margin: 14px 0 0; font: 720 clamp(27px, 3.4vw, 42px)/1.12 var(--display); font-variation-settings: "wdth" 108;
+  letter-spacing: -.015em; text-wrap: balance; max-width: 24em; }
+.lede { margin: 18px 0 0; font-size: 20px; line-height: 1.45; max-width: 38em; text-wrap: pretty; }
+
+.media { margin-top: 48px; display: flex; flex-direction: column; gap: 40px; }
+.pair { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 20px; align-items: start; }
+.pair.wide { grid-template-columns: minmax(0, 1fr); gap: 18px; }
+figure { margin: 0; min-width: 0; }
+.tag { display: flex; align-items: center; gap: 8px; margin-bottom: 10px;
+  font: 600 11px/1 var(--mono); font-variation-settings: "wdth" 100; letter-spacing: .12em; text-transform: uppercase; }
+.tag::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
+.tag i { font-style: normal; font-weight: 400; color: var(--faint); letter-spacing: .04em; }
+.before .tag { color: var(--hot); }
+.after .tag { color: var(--cool); }
+.stage { background: var(--surface); border: 1px solid var(--line); padding: 14px; display: flex; justify-content: center; align-items: center; }
+.stage img, .stage video { display: block; max-width: 100%; height: auto; max-height: 72vh; }
+.stage img { cursor: zoom-in; }
+figcaption { margin-top: 10px; font-size: 14px; line-height: 1.5; color: var(--muted); max-width: 60ch; text-wrap: pretty; }
+
+.sec { margin-top: 64px; }
+.sec h2 { margin: 0 0 18px; font: 700 13px/1 var(--display); font-variation-settings: "wdth" 125; letter-spacing: .16em; text-transform: uppercase;
+  display: flex; align-items: center; gap: 14px; }
+.sec h2::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+.prose { margin: 0; font-size: 17px; line-height: 1.65; max-width: 66ch; text-wrap: pretty; }
+.grp + .grp { margin-top: 32px; }
+.repo { display: block; margin: 0 0 10px; font: 600 13px/1 var(--mono); font-variation-settings: "wdth" 87.5; }
+.commit { margin: 0; background: var(--surface); border: 1px solid var(--line); padding: 18px 20px;
+  font: 400 13px/1.65 var(--mono); font-variation-settings: "wdth" 87.5; white-space: pre-wrap; overflow-wrap: anywhere; max-width: 760px; }
+.commit b { font-weight: 600; }
+
+.file { margin-top: 14px; border: 1px solid var(--line); background: var(--surface); }
+.fn { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2px 16px; padding: 10px 14px; border-bottom: 1px solid var(--line);
+  font: 400 12.5px/1.5 var(--mono); font-variation-settings: "wdth" 87.5; }
+.fn .p { min-width: 0; overflow-wrap: anywhere; }
+.fn .p span { color: var(--muted); }
+.fn .n { white-space: nowrap; }
+.fn .n .a { color: var(--cool); } .fn .n .d { color: var(--hot); }
+.diff { overflow-x: auto; }
+.diff pre { margin: 0; padding: 6px 0; font: 400 12.5px/1.6 var(--mono); font-variation-settings: "wdth" 75; min-width: max-content; }
+.diff pre div { padding: 0 16px; white-space: pre; }
+.diff .a { background: var(--cool-tint); }
+.diff .d { background: var(--hot-tint); }
+.diff .h { color: var(--faint); padding-block: 8px 4px; }
+
+.next { margin-top: 64px; padding-top: 22px; border-top: 2px solid var(--ink); display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.next a, .next button { font: 600 15px/1 var(--body); text-decoration: none; background: none; border: 0; padding: 4px 0; cursor: pointer; }
+.next a:hover, .next button:hover { color: var(--hot); }
+
+.zoom { position: fixed; inset: 0; z-index: 20; background: var(--shade); display: flex; align-items: center; justify-content: center;
+  padding: max(16px, env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) max(16px, env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); cursor: zoom-out; }
+.zoom img { max-width: 100%; max-height: 100%; background: #fff; }
+
+@media (max-width: 760px) {
+  .bar { padding-block: 16px; }
+  .hero { grid-template-columns: minmax(0, 1fr); padding-block: 28px 8px; }
+  .hero .flux { display: none; }
+  .sub { font-size: 16px; margin-top: 14px; }
+  .search { margin-top: 26px; }
+  .search label, .search input { font-size: 20px; }
+  .tabs { gap: 22px; margin-top: 18px; }
+  .row { grid-template-columns: minmax(0, 1fr); gap: 6px; padding-block: 18px; }
+  .id { flex-direction: row; align-items: baseline; gap: 12px; }
+  .id b { font-size: 14px; }
+  .row .t { font-size: 17px; }
+  .meta { text-align: left; margin-top: 4px; }
+  .meta span { display: inline; }
+  .meta span + span::before { content: " · "; color: var(--faint); }
+  .page { padding-top: 12px; }
+  .kick { margin-top: 24px; }
+  .lede { font-size: 17px; }
+  .media { margin-top: 32px; gap: 32px; }
+  .pair { grid-template-columns: minmax(0, 1fr); gap: 18px; }
+  .stage { padding: 8px; }
+  .sec { margin-top: 48px; }
+  .prose { font-size: 16px; }
+  .commit { padding: 14px; font-size: 12px; }
+  .diff pre { font-size: 11.5px; }
+  .diff pre div { padding: 0 12px; }
+}
+@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
 </style>
 </head>
 <body>
-<p id="msg">Loading…</p>
+<div class="wrap">
+  <header class="bar">
+    <a class="brand" href="#" aria-label="Tokamak, all fixes"><svg id="mark" viewBox="0 0 22 30" aria-hidden="true"></svg>TOKAMAK</a>
+    <button class="lucky" type="button" data-lucky>I'm feeling lucky</button>
+  </header>
+  <main>
+    <div id="home"></div>
+    <div id="bug" hidden></div>
+  </main>
+</div>
 <script>
-// The page itself lives on luna and reads its data from there, so changing it needs no push here.
-(function () {
-  var SRC = 'https://luna.tail8b3802.ts.net:10000/tokamak/';
-  fetch(SRC, { cache: 'no-cache' })
-    .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.text(); })
-    .then(function (html) {
-      html = html.replace('<meta name="description"', '<meta name="data-base" content="' + SRC + '">\n<meta name="description"');
-      document.open(); document.write(html); document.close();
-    })
-    .catch(function () { document.getElementById('msg').textContent = 'The page could not be loaded. Try again in a minute.'; });
+(() => {
+  const meta = document.querySelector('meta[name="data-base"]');
+  const BASE = meta ? meta.content : new URL('.', location.href).href;
+  const $ = s => document.querySelector(s);
+  const E = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[c]));
+  const NS = 'http://www.w3.org/2000/svg';
+  let ALL = [], byId = new Map(), filter = 'all', text = '', shown = 0, list = [], obs = null, homeY = 0, built = false;
+  const cache = new Map();
+  const isWish = x => x.kind === 'wish';
+  const homeEl = $('#home'), bugEl = $('#bug');
+
+  /* Plasma cross-section: nested magnetic flux surfaces (Miller shape), hot core to cool edge. */
+  function flux(svg, w, h, n, stroke) {
+    const mix = t => `color-mix(in oklab, var(--hot) ${Math.round((1 - t) * 100)}%, var(--cool))`;
+    const cx = w * 0.46, cy = h / 2, A = w * 0.40, K = (h * 0.47) / A;
+    svg.setAttribute('viewBox', `0 0 ${w} ${h}`);
+    for (let i = n; i >= 1; i--) {
+      const r = i / n, kap = 1.25 + (K - 1.25) * r, del = 0.42 * r * r, shift = A * 0.16 * (1 - r * r);
+      let d = '';
+      for (let k = 0; k <= 96; k++) {
+        const th = k / 96 * 2 * Math.PI;
+        const x = cx + shift + A * r * Math.cos(th + Math.asin(del) * Math.sin(th));
+        const y = cy - kap * A * r * Math.sin(th);
+        d += (k ? 'L' : 'M') + x.toFixed(2) + ' ' + y.toFixed(2);
+      }
+      const p = document.createElementNS(NS, 'path');
+      p.setAttribute('d', d + 'Z'); p.setAttribute('fill', 'none');
+      p.setAttribute('stroke-width', stroke); p.style.stroke = mix((i - 1) / (n - 1 || 1));
+      svg.append(p);
+    }
+  }
+  flux($('#mark'), 22, 30, 3, 1.6);
+
+  function filtered() {
+    const q = text.trim().replace(/^#/, '');
+    if (/^\d+$/.test(q)) return ALL.filter(x => tabOk(x) && String(x.id).startsWith(q));
+    const words = q.toLowerCase().split(/\s+/).filter(Boolean);
+    return ALL.filter(x => tabOk(x) && words.every(w => (x.id + ' ' + x.title + ' ' + x.line + ' ' + x.repos.join(' ')).toLowerCase().includes(w)));
+  }
+  const tabOk = x => filter === 'all' || (filter === 'wish') === isWish(x);
+  const kindLabel = x => x.kind === 'wish' ? 'Wish' : x.kind === 'crash' ? 'Crash' : 'Bug';
+  const row = x => `<a class="row" href="#${x.id}">
+      <div class="id"><b>${x.id}</b><span class="kind ${x.kind}">${kindLabel(x)}</span></div>
+      <div><p class="t">${E(x.title)}</p><p class="l">${E(x.line)}</p></div>
+      <div class="meta">${x.repos.map(r => `<span>${E(r)}</span>`).join('')}${x.status === 'open-mr' ? '<span class="mr">MR open</span>' : ''}</div></a>`;
+
+  function buildHome() {
+    const bugs = ALL.filter(x => !isWish(x)).length, wishes = ALL.length - bugs;
+    homeEl.innerHTML = `
+      <section class="hero">
+        <div>
+          <h1>Database of KDE&nbsp;Plasma bug fixes</h1>
+          <form class="search" id="form" role="search">
+            <label for="q">#</label>
+            <input id="q" type="search" placeholder="Bug number or words" autocomplete="off" spellcheck="false" enterkeyhint="go" value="${E(text)}">
+            <button type="submit" aria-label="Open">→</button>
+          </form>
+          <div class="hint" id="hint" aria-live="polite"></div>
+        </div>
+        <svg class="flux" id="flux" aria-hidden="true"></svg>
+      </section>
+      <nav class="tabs" aria-label="Show">${[['all', 'All'], ['bug', 'Bugs'], ['wish', 'Wishes']].map(([k, l]) =>
+        `<button type="button" data-f="${k}" class="${k === filter ? 'on' : ''}" aria-pressed="${k === filter}">${l} <span id="c-${k}"></span></button>`).join('')}</nav>
+      <div id="list"></div><div id="more"></div>`;
+    flux($('#flux'), 210, 290, 11, 1.1);
+    $('#form').addEventListener('submit', ev => {
+      ev.preventDefault();
+      const v = $('#q').value.trim().replace(/^#/, '');
+      if (/^\d+$/.test(v)) location.hash = v; else { text = v; fill(); }
+    });
+    $('#q').addEventListener('input', () => { text = $('#q').value; fill(); });
+    built = true;
+    fill();
+  }
+  function counts() {
+    const save = filter, out = {};
+    for (const k of ['all', 'bug', 'wish']) { filter = k; out[k] = filtered().length; }
+    filter = save;
+    for (const k in out) $('#c-' + k).textContent = out[k];
+  }
+  function hint() {
+    const v = text.trim().replace(/^#/, ''), h = $('#hint');
+    if (!/^\d{5,}$/.test(v)) { h.textContent = ''; return; }
+    h.innerHTML = byId.has(+v) ? `Enter opens bug ${E(v)}`
+      : `Bug ${E(v)} is not here yet. <a href="https://bugs.kde.org/show_bug.cgi?id=${E(v)}" target="_blank" rel="noopener">Open it on bugs.kde.org ↗</a>`;
+  }
+  function fill() {
+    list = filtered(); shown = 0;
+    $('#list').innerHTML = list.length ? '' : '<p class="empty">Nothing matches.</p>';
+    counts(); hint(); more();
+    watch();
+  }
+  function watch() {
+    if (obs) obs.disconnect();
+    obs = new IntersectionObserver(es => es[0].isIntersecting && shown < list.length && more(), {rootMargin: '1200px'});
+    obs.observe($('#more'));
+  }
+  function more() {
+    $('#list').insertAdjacentHTML('beforeend', list.slice(shown, shown + 40).map(row).join(''));
+    shown = Math.min(list.length, shown + 40);
+  }
+
+  function diffHtml(text) {
+    const at = text.indexOf('\ndiff --git '), body = at >= 0 ? text.slice(at + 1) : text;
+    return body.split(/^(?=diff --git )/m).filter(f => f.startsWith('diff --git')).map(f => {
+      const lines = f.replace(/\n-- \n[\s\S]*$/, '').split('\n');
+      const name = (lines[0].match(/ b\/(.*)$/) || [, lines[0]])[1];
+      const cut = name.lastIndexOf('/') + 1;
+      let add = 0, del = 0, hunk = false; const out = [];
+      for (const l of lines) {
+        if (l.startsWith('@@')) { hunk = true; out.push(`<div class="h">${E(l)}</div>`); continue; }
+        if (!hunk || l.startsWith('\\')) continue;
+        if (l[0] === '+') { add++; out.push(`<div class="a">${E(l)}</div>`); }
+        else if (l[0] === '-') { del++; out.push(`<div class="d">${E(l)}</div>`); }
+        else out.push(`<div>${E(l)}</div>`);
+      }
+      return `<div class="file"><div class="fn"><span class="p"><span>${E(name.slice(0, cut)).replace(/\//g, '/<wbr>')}</span>${E(name.slice(cut))}</span><span class="n"><span class="a">+${add}</span> <span class="d">−${del}</span></span></div><div class="diff"><pre>${out.join('')}</pre></div></div>`;
+    }).join('');
+  }
+  function mediaHtml(media) {
+    const groups = new Map();
+    for (const m of media) {
+      const k = +((m.file.match(/-(\d+)\.\w+$/) || [, '0'])[1]);
+      if (!groups.has(k)) groups.set(k, {before: [], after: []});
+      (groups.get(k)[m.kind] || groups.get(k).after).push(m);
+    }
+    const fig = (m, k, n) => {
+      if (!m) return '<div></div>';
+      const src = E(BASE + m.file), vid = /\.(mp4|webm|mov|mkv)$/i.test(m.file);
+      return `<figure class="${k}"><div class="tag">${k === 'before' ? 'Before' : 'After'}${vid ? ' <i>video</i>' : ''}</div><div class="stage">${vid
+        ? `<video src="${src}#t=0.1" controls muted loop playsinline preload="metadata"></video>`
+        : `<img src="${src}" alt="${E(m.caption)}" loading="lazy">`}</div>${m.caption ? `<figcaption>${E(m.caption)}</figcaption>` : ''}</figure>`;
+    };
+    let html = '';
+    for (const [n, g] of [...groups].sort((a, b) => a[0] - b[0]))
+      for (let i = 0; i < Math.max(g.before.length, g.after.length); i++)
+        html += `<div class="pair">${fig(g.before[i], 'before', n)}${fig(g.after[i], 'after', n)}</div>`;
+    return html;
+  }
+  /* Very wide crops (panels, strips) read better stacked than side by side. */
+  function shapePairs() {
+    bugEl.querySelectorAll('.pair').forEach(p => {
+      const check = () => {
+        const r = [...p.querySelectorAll('img, video')].map(el => el.tagName === 'IMG' ? el.naturalWidth / el.naturalHeight : el.videoWidth / el.videoHeight).filter(x => x > 0);
+        p.classList.toggle('wide', r.length > 0 && Math.max(...r) > 2.3);
+      };
+      p.querySelectorAll('img').forEach(i => i.complete ? check() : i.addEventListener('load', check));
+      p.querySelectorAll('video').forEach(v => v.readyState >= 1 ? check() : v.addEventListener('loadedmetadata', check));
+    });
+  }
+
+  function show(which) {
+    homeEl.hidden = which !== 'home'; bugEl.hidden = which !== 'bug';
+  }
+  async function page(id) {
+    if (!homeEl.hidden) homeY = window.scrollY;
+    if (obs) obs.disconnect();
+    const x = byId.get(id);
+    if (!x) {
+      show('bug'); window.scrollTo(0, 0);
+      bugEl.innerHTML = `<div class="page"><a class="back" href="#">← All fixes</a>
+        <h1>No fix for bug ${E(id)} here yet</h1>
+        <p class="lede"><a href="https://bugs.kde.org/show_bug.cgi?id=${E(id)}" target="_blank" rel="noopener">Open bug ${E(id)} on bugs.kde.org ↗</a></p></div>`;
+      return;
+    }
+    let b = cache.get(id);
+    if (!b) {
+      try { b = await (await fetch(BASE + 'b/' + id + '.json', {cache: 'no-cache'})).json(); cache.set(id, b); }
+      catch (e) {
+        show('bug'); bugEl.innerHTML = '<div class="page"><a class="back" href="#">← All fixes</a><p class="lede">This fix could not be loaded. Try again in a minute.</p></div>'; return;
+      }
+    }
+    if (location.hash.slice(1) !== String(id)) return;
+    show('bug'); window.scrollTo(0, 0);
+    document.title = `${b.title} · Tokamak`;
+    const date = b.date ? new Date(b.date + 'T12:00:00').toLocaleDateString('en-GB', {day: 'numeric', month: 'short', year: 'numeric'}) : '';
+    const commits = b.commits || [], patches = b.patches || [], media = b.media || [];
+    bugEl.innerHTML = `<article class="page">
+      <a class="back" href="#">← All fixes</a>
+      <div class="kick">
+        <a href="https://bugs.kde.org/show_bug.cgi?id=${b.id}" target="_blank" rel="noopener">${isWish(b) ? 'Wish' : 'Bug'} ${b.id} ↗</a>
+        <span>${E((b.repos || []).join(', '))}</span>
+        ${date ? `<span>${E(date)}</span>` : ''}
+        ${b.status === 'open-mr' ? '<span class="mr">MR open</span>' : ''}
+      </div>
+      <h1>${E(b.title)}</h1>
+      <p class="lede">${E(b.line)}</p>
+      ${media.length ? `<div class="media">${mediaHtml(media)}</div>` : ''}
+      ${b.explanation ? `<section class="sec"><h2>What was wrong</h2><p class="prose">${E(b.explanation)}</p></section>` : ''}
+      ${commits.length ? `<section class="sec"><h2>${commits.length > 1 ? 'Commits' : 'Commit'}</h2>${commits.map(c => {
+          const [s, ...r] = c.message.split('\n');
+          return `<div class="grp">${commits.length > 1 ? `<span class="repo">${E(c.repo)}</span>` : ''}<pre class="commit"><b>${E(s)}</b>\n${E(r.join('\n'))}</pre></div>`; }).join('')}</section>` : ''}
+      ${patches.length ? `<section class="sec"><h2>Code</h2>${patches.map(p =>
+          `<div class="grp">${patches.length > 1 ? `<span class="repo">${E(p.repo)}</span>` : ''}${diffHtml(p.diff)}</div>`).join('')}</section>` : ''}
+      <nav class="next"><a href="#">← All fixes</a><button type="button" data-lucky>Another random fix →</button></nav>
+    </article>`;
+    shapePairs();
+  }
+
+  function route() {
+    const h = decodeURIComponent(location.hash.slice(1));
+    if (/^\d+$/.test(h)) { page(+h); return; }
+    document.title = 'Tokamak';
+    if (!built) buildHome();
+    else if (homeEl.hidden) { show('home'); watch(); }
+    show('home');
+    requestAnimationFrame(() => window.scrollTo(0, homeY));
+  }
+  function lucky() {
+    const onHome = !homeEl.hidden, f = onHome ? filtered() : [];
+    const pool = f.length ? f : ALL;
+    const x = pool[Math.floor(Math.random() * pool.length)];
+    if (x) location.hash = String(x.id);
+  }
+  document.addEventListener('click', ev => {
+    if (ev.target.closest('[data-lucky]')) { lucky(); return; }
+    const f = ev.target.closest('[data-f]');
+    if (f) { filter = f.dataset.f; document.querySelectorAll('[data-f]').forEach(b => { b.classList.toggle('on', b === f); b.setAttribute('aria-pressed', b === f); }); fill(); return; }
+    const img = ev.target.closest('.stage img');
+    if (img) { const z = document.createElement('div'); z.className = 'zoom'; z.innerHTML = `<img src="${E(img.src)}" alt="">`; z.onclick = () => z.remove(); document.body.append(z); }
+  });
+  document.addEventListener('keydown', ev => { if (ev.key === 'Escape') document.querySelector('.zoom')?.remove(); });
+  window.addEventListener('hashchange', route);
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+
+  fetch(BASE + 'index.json', {cache: 'no-cache'}).then(r => r.json()).then(d => {
+    ALL = d; byId = new Map(d.map(x => [x.id, x])); route();
+  }).catch(() => { homeEl.innerHTML = '<section class="hero"><div><h1>Database of KDE&nbsp;Plasma bug fixes</h1><p class="sub">The fixes could not be loaded. Try again in a minute.</p></div></section>'; });
 })();
 </script>
 </body>

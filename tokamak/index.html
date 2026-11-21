@@ -113,6 +113,13 @@ button { font: inherit; color: inherit; }
 .meta { font: 400 11.5px/1.7 var(--mono); font-variation-settings: "wdth" 87.5; color: var(--muted); text-align: right; overflow-wrap: anywhere; }
 .meta span { display: block; }
 .meta .mr { color: var(--hot); }
+.meta .ok { color: var(--cool); }
+.meta .ch { color: var(--hot); }
+.tabs .rf { margin-left: auto; display: flex; gap: 18px; }
+.tabs .rf button { font-size: 14px; }
+.verdict { display: inline-block; font: 500 11px/1 var(--mono); text-transform: uppercase; letter-spacing: .1em; margin-bottom: 10px; }
+.verdict.ok { color: var(--cool); } .verdict.ch { color: var(--hot); }
+.changes { margin: 12px 0 0; padding-left: 20px; } .changes li { margin: 4px 0; }
 .empty { color: var(--muted); padding-block: 32px; }
 #more { height: 1px; }
 
@@ -184,7 +191,8 @@ figcaption { margin-top: 10px; font-size: 14px; line-height: 1.5; color: var(--m
   .sub { font-size: 16px; margin-top: 14px; }
   .search { margin-top: 26px; }
   .search label, .search input { font-size: 20px; }
-  .tabs { gap: 22px; margin-top: 18px; }
+  .tabs { gap: 22px; margin-top: 18px; flex-wrap: wrap; }
+  .tabs .rf { margin-left: 0; width: 100%; }
   .row { grid-template-columns: minmax(0, 1fr); gap: 6px; padding-block: 18px; }
   .id { flex-direction: row; align-items: baseline; gap: 12px; }
   .id b { font-size: 14px; }
@@ -225,7 +233,7 @@ figcaption { margin-top: 10px; font-size: 14px; line-height: 1.5; color: var(--m
   const $ = s => document.querySelector(s);
   const E = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[c]));
   const NS = 'http://www.w3.org/2000/svg';
-  let ALL = [], byId = new Map(), filter = 'all', text = '', shown = 0, list = [], obs = null, homeY = 0, built = false;
+  let ALL = [], byId = new Map(), filter = 'all', rfilter = 'any', text = '', shown = 0, list = [], obs = null, homeY = 0, built = false;
   const cache = new Map();
   const isWish = x => x.kind === 'wish';
   const homeEl = $('#home'), bugEl = $('#bug');
@@ -258,12 +266,13 @@ figcaption { margin-top: 10px; font-size: 14px; line-height: 1.5; color: var(--m
     const words = q.toLowerCase().split(/\s+/).filter(Boolean);
     return ALL.filter(x => tabOk(x) && words.every(w => (x.id + ' ' + x.title + ' ' + x.line + ' ' + x.repos.join(' ')).toLowerCase().includes(w)));
   }
-  const tabOk = x => filter === 'all' || (filter === 'wish') === isWish(x);
+  const tabOk = x => (filter === 'all' || (filter === 'wish') === isWish(x)) && (rfilter === 'any' || x.review === rfilter);
+  const RV = {'accepted': ['ok', 'Accepted'], 'requires-changes': ['ch', 'Changes requested']};
   const kindLabel = x => x.kind === 'wish' ? 'Wish' : x.kind === 'crash' ? 'Crash' : 'Bug';
   const row = x => `<a class="row" href="#${x.id}">
       <div class="id"><b>${x.id}</b><span class="kind ${x.kind}">${kindLabel(x)}</span></div>
       <div><p class="t">${E(x.title)}</p><p class="l">${E(x.line)}</p></div>
-      <div class="meta">${x.repos.map(r => `<span>${E(r)}</span>`).join('')}${x.status === 'open-mr' ? '<span class="mr">MR open</span>' : ''}</div></a>`;
+      <div class="meta">${x.repos.map(r => `<span>${E(r)}</span>`).join('')}${x.status === 'open-mr' ? '<span class="mr">MR open</span>' : ''}${RV[x.review] ? `<span class="${RV[x.review][0]}">${RV[x.review][1]}</span>` : ''}</div></a>`;
 
   function buildHome() {
     const bugs = ALL.filter(x => !isWish(x)).length, wishes = ALL.length - bugs;
@@ -281,7 +290,7 @@ figcaption { margin-top: 10px; font-size: 14px; line-height: 1.5; color: var(--m
         <svg class="flux" id="flux" aria-hidden="true"></svg>
       </section>
       <nav class="tabs" aria-label="Show">${[['all', 'All'], ['bug', 'Bugs'], ['wish', 'Wishes']].map(([k, l]) =>
-        `<button type="button" data-f="${k}" class="${k === filter ? 'on' : ''}" aria-pressed="${k === filter}">${l} <span id="c-${k}"></span></button>`).join('')}</nav>
+        `<button type="button" data-f="${k}" class="${k === filter ? 'on' : ''}" aria-pressed="${k === filter}">${l} <span id="c-${k}"></span></button>`).join('')}<span class="rf">${[['any', 'Any review'], ['accepted', 'Accepted'], ['requires-changes', 'Changes requested']].map(([k, l]) => `<button type="button" data-r="${k}" class="${k === rfilter ? 'on' : ''}" aria-pressed="${k === rfilter}">${l}</button>`).join('')}</span></nav>
       <div id="list"></div><div id="more"></div>`;
     flux($('#flux'), 210, 290, 11, 1.1);
     $('#form').addEventListener('submit', ev => {
@@ -408,6 +417,7 @@ figcaption { margin-top: 10px; font-size: 14px; line-height: 1.5; color: var(--m
       <p class="lede">${E(b.line)}</p>
       ${media.length ? `<div class="media">${mediaHtml(media)}</div>` : ''}
       ${b.explanation ? `<section class="sec"><h2>What was wrong</h2><p class="prose">${E(b.explanation)}</p></section>` : ''}
+      ${b.review && RV[b.review.verdict] ? `<section class="sec"><h2>Review</h2><span class="verdict ${RV[b.review.verdict][0]}">${RV[b.review.verdict][1]}</span><p class="prose">${E(b.review.text)}</p>${(b.review.changes || []).length ? `<ul class="changes prose">${b.review.changes.map(c => `<li>${E(c)}</li>`).join('')}</ul>` : ''}</section>` : ''}
       ${commits.length ? `<section class="sec"><h2>${commits.length > 1 ? 'Commits' : 'Commit'}</h2>${commits.map(c => {
           const [s, ...r] = c.message.split('\n');
           return `<div class="grp">${commits.length > 1 ? `<span class="repo">${E(c.repo)}</span>` : ''}<pre class="commit"><b>${E(s)}</b>\n${E(r.join('\n'))}</pre></div>`; }).join('')}</section>` : ''}
@@ -428,13 +438,16 @@ figcaption { margin-top: 10px; font-size: 14px; line-height: 1.5; color: var(--m
     requestAnimationFrame(() => window.scrollTo(0, homeY));
   }
   function lucky() {
-    const onHome = !homeEl.hidden, f = onHome ? filtered() : [];
-    const pool = f.length ? f : ALL;
+    const ok = x => x.review === 'accepted';
+    const onHome = !homeEl.hidden, f = onHome ? filtered().filter(ok) : [];
+    const pool = f.length ? f : ALL.filter(ok);
     const x = pool[Math.floor(Math.random() * pool.length)];
     if (x) location.hash = String(x.id);
   }
   document.addEventListener('click', ev => {
     if (ev.target.closest('[data-lucky]')) { lucky(); return; }
+    const rb = ev.target.closest('[data-r]');
+    if (rb) { rfilter = rb.dataset.r; document.querySelectorAll('[data-r]').forEach(b => { b.classList.toggle('on', b === rb); b.setAttribute('aria-pressed', b === rb); }); fill(); return; }
     const f = ev.target.closest('[data-f]');
     if (f) { filter = f.dataset.f; document.querySelectorAll('[data-f]').forEach(b => { b.classList.toggle('on', b === f); b.setAttribute('aria-pressed', b === f); }); fill(); return; }
     const img = ev.target.closest('.stage img');

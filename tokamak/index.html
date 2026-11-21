@@ -417,7 +417,7 @@ figcaption { margin-top: 10px; font-size: 14px; line-height: 1.5; color: var(--m
       <p class="lede">${E(b.line)}</p>
       ${media.length ? `<div class="media">${mediaHtml(media)}</div>` : ''}
       ${b.explanation ? `<section class="sec"><h2>What was wrong</h2><p class="prose">${E(b.explanation)}</p></section>` : ''}
-      ${b.review && RV[b.review.verdict] ? `<section class="sec"><h2>Review</h2><span class="verdict ${RV[b.review.verdict][0]}">${RV[b.review.verdict][1]}</span><p class="prose">${E(b.review.text)}</p>${(b.review.changes || []).length ? `<ul class="changes prose">${b.review.changes.map(c => `<li>${E(c)}</li>`).join('')}</ul>` : ''}</section>` : ''}
+      ${b.review && b.review.verdict === 'requires-changes' ? `<section class="sec"><h2>Review</h2><span class="verdict ${RV[b.review.verdict][0]}">${RV[b.review.verdict][1]}</span><p class="prose">${E(b.review.text)}</p>${(b.review.changes || []).length ? `<ul class="changes prose">${b.review.changes.map(c => `<li>${E(c)}</li>`).join('')}</ul>` : ''}</section>` : ''}
       ${commits.length ? `<section class="sec"><h2>${commits.length > 1 ? 'Commits' : 'Commit'}</h2>${commits.map(c => {
           const [s, ...r] = c.message.split('\n');
           return `<div class="grp">${commits.length > 1 ? `<span class="repo">${E(c.repo)}</span>` : ''}<pre class="commit"><b>${E(s)}</b>\n${E(r.join('\n'))}</pre></div>`; }).join('')}</section>` : ''}

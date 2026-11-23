@@ -126,7 +126,7 @@ button { font: inherit; color: inherit; }
 .rvf-menu .cnt { margin-left: auto; font: 400 11.5px/1 var(--mono); font-variation-settings: "wdth" 87.5; color: var(--faint); }
 
 /* ledger */
-.row { display: grid; grid-template-columns: 92px minmax(0, 1fr) 144px; gap: 24px; padding-block: 20px;
+.row { display: grid; grid-template-columns: 92px minmax(0, 1fr) 110px; gap: 24px; padding-block: 20px;
   border-bottom: 1px solid var(--line); text-decoration: none; }
 .row:hover .id b { color: var(--hot); }
 .row:hover .t { text-decoration: underline; text-decoration-color: var(--line); text-decoration-thickness: 2px; text-underline-offset: 5px; }
@@ -303,13 +303,10 @@ figcaption { margin-top: 10px; font-size: 14px; line-height: 1.5; color: var(--m
     return textMatches().filter(x => tabOk(x) && rvOk(x));
   }
   const kindLabel = x => x.kind === 'wish' ? 'Wish' : x.kind === 'crash' ? 'Crash' : 'Bug';
-  const row = x => {
-    const rv = RV[rvKey(x)];
-    return `<a class="row" href="#${x.id}">
+  const row = x => `<a class="row" href="#${x.id}">
       <div class="id"><b>${x.id}</b><span class="kind ${x.kind}">${kindLabel(x)}</span></div>
       <div><p class="t">${E(x.title)}</p><p class="l">${E(x.line)}</p></div>
-      <div class="meta"><span class="size"><i class="pl">+${x.add || 0}</i> <i class="mi">−${x.del || 0}</i></span>${rv ? `<span class="${rv[0]}">${rv[1]}</span>` : ''}</div></a>`;
-  };
+      <div class="meta"><span class="size"><i class="pl">+${x.add || 0}</i> <i class="mi">−${x.del || 0}</i></span></div></a>`;
 
   function closeRvf() {
     const m = $('#rvf-menu'), b = $('#rvf-btn');

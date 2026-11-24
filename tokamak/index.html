@@ -488,7 +488,6 @@ figcaption { margin-top: 10px; font-size: 14px; line-height: 1.5; color: var(--m
     const date = b.date ? new Date(b.date + 'T12:00:00').toLocaleDateString('en-GB', {day: 'numeric', month: 'short', year: 'numeric'}) : '';
     const commits = b.commits || [], patches = b.patches || [], media = b.media || [];
     const rvInfo = b.review && RV[b.review.verdict] ? RV[b.review.verdict] : RV['to-review'];
-    const showRev = b.review && (b.review.verdict === 'requires-changes' || b.review.verdict === 'reject');
     bugEl.innerHTML = `<article class="page">
       <a class="back" href="#">← All fixes</a>
       <div class="kick">
@@ -502,7 +501,6 @@ figcaption { margin-top: 10px; font-size: 14px; line-height: 1.5; color: var(--m
       <p class="lede">${E(b.line)}</p>
       ${media.length ? `<div class="media">${mediaHtml(media)}</div>` : ''}
       ${b.explanation ? `<section class="sec"><h2>What was wrong</h2><p class="prose">${E(b.explanation)}</p></section>` : ''}
-      ${showRev ? `<section class="sec"><h2>Review</h2><span class="verdict ${RV[b.review.verdict][0]}">${RV[b.review.verdict][1]}</span><p class="prose">${E(b.review.text)}</p>${(b.review.changes || []).length ? `<ul class="changes prose">${b.review.changes.map(c => `<li>${E(c)}</li>`).join('')}</ul>` : ''}</section>` : ''}
       ${commits.length ? `<section class="sec"><h2>${commits.length > 1 ? 'Commits' : 'Commit'}</h2>${commits.map(c => {
           const [s, ...r] = c.message.split('\n');
           return `<div class="grp">${commits.length > 1 ? `<span class="repo">${E(c.repo)}</span>` : ''}<pre class="commit"><b>${E(s)}</b>\n${E(r.join('\n'))}</pre></div>`; }).join('')}</section>` : ''}

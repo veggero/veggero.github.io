@@ -208,6 +208,15 @@ figcaption { margin-top: 10px; font-size: 14px; line-height: 1.5; color: var(--m
 .next { margin-top: 64px; padding-top: 22px; border-top: 2px solid var(--ink); display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
 .next a, .next button { font: 600 15px/1 var(--body); text-decoration: none; background: none; border: 0; padding: 4px 0; cursor: pointer; }
 .next a:hover, .next button:hover { color: var(--hot); }
+.rstat { margin-top: 28px; }
+.rstat summary { display: inline-block; font: 500 11px/1 var(--mono); text-transform: uppercase; letter-spacing: .1em; color: var(--faint); cursor: pointer; list-style: none; padding: 4px 0; }
+.rstat summary::-webkit-details-marker { display: none; }
+.rstat summary:hover, .rstat[open] summary { color: var(--ink); }
+.rstat .ag { margin-top: 18px; }
+.rstat .ag h3 { font: 600 14px/1.2 var(--body); margin: 0 0 6px; display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; }
+.rstat .ag h3 .verdict { margin: 0; }
+.rstat .ag h3 small { font: 500 11px/1 var(--mono); color: var(--faint); }
+.rstat .ag .none { color: var(--faint); font-size: 14px; margin: 0; }
 
 .zoom { position: fixed; inset: 0; z-index: 20; background: var(--shade); display: flex; align-items: center; justify-content: center;
   padding: max(16px, env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) max(16px, env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); cursor: zoom-out; }
@@ -500,8 +509,23 @@ figcaption { margin-top: 10px; font-size: 14px; line-height: 1.5; color: var(--m
       ${patches.length ? `<section class="sec"><h2>Code</h2>${patches.map(p =>
           `<div class="grp">${patches.length > 1 ? `<span class="repo">${E(p.repo)}</span>` : ''}${diffHtml(p.diff)}</div>`).join('')}</section>` : ''}
       <nav class="next"><a href="#">← All fixes</a><button type="button" data-lucky>Another random fix →</button></nav>
+      ${reviewStatus(b)}
     </article>`;
     shapePairs();
+  }
+
+  const REVIEWERS = ['opus', 'neon'];
+  const AGENT_NAME = {opus: 'Opus', neon: 'Neon'};
+  function reviewStatus(b) {
+    const by = new Map((b.reviews || []).map(r => [r.agent, r]));
+    const agents = [...REVIEWERS, ...[...by.keys()].filter(a => !REVIEWERS.includes(a))];
+    return `<details class="rstat"><summary>Review status</summary>${agents.map(a => {
+      const r = by.get(a), name = E(AGENT_NAME[a] || a);
+      if (!r) return `<div class="ag"><h3>${name}</h3><p class="none">Not reviewed yet</p></div>`;
+      const v = RV[r.verdict] || RV['to-review'];
+      return `<div class="ag"><h3>${name}<span class="verdict ${v[0]}">${v[1]}</span>${r.date ? `<small>${E(r.date)}</small>` : ''}</h3>
+        <p class="prose">${E(r.text)}</p>${(r.changes || []).length ? `<ul class="changes prose">${r.changes.map(c => `<li>${E(c)}</li>`).join('')}</ul>` : ''}</div>`;
+    }).join('')}</details>`;
   }
 
   function route() {

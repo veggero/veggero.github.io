@@ -298,8 +298,10 @@ figcaption { margin-top: 10px; font-size: 14px; line-height: 1.5; color: var(--m
   flux($('#mark'), 22, 30, 3, 1.6);
 
   const RV = {'accepted': ['ok', 'Accepted'], 'requires-changes': ['ch', 'Changes requested'], 'reject': ['rj', 'Rejected'], 'to-review': ['tr', 'To review']};
-  const RV_LIST = [['all', 'all', 'All statuses'], ['accepted', 'ok', 'Accepted'], ['requires-changes', 'ch', 'Changes requested'], ['reject', 'rj', 'Rejected'], ['to-review', 'tr', 'To review']];
-  const rvKey = x => (x.review && RV[x.review]) ? x.review : 'to-review';
+  // combined Opus + Neon status (site.py): accepted by both, to review, rejected by either, not reviewed by either
+  const ST = {'accepted': ['ok', 'Accepted'], 'to-review': ['ch', 'To review'], 'reject': ['rj', 'Rejected'], 'none': ['tr', 'Not reviewed']};
+  const RV_LIST = [['all', 'all', 'All statuses'], ['accepted', 'ok', 'Accepted'], ['to-review', 'ch', 'To review'], ['reject', 'rj', 'Rejected'], ['none', 'tr', 'Not reviewed']];
+  const rvKey = x => ST[x.review] ? x.review : 'none';
   const tabOk = x => (filter === 'all' || (filter === 'wish') === isWish(x));
   const rvOk = x => (rvFilter === 'all' || rvKey(x) === rvFilter);
   function textMatches() {
@@ -326,9 +328,9 @@ figcaption { margin-top: 10px; font-size: 14px; line-height: 1.5; color: var(--m
     if (!btn || !tag) return;
     const active = rvFilter !== 'all';
     btn.classList.toggle('active', active);
-    if (active && RV[rvFilter]) {
-      tag.textContent = RV[rvFilter][1];
-      tag.className = 'rvf-tag ' + RV[rvFilter][0];
+    if (active && ST[rvFilter]) {
+      tag.textContent = ST[rvFilter][1];
+      tag.className = 'rvf-tag ' + ST[rvFilter][0];
     } else {
       tag.textContent = '';
       tag.className = 'rvf-tag';
@@ -386,7 +388,7 @@ figcaption { margin-top: 10px; font-size: 14px; line-height: 1.5; color: var(--m
     $('#c-wish').textContent = byRv.filter(isWish).length;
     const byTab = base.filter(tabOk);
     $('#rc-all').textContent = byTab.length;
-    for (const k of ['accepted', 'requires-changes', 'reject', 'to-review'])
+    for (const k of ['accepted', 'to-review', 'reject', 'none'])
       $('#rc-' + k).textContent = byTab.filter(x => rvKey(x) === k).length;
   }
   function hint() {
@@ -487,7 +489,7 @@ figcaption { margin-top: 10px; font-size: 14px; line-height: 1.5; color: var(--m
     document.title = `${b.title} · Tokamak`;
     const date = b.date ? new Date(b.date + 'T12:00:00').toLocaleDateString('en-GB', {day: 'numeric', month: 'short', year: 'numeric'}) : '';
     const commits = b.commits || [], patches = b.patches || [], media = b.media || [];
-    const rvInfo = b.review && RV[b.review.verdict] ? RV[b.review.verdict] : RV['to-review'];
+    const rvInfo = ST[b.rv] || ST.none;
     bugEl.innerHTML = `<article class="page">
       <a class="back" href="#">← All fixes</a>
       <div class="kick">

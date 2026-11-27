@@ -299,8 +299,8 @@ figcaption { margin-top: 10px; font-size: 14px; line-height: 1.5; color: var(--m
 
   const RV = {'accepted': ['ok', 'Accepted'], 'requires-changes': ['ch', 'Changes requested'], 'reject': ['rj', 'Rejected'], 'to-review': ['tr', 'To review']};
   // combined Opus + Neon status (site.py): accepted by both, to review, rejected by either, not reviewed by either
-  const ST = {'accepted': ['ok', 'Accepted'], 'to-review': ['ch', 'To review'], 'reject': ['rj', 'Rejected'], 'none': ['tr', 'Not reviewed']};
-  const RV_LIST = [['all', 'all', 'All statuses'], ['accepted', 'ok', 'Accepted'], ['to-review', 'ch', 'To review'], ['reject', 'rj', 'Rejected'], ['none', 'tr', 'Not reviewed']];
+  const ST = {'accepted': ['ok', 'Accepted'], 'to-review': ['ch', 'Needs changes'], 'reject': ['rj', 'Rejected'], 'none': ['tr', 'Not reviewed']};
+  const RV_LIST = [['all', 'all', 'All statuses'], ['accepted', 'ok', 'Accepted'], ['to-review', 'ch', 'Needs changes'], ['reject', 'rj', 'Rejected'], ['none', 'tr', 'Not reviewed']];
   const rvKey = x => ST[x.review] ? x.review : 'none';
   const tabOk = x => (filter === 'all' || (filter === 'wish') === isWish(x));
   const rvOk = x => (rvFilter === 'all' || rvKey(x) === rvFilter);
@@ -541,9 +541,8 @@ figcaption { margin-top: 10px; font-size: 14px; line-height: 1.5; color: var(--m
   function lucky() {
     const ok = x => x.review === 'accepted';
     const onHome = !homeEl.hidden;
-    let pool = onHome && rvFilter !== 'all' ? filtered() : (onHome ? filtered().filter(ok) : []);
+    let pool = onHome ? filtered().filter(ok) : [];
     if (!pool.length) pool = ALL.filter(ok);
-    if (!pool.length) pool = ALL;
     const x = pool[Math.floor(Math.random() * pool.length)];
     if (x) location.hash = String(x.id);
   }

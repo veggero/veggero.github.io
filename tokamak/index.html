@@ -217,6 +217,15 @@ figcaption { margin-top: 10px; font-size: 14px; line-height: 1.5; color: var(--m
 .rstat .ag h3 .verdict { margin: 0; }
 .rstat .ag h3 small { font: 500 11px/1 var(--mono); color: var(--faint); }
 .rstat .ag .none { color: var(--faint); font-size: 14px; margin: 0; }
+.rstat .hist { margin-top: 26px; border-top: 1px solid var(--line, rgba(127,127,127,.25)); padding-top: 4px; }
+.rstat .ev { margin-top: 18px; }
+.rstat .ev h3 { font: 600 14px/1.2 var(--body); margin: 0 0 6px; display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; }
+.rstat .ev h3 small, .rstat .ag h3 .old { font: 500 11px/1 var(--mono); color: var(--faint); }
+.rstat .ans { margin: 8px 0 0; padding-left: 18px; }
+.rstat .ans li { margin-top: 6px; }
+.rstat .ans .rq { color: var(--muted); }
+.rstat .ev details summary { font: 500 11px/1 var(--mono); color: var(--faint); cursor: pointer; margin-top: 10px; }
+.rvf-tag.rr, .meta .rr, .verdict.rr, .kick .rr { color: var(--ink); } .rvf-menu .dot.rr { background: var(--ink); }
 
 .zoom { position: fixed; inset: 0; z-index: 20; background: var(--shade); display: flex; align-items: center; justify-content: center;
   padding: max(16px, env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) max(16px, env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); cursor: zoom-out; }
@@ -299,8 +308,8 @@ figcaption { margin-top: 10px; font-size: 14px; line-height: 1.5; color: var(--m
 
   const RV = {'accepted': ['ok', 'Accepted'], 'requires-changes': ['ch', 'Changes requested'], 'reject': ['rj', 'Rejected'], 'to-review': ['tr', 'To review']};
   // combined Opus + Neon status (site.py): accepted by both, to review, rejected by either, not reviewed by either
-  const ST = {'accepted': ['ok', 'Accepted'], 'to-review': ['ch', 'Needs changes'], 'reject': ['rj', 'Rejected'], 'none': ['tr', 'Not reviewed']};
-  const RV_LIST = [['all', 'all', 'All statuses'], ['accepted', 'ok', 'Accepted'], ['to-review', 'ch', 'Needs changes'], ['reject', 'rj', 'Rejected'], ['none', 'tr', 'Not reviewed']];
+  const ST = {'accepted': ['ok', 'Accepted'], 'to-review': ['ch', 'Needs changes'], 'reject': ['rj', 'Rejected'], 'rereview': ['rr', 'Needs re-review'], 'none': ['tr', 'Not reviewed']};
+  const RV_LIST = [['all', 'all', 'All statuses'], ['accepted', 'ok', 'Accepted'], ['to-review', 'ch', 'Needs changes'], ['reject', 'rj', 'Rejected'], ['rereview', 'rr', 'Needs re-review'], ['none', 'tr', 'Not reviewed']];
   const rvKey = x => ST[x.review] ? x.review : 'none';
   const tabOk = x => (filter === 'all' || (filter === 'wish') === isWish(x));
   const rvOk = x => (rvFilter === 'all' || rvKey(x) === rvFilter);
@@ -388,7 +397,7 @@ figcaption { margin-top: 10px; font-size: 14px; line-height: 1.5; color: var(--m
     $('#c-wish').textContent = byRv.filter(isWish).length;
     const byTab = base.filter(tabOk);
     $('#rc-all').textContent = byTab.length;
-    for (const k of ['accepted', 'to-review', 'reject', 'none'])
+    for (const k of ['accepted', 'to-review', 'reject', 'rereview', 'none'])
       $('#rc-' + k).textContent = byTab.filter(x => rvKey(x) === k).length;
   }
   function hint() {
@@ -519,13 +528,17 @@ figcaption { margin-top: 10px; font-size: 14px; line-height: 1.5; color: var(--m
   function reviewStatus(b) {
     const by = new Map((b.reviews || []).map(r => [r.agent, r]));
     const agents = [...REVIEWERS, ...[...by.keys()].filter(a => !REVIEWERS.includes(a))];
-    return `<details class="rstat"><summary>Review status</summary>${agents.map(a => {
-      const r = by.get(a), name = E(AGENT_NAME[a] || a);
-      if (!r) return `<div class="ag"><h3>${name}</h3><p class="none">Not reviewed yet</p></div>`;
+    const one = (r, cls) => {
       const v = RV[r.verdict] || RV['to-review'];
-      return `<div class="ag"><h3>${name}<span class="verdict ${v[0]}">${v[1]}</span>${r.date ? `<small>${E(r.date)}</small>` : ''}</h3>
+      return `<div class="${cls}"><h3>${E(AGENT_NAME[r.agent] || r.agent)}<span class="verdict ${v[0]}">${v[1]}</span>${(b.rev || 1) > 1 || r.rev > 1 ? `<span class="old">revision ${r.rev || 1}</span>` : ''}${r.date ? `<small>${E(r.date)}</small>` : ''}</h3>
         <p class="prose">${E(r.text)}</p>${(r.changes || []).length ? `<ul class="changes prose">${r.changes.map(c => `<li>${E(c)}</li>`).join('')}</ul>` : ''}</div>`;
-    }).join('')}</details>`;
+    };
+    const hist = (b.history || []).map(h => h.type === 'review' ? one(h, 'ev') :
+      `<div class="ev"><h3>Revision ${h.rev}${h.to ? `<small>answer to ${E(AGENT_NAME[h.to] || h.to)}</small>` : ''}${h.date ? `<small>${E(h.date)}</small>` : ''}</h3>
+        <p class="prose">${E(h.summary)}</p>${(h.answers || []).length ? `<ul class="ans prose">${h.answers.map(a => `<li><span class="rq">${E(a.request)}</span><br>${E(a.answer)}</li>`).join('')}</ul>` : ''}
+        ${h.interdiff ? `<details><summary>Changes in this revision</summary>${diffHtml(h.interdiff)}</details>` : ''}</div>`).join('');
+    return `<details class="rstat"><summary>Review status</summary>${agents.map(a => by.has(a) ? one(by.get(a), 'ag')
+      : `<div class="ag"><h3>${E(AGENT_NAME[a] || a)}</h3><p class="none">Not reviewed yet</p></div>`).join('')}${hist ? `<div class="hist">${hist}</div>` : ''}</details>`;
   }
 
   function route() {
